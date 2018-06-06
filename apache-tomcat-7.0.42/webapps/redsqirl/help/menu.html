@@ -1,0 +1,169 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Menu</title>
+</head>
+<body>
+	<h1>Menu</h1>
+
+    
+	    <img src="../helpimages/menu-topmenu.png" style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:600px;" title="Red Sqirl Top Menu" />
+
+	<h2>File</h2>
+			<table class="firsttable">
+				<tr>
+					<td>New</td>
+					<td>
+						<ul>
+							<li>Create a new <a class="stopLink" id="helpmain_canvas" onclick="return false;" href="../help/canvas.html#workflow">Workflow</a></li>
+							<li>Create a new Sub Workflow</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>Open</td>
+					<td>Open a saved workflow</td>
+				<tr>
+				<tr>
+					<td>Save</td>
+					<td>Save the workflow</td>
+				</tr>
+				<tr>
+					<td>Save As</td>
+					<td>Save the workflow with a name</td>
+				</tr>
+				<tr>
+					<td>Save All</td>
+					<td>Save all open workflows</td>
+				</tr>
+				<tr>
+					<td>Close</td>
+					<td>Close workflow</td>
+				</tr>
+				<tr>
+					<td>Close All</td>
+					<td>Close all the workflows</td>
+				</tr>
+			</table>
+		<h2>Edit</h2>
+			<table class="firsttable">
+				<tr>
+					<td>Select All</td>
+					<td>Select all elements on the workflow</td>
+				</tr>
+				<tr>
+					<td>Deselect All</td>
+					<td>Deselect all elements on the workflow</td>
+				</tr>
+				<tr>
+					<td>Copy</td>
+					<td>Copy an Action</td>
+				</tr>
+				<tr>
+					<td>Paste</td>
+					<td>Paste an Action</td>
+				</tr>
+				<tr>
+					<td>Undo</td>
+					<td>Undo an Action</td>
+				</tr>
+				<tr>
+					<td>Redo</td>
+					<td>Redo an Action</td>
+				</tr>
+				<tr>
+					<td>Replace All</td>
+					<td>Replace text</td>
+				</tr>
+				<tr>
+					<td><a class="stopLink" id="helpmain_aggregate" onclick="return false;" href="../help/aggregate.html">Super Action Aggregate</a></td>
+					<td>Aggregate actions to create Super Actions</td>
+				</tr>
+				<tr>
+					<td>Merge</td>
+					<td>(Scheduled Only) Merge two coordinators together</td>
+				</tr>
+				<tr>
+					<td>Split</td>
+					<td>(Scheduled Only) Split one coordinator in two</td>
+				</tr>
+				<tr>
+					<td>Clean Actions</td>
+					<td>Clean all Actions</td>
+				</tr>
+				<tr>
+					<td><a class="stopLink" id="helpmain_canvas" onclick="return false;" href="../help/canvas.html#output_type">Output state </a></td>
+					<td>
+						<ul>
+							<li>Buffered: set all the temporary data output of the actions selected to the Buffered state</li>
+							<li>Temporary: set all the buffered data output of the actions selected to the Buffered state</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>Delete</td>
+					<td>Delete Action</td>
+				</tr>
+				</ul>
+			</table>
+		<h2>Project</h2>
+			<table class="firsttable">
+				<tr>
+					<td><a class="stopLink" id="helpmain_tech" onclick="return false;" href="../help/technologies.html">Oozie</a> Job</td>
+					<td>View the jobs that are listed in Oozie</td>
+				</tr>
+				<tr>
+					<td>Save & Run Selection</td>
+					<td>Run the selected items as well as their required
+						dependencies.</td>
+				</tr>
+				<tr>
+					<td>save & Run</td>
+					<td>Kick-off an Oozie job generating  the last elements of the workflow. If they do not exist, the workflow does not necessarily run completely.</td>
+				</tr>
+				<tr>
+					<td><a class="stopLink" id="helpmain_commenteditor" onclick="return false;" href="../help/commentEditor.html">Comment Editor</a></td>
+					<td>Edit comment of a workflow to give detail on what the workflow is trying to achieve.</td>
+				</tr>
+			</table>
+		<h2>Software</h2>
+			<table class="firsttable">
+				<tr>
+					<td><a class="stopLink" id="helpmain_modelview" onclick="return false;" href="../help/modelview.html">Models</a></td>
+					<td>Vew, modify and install models.</td>
+				</tr>
+				<tr>
+					<td><a class="stopLink" id="helpmain_packageview" onclick="return false;" href="../help/packageview.html">Packages</a></td>
+					<td>Vew, modify and install packages</td>
+				</tr>
+				<tr>
+					<td><a class="stopLink" id="helpmain_setting" onclick="return false;" href="../help/setting.html">Settings</a></td>
+					<td>View and modify user settings.
+					    Administrators can also
+						modify Red Sqirl settings from there.</td>
+				</tr>
+				<tr>
+					<td>Install <a class="stopLink" id="helpmain_canvas" onclick="return false;" href="../help/canvas.html#super_actions">Super Actions</a></td>
+					<td>If the current workflow is a  Super Action, the user can install it. A Super Action has to be installed to be used somewhere else.</td>
+				</tr>
+				<tr>
+					<td>Remove generated data from</td>
+					<td>
+						<ul>
+							<li>All: Remove all cached data saved in any storage</li>
+							<li>Others: Remove cached data from a specific location</li>
+						</ul>
+                        Notes: this may create errors on workflow currently running.
+					</td>
+				</tr>
+				<tr>
+					<td>About</td>
+					<td>General information about Red Sqirl</td>
+				</tr>
+			</table>
+
+            <br/>
+            <br/>
+
+</body>
+</html>

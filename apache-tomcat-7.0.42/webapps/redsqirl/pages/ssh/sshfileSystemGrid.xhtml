@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<body>
+
+<script>
+    
+    function selectFileSsh(isFile, nameFile){
+    	if (isFile != "true"){
+    		updateTableSsh(nameFile);
+    	}
+    }
+    
+    function getSSHPathSelected(value){
+    	console.log(value);
+    	console.log(jQuery('.'+value).val());
+    	submitSSHPathSelected(value, jQuery('.'+value).val());
+    }
+    
+</script>
+	
+	<a4j:keepAlive beanName = "sshBean"/>
+	<h:panelGroup id="tabRemote" styleClass="removeDefaults" layout="block">
+		
+		<h:form id="fileSysGridFormSsh">
+			<a4j:jsFunction name="setSelectedRemoteTab" action="#{sshBean.changeTab}" oncomplete="createFilterOnChangeTriggerSsh();" reRender="sshfs,sshpath" >
+				<a4j:actionparam name="nameTab"/>
+			</a4j:jsFunction>
+			
+			<a4j:jsFunction name="updateTableSsh" action="#{sshBean.selectFileSsh}" oncomplete="createFilterOnChangeTriggerSsh()" reRender="sshfs,sshpath">
+				<a4j:actionparam name="nameFile"/>
+			</a4j:jsFunction>
+			
+			<a4j:jsFunction name="closeServer" action="#{sshBean.closeTab}" oncomplete="configureTabsRemote();" reRender="tabRemote">
+				<a4j:actionparam name="nameTab"/>
+			</a4j:jsFunction>
+		
+			<ul class="ulCssCanvas removeDefaults topBanner">
+				<ui:repeat value="#{sshBean.tabs}" var="tab">
+					<li class="locked canvasTabsInactive" >
+						<a href="##{tab}" class="canvasTab" onclick="setSelectedRemoteTab('#{tab}');">#{tab}</a>
+						<span class='ui-icon ui-icon-close' onclick="closeTab(this);closeServer('#{tab}');"></span>
+					</li>
+				</ui:repeat>
+				
+				<a4j:commandButton image="../image/icons/button-new_canvas.gif" action="#{sshBean.openNewSsh}" oncomplete="#{rich:component('modalNewSsh')}.show();openSshPopUp();" 
+					style="border:hidden;width:25px;" rerender="modalNewSsh"/>
+			</ul>
+					
+		</h:form>
+			
+		<h:form id="fileSysGridFormSshTab">
+		
+		<a4j:jsFunction name="submitSSHPathSelected" action="#{sshBean.changePathSsh}" oncomplete="createFilterOnChangeTriggerSsh();" reRender="sshpath,sshfs,msnErrorSsh" >
+			<a4j:actionparam name="nameTab" />
+			<a4j:actionparam name="path" />
+		</a4j:jsFunction>
+
+		<a4j:repeat value="#{sshBean.tabs}" var="tab" rowKeyVar="index">
+						
+			<div id="#{tab}">
+							
+				<ui:include src="/pages/ssh/sshFileSystemGridTab.xhtml" >
+					<ui:param name="tab" value="#{tab}" />
+				</ui:include>
+							
+			</div>
+		</a4j:repeat>
+		</h:form>
+	
+	</h:panelGroup>
+	
+	<a4j:region>
+		<rich:modalPanel id="modalNewSsh" width="300" height="270" style="overflow:auto;" resizeable="false">
+	
+			<f:facet name="header">Configuration</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalNewSsh')}.hide()" />
+			</f:facet>
+	
+			<h:form>
+				<h:panelGrid>
+					<a4j:include viewId="/pages/ssh/newSsh.xhtml" ajaxRendered="true" />
+				</h:panelGrid>
+			</h:form>
+	
+		</rich:modalPanel>
+	</a4j:region>
+
+</body>
+</html>

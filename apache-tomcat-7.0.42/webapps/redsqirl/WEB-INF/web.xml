@@ -1,0 +1,226 @@
+<!-- 
+Copyright © 2016 Red Sqirl, Ltd. All rights reserved.
+Red Sqirl, Clarendon House, 34 Clarendon St., Dublin 2. Ireland
+
+This file is part of Red Sqirl
+
+User agrees that use of this software is governed by: 
+(1) the applicable user limitations and specified terms and conditions of 
+   the license agreement which has been entered into with Red Sqirl; and 
+(2) the proprietary and restricted rights notices included in this software.
+
+WARNING: THE PROPRIETARY INFORMATION OF Red Sqirl IS PROTECTED BY IRISH AND 
+INTERNATIONAL LAW.  UNAUTHORISED REPRODUCTION, DISTRIBUTION OR ANY PORTION
+OF IT, MAY RESULT IN CIVIL AND/OR CRIMINAL PENALTIES.
+
+If you have received this software in error please contact Red Sqirl at 
+support@redsqirl.com
+-->
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>redsqirl</display-name>
+
+	<context-param>
+		<param-name>org.ajax4jsf.SERIALIZE_SERVER_STATE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- Faces Parameters -->
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<!-- <context-param> <param-name>javax.faces.STATE_SAVING_METHOD</param-name> 
+		<param-value>client</param-value> </context-param> -->
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.numberOfViewsInSession</param-name>
+		<param-value>15</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.numberOfLogicalViews</param-name>
+		<param-value>15</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.validateXml</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.verifyObjects</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.forceLoadConfiguration</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.disableVersionTracking</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.enableHtmlTagLibValidator</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.preferXHTML</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.compressViewState</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+
+
+	<context-param>
+		<param-name>org.ajax4jsf.VIEW_HANDLERS</param-name>
+		<param-value>com.sun.facelets.FaceletViewHandler</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.skin</param-name>
+		<param-value>blueSky</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>com.sun.faces.injectionProvider</param-name>
+		<param-value>com.sun.faces.vendor.WebContainerInjectionProvider</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<!-- <context-param> <param-name>com.sun.faces.expressionFactory</param-name> 
+		<param-value>com.sun.el.ExpressionFactoryImpl</param-value> </context-param> -->
+
+	<filter>
+		<display-name>RichFaces Filter</display-name>
+		<filter-name>richfaces</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+		<init-param>
+			<param-name>createTempFiles</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>maxRequestSize</param-name>
+			<param-value>10000000</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>richfaces</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>RichFacesFilter</filter-name>
+		<filter-class>com.redsqirl.useful.RichFacesFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>RichFacesFilter</filter-name>
+		<url-pattern>/a4j/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.redsqirl.auth.ServletContextApp</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.redsqirl.auth.SessionListener</listener-class>
+	</listener>
+
+
+
+	<!-- Faces Servlet -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Faces Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<!-- Facelets -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+
+
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/pages/initial.xhtml</location>
+	</error-page>
+
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/pages/error.xhtml</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/pages/error.xhtml</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/pages/error.xhtml</location>
+	</error-page>
+
+
+
+
+
+	<session-config>
+		<session-timeout>180</session-timeout>
+	</session-config>
+
+
+	<!-- RedSqirl Login filter -->
+	<filter>
+		<filter-name>AnalyticsStoreLoginFilter</filter-name>
+		<filter-class>com.redsqirl.analyticsStore.AnalyticsStoreLoginFilter</filter-class>
+	</filter>
+
+	<!-- Set the login filter to secure all the pages in the /secured/* path 
+		of the application -->
+	<filter-mapping>
+		<filter-name>AnalyticsStoreLoginFilter</filter-name>
+		<url-pattern>/secured/*</url-pattern>
+	</filter-mapping>
+
+</web-app>

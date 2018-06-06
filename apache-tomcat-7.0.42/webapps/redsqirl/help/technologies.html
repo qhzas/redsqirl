@@ -1,0 +1,47 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Technologies</title>
+</head>
+<body>
+	<h1>Technologies</h1>
+	<h2><a href="http://hadoop.apache.org/" target="_blank">Hadoop</a></h2>
+	<p>Hadoop is a distributed system that is implemented over a cluster of computers. There can be many nodes in a cluster but there can only be one control node known as namenode. A cluster can contain many nodes that are slaves to the namenode known as datanodes. These datanodes can usually hold the storage space for HDFS or Hive, but also have resources to perform processes like Map/Reduce.</p>
+
+	<h2><a href="http://hive.apache.org/" target="_blank">Hive</a></h2>
+	<p>Hive is a Hadoop implementation of a relational database that is used for data warehousing for large data sets. Each query is written in its own language called HiveQl and acts like a normal SQL query, but runs as a Map/Reduce job. Indexing is made easier and makes querying large datasets quicker and more efficient.</p>
+
+	<h2><a href="http://hadoop.apache.org/docs/r1.2.1/hdfs_design.html" target="_blank">HDFS</a></h2>
+	<p>HDFS is the distributed storage facility that is included within Hadoop. Any datanode that is in the cluster and configured to use HDFS will be a replication of all other datanodes leading to synchronization of data across clusters. In the event that a datanode has to be excluded from the cluster, the data that is stored on that datanode is already available within the cluster.</p>
+
+	<h2><a href="http://oozie.apache.org/" target="_blank">Oozie</a></h2>
+
+	<p>It can be difficult to run a chain of processes together, but Oozie
+		is technology that provides workflow functionality to the processes
+		available in Hadoop. </p>
+
+	<p>Oozie also provides functionality to manage workflows. Through
+	Oozie and the Red Sqirl Process Manager tab, you can review job details
+	and control running jobs.</p>
+
+	<h2><a href="http://spark.apache.org/" target="_blank">Spark</a></h2>
+    <p>Apache Spark is a fast and general engine for large-scale data processing. Spark can run programs up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk. Spark offers over 80 high-level operators that make it easy to build parallel apps. And you can use it interactively from the Scala, Python and R shells. </p>
+
+	<h2><a href="http://sqoop.apache.org/" target="_blank">Sqoop</a></h2>
+    <p>Apache Sqoop is a tool designed for efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.</p>
+
+	<h2><a href="http://pig.apache.org/" target="_blank">Pig</a></h2>
+	<p>Apache Pig is a platform for analyzing large data sets, which
+		consists of a high-level language for expressing data analysis
+		programs, coupled with infrastructure for evaluating these programs.
+		The salient property of Pig programs is that their structure is
+		amenable to substantial parallelization, which in turns enables them
+		to handle very large data sets.
+	</p>
+
+
+    <br/>
+    <br/>
+
+</body>
+</html>

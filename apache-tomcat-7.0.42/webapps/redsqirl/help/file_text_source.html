@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Pig PlainText Source</title>
+</head>
+<body>
+    <h1>File Text Source</h1>
+    
+	<h2>Overview</h2>
+    <p>File Text Source is an action that imports a plain text source character delimited file.</p>
+    
+    <p>
+    Example: <br/>
+	File contains the following: "ab,c", abc <br/>
+	Delimiter set to "," <br/>
+	File text source would create a record with the following three fields: "ab  ,   c"   and   abc <br/>
+    </p>
+    
+    <p>
+    
+    <ul>
+	<li>Input        
+	    <ul>
+		<li>PPlain text source character delimited file</li>
+	    </ul>
+	</li>
+	<li>Output
+	<ul>
+	    <li>
+	    <a class="stopLink" id="helpmain_canvas" 
+		onclick="return false;" 
+		href="../help/canvas.html#output_type">
+		Plain Text Map Reduce File
+	    </a>
+	    </li>
+	</ul>
+	</li>
+    </ul>
+    </p>
+
+    <h2><a id="page1">Source: Data Sub-Type</a></h2>
+
+    <h3>Format</h3>
+    <p>
+    The user can select the format to use. The user must choose if the text file has a header or not.
+    </p>
+
+    <h2><a id="page2">Source: Browser</a></h2>
+    
+    <h3>Data set</h3>
+    <p>
+    Within the dataset browser  the user can select the path of the data that will be used.
+    </p>
+    
+    <h3>Data format parameters</h3>
+	<p>
+	The user can change the delimiter. 
+	The delimiter can be a normal character (",","|",";") or an ASCII character in which case (#1, #44).
+	</p>
+	
+	<h3>Data preview</h3>
+	<p>
+	The user can change the header and fields of a file by clicking on the pencil Icon. 
+	A header can be a list of feature names or a list of feature name with type. 
+	For example, if the user has a data set that contains three fields, The user could define the header to be 
+	"field1, field2, field3" or "field1 DATE, field2 STRING, field3 INT".
+	</p>
+    
+</body>
+</html>

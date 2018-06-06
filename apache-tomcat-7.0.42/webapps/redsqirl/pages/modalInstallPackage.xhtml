@@ -1,0 +1,12 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+    <iframe src="#{request.contextPath}/secured/search.xhtml?userInstall=#{packageMngBean.userInstall}&amp;type=#{packageMngBean.type}"
+    	width="840px" height="550px"/>
+</ui:composition>

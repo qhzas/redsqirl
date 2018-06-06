@@ -1,0 +1,93 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Models</title>
+</head>
+<body>
+	<h1>Models</h1>
+
+	<p>The model view gathers all the models installed on the user's Red Sqirl instance.
+   </p>
+   <p>
+    Models are data process blocks built from Red Sqirl packages. A model can produce a prediction, a report or an analysis. A model is composed of Super Actions that depend on each other.
+   </p>
+
+   <img src="../helpimages/models-intro.png" style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:600px;" title="Model View" />
+	<h2>Scope</h2>
+
+	<p>
+	<ul>
+	    <li>System: The system scope is available to all the users.</li>
+	    <li>User: The user scope allow the installation of extra personal
+	    functionality.</li>
+	</ul>
+
+	<p>The User scope models always overwrite the System models in case of conflict. For example, if churn_model with a Super Action evaluation is installed on the System scope model and the user has installed Version 2 on the User scope model that does not have the Super Action  evaluation, the user won't be able to access the Super Action  evaluation.</p>
+
+	<h2>Installation</h2>
+
+	<p>System models can only be installed by an administrator. The user needs to be in the required 
+	<a class="stopLink" id="helpmain_setting" onclick="return false;" href="../help/setting.html">setting</a> to be able to install models. New models can be installed either from the the Analytics Store or from HDFS.</p>
+
+	<h3>Analytics Store</h3>
+
+	<p>The user can only access the Analytics Store provided the web server can access the store. 
+	<ol>
+	    <li>Click Install either in the System scope column or User Scope
+	    column</li>
+	    <li>Sign In with web credentials, if the user does not have an account, one can be created on the spot.</li>
+	    <li>Identify the package to be installed.</li>
+	    <li>Click install</li>
+	</ol>
+
+	<h3>From HDFS</h3>
+
+	<p>A model is a simple zip file that should have a name
+	$name-$version.zip</p>
+	<ol>
+	    <li>Click import either in the System scope column or User Scope
+	    column</li>
+	    <li>Choose the HDFS path in which your model exist</li>
+	    <li>Click OK</li>
+	</ol>
+    
+
+   <img src="../helpimages/models-importhdfs.png" style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:600px;" title="Import a model from HDFS" />
+
+	<h2>Model Privileges</h2>
+
+	<p>Three permissions exists for a model:
+	<ul>
+	    <li>no privilege: Anyone can view and modify the source</li>
+	    <li>run only: The version installed is neither viewable or editable</li>
+        <li>licensed: Same as above, but enforces the installation through the web</li>
+    </ul>
+    <p>
+        Run and edit privileges can be set when the user exports the model to HDFS. When the user does so, it is highly recommended to keep the original as a copy, as it can not modified. </li>
+    </p>
+
+	<h2>Model Manipulation</h2>
+
+	<p>Models can be modified provided they do not have any permissions assigned to them.</p>
+
+	<ul>
+	    <li>Create: Create a new model by clicking on the new button</li>
+        <li>Protected: Protect a model so it can not be modified</li>
+	    <li>Remove: Remove a model. Once a model is removed, it can not be undone.</li>
+	    <li>Export: Export the model to HDFS in a given folder i.e $model-$version.zip</li>
+	    <li>In the edit window the user can:
+	    <ul>
+	    <li>Set an image: you can give an image to your model by clicking
+	    the <img src="../image/icons/button-pencil.gif" style="width:15px;margin:0px"/> right next to it. The image has to be gif, square and between 40x40 and 75x75. By signing out and back in can solve the problem of browser caching.</li>
+	    <li>Rename: Rename a model by clicking the <img src="../image/icons/button-pencil.gif" style="width:15px;margin:0px"/> right next to its
+	    name.</li>
+	    <li>Change Version: Change the version by clicking the <img src="../image/icons/button-pencil.gif" style="width:15px;margin:0px"/> right
+	    next to the current version.</li>
+	    <li>Comment: Comments can be added to guide future users about the model.</li>
+	    <li>Copy/Move: Comments can be added to guide future users about the model.</li>
+	    <li>Set to public/private: The user can define public interfaces. Only public interfaces can be added to the footer.</li>
+	    <li>Remove: Remove a Super Action from a model, this action cannot be undone.</li>
+	    </ul></li>
+	</ul> 
+</body>
+</html>

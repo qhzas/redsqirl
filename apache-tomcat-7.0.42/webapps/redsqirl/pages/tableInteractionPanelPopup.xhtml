@@ -1,0 +1,115 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<h:form>
+
+	<h:panelGroup style="width:240px" layout="block" >
+    	<select onchange="updatedSelectedFilter(this);" style="width:100%">
+	    	<a4j:repeat value="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.filter}" var="idx"  >
+				<h:outputText rendered="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.selectedFilter == idx.value}" > <option selected="selected"> <h:outputText value="#{idx.value}" /> </option> </h:outputText>
+				<h:outputText rendered="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.selectedFilter != idx.value}" > <option> <h:outputText value="#{idx.value}" /> </option> </h:outputText>
+			</a4j:repeat>
+    	</select>
+    </h:panelGroup>
+    
+    <script type="text/javascript">
+		function updatedSelectedFilter(element){
+			var idx=element.selectedIndex;
+			var val=element.options[idx].value;
+			var content=element.options[idx].innerHTML;
+			jQuery("[id$='hiddenSelectedFilter']").val(val);
+			onchangeHiddenSelectedFilter();
+		}
+	</script>
+	
+	<h:inputHidden value="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.selectedFilter}" id="hiddenSelectedFilter" />
+	<a4j:jsFunction name="onchangeHiddenSelectedFilter" action="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.mountTableInteractionPanel}" 
+		reRender="tableInteractionPanelPopUp" />
+	
+		<rich:panel id="tableInteractionPanelPopUp" style="border:none;min-height:370px;width:100%;" >
+
+			<rich:tabPanel id="tableInteractionPanelPopUpTab"
+				style="border:none;width:100%;" switchType="ajax"
+				selectedTab="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.selectedTab}">
+
+				<c:forEach
+					items="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.listTableGrid}"
+					var="cmi">
+
+					<rich:tab label="#{cmi.name}"
+						style="border:none;border-collapse:collapse;">
+
+						<div
+							style="width: 100%; height: 305px; border: 1px solid grey; overflow: auto;">
+
+							<rich:dataTable value="#{cmi.rows}" var="rowItem"
+								rowKeyVar="rowNb" width="100%" style="border:none;"
+								onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+								onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'">
+
+								<rich:column style="border-bottom:0px;border-right:0px;" width="20px;" 
+									styleClass="#{rowItem.rowAlreadyAdd ? 'rowalreadyadd' : 'rownotalreadyadd' }">
+									<h:outputText value="#{rowNb+1}" />
+								</rich:column>
+
+								<rich:column style="border-bottom:0px;border-right:0px;" width="40px;" 
+									styleClass="#{rowItem.rowAlreadyAdd ? 'rowalreadyadd' : 'rownotalreadyadd' }">
+									<f:facet name="header">
+										<h:selectBooleanCheckbox
+											onclick="selectAllCheckbox(this, /tableInteractionPopUpSelect$/);" />
+									</f:facet>
+									<h:selectBooleanCheckbox id="tableInteractionPopUpSelect"
+										value="#{rowItem.selected}" title="#{rowItem.selected}">
+										<f:selectItem itemValue="true" />
+									</h:selectBooleanCheckbox>
+								</rich:column>
+
+								<rich:columns
+									value="#{canvasModalBean.tablesColumnTitle == null? canvasBean.emptyList : canvasModalBean.tablesColumnTitle}"
+									var="column" index="ind" 
+									style="border-bottom:0px;border-right:0px;max-width:150px;word-wrap:break-word;" 
+									styleClass="#{rowItem.rowAlreadyAdd ? 'rowalreadyadd' : 'rownotalreadyadd' }" >
+									<f:facet name="header">
+										<h:outputText value="#{column}" />
+									</f:facet>
+									<h:outputText value="#{rowItem.row[ind]}" title="#{rowItem.row[ind]}" />
+								</rich:columns>
+
+							</rich:dataTable>
+
+						</div>
+
+						<br />
+							
+						<rich:panel style="border:none;float:right;padding-right:10px;">
+							<a4j:commandButton styleClass="greenButton"
+								value="#{messages.button_cancel}"
+								onclick="#{rich:component('tableInteractionPanel')}.hide();"
+								reRender="msnError, errorTable" />
+							<a4j:commandButton
+								action="#{canvasModalBean.canvasModalInteractionTableInteractionPanel.applyTabTableInteractionPopUp}"
+								value="#{messages.label_menu_generate}"
+								oncomplete="if(#{requestScope['msnError'] == null} ){#{rich:component('tableInteractionPanel')}.hide();changeTableInteractionAnchorBottom();}"
+								styleClass="greenButton"
+								reRender="msnError, errorTable,tableInteraction" />
+						</rich:panel>	
+						
+
+					</rich:tab>
+
+				</c:forEach>
+
+			</rich:tabPanel>
+
+		</rich:panel>
+
+</h:form>
+
+</ui:composition>

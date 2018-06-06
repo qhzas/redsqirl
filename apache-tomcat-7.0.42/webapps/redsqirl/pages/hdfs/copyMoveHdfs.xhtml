@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<script>
+//<![CDATA[
+           
+	function dataTableSelectOneRadio(radio) {
+	    var id = radio.name.substring(radio.name.lastIndexOf(':'));
+	    var el = radio.form.elements;
+	    for (var i = 0; i < el.length; i++) {
+	        if (el[i].name.substring(el[i].name.lastIndexOf(':')) == id) {
+	            el[i].checked = false;
+	        }
+	    }
+	    radio.checked = true;
+	}
+	
+//]]>
+</script>
+
+	<h:outputText value="#{messages.label_path}" />
+	<h:inputText id="pathCopy" label="Path" value="#{hdfsBean.path}" maxlength="255" style="width:395px;" onkeypress="return enableEnterKey(event, 'changePathHdfsfsCopyBt');"/>
+	<a4j:commandLink type="submit" id="changePathHdfsfsCopyBt" action="#{hdfsBean.changePath}" reRender="hdfsfsCopy" >
+		<h:graphicImage id="btSearch" value="../image/icons/button-search.gif" title='#{messages.button_ok}' styleClass="bt" />
+    </a4j:commandLink>
+	<a4j:commandLink action="#{hdfsBean.goPrevious}" reRender="pathCopy,hdfsfsCopy">
+		<img id="btAdd" src="../image/icons/button-previous.gif" title='#{messages.HdfsInterface_previous_help}' class="bt" />
+	</a4j:commandLink>
+	<a4j:commandLink action="#{hdfsBean.goNext}" reRender="pathCopy,hdfsfsCopy">
+		<img id="btAdd" src="../image/icons/button-next.gif" title='#{messages.HdfsInterface_next_help}' class="bt" />
+	</a4j:commandLink>
+	<a4j:commandLink action="#{hdfsBean.goUp}" reRender="pathCopy,hdfsfsCopy" >
+		<h:graphicImage id="hdfsgoup" value="../image/icons/button-up.gif" title='#{messages.hdfs_goup}' styleClass="fileSystemIcon" />
+	</a4j:commandLink>
+    
+    <div style="width:100%;overflow:auto;height:305px;margin-top:5px;margin-bottom:10px;">
+	
+	<rich:dataTable id="hdfsfsCopy" value="#{hdfsBean.tableGrid.rows}" var="item" rowKeyVar="indexTable" width="100%" style="border:none;"
+		onRowMouseOver="this.style.backgroundColor='#F1F1F1'" enableContextMenu="false" selectionMode="none"
+		onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'" rowClasses="even-row, odd-row">
+
+		<rich:column style="border-bottom:0px;border-right:0px;" width="32px;">
+			<f:facet name="header">
+				<h:outputText value="" />
+			</f:facet>
+			<h:selectOneRadio value="#{item.selectedStr}" onclick="dataTableSelectOneRadio(this);" rendered="#{item.disableSelect}">
+				<f:selectItem itemValue="true" />
+			</h:selectOneRadio>
+		</rich:column>
+		
+		<rich:column style="border-bottom:0px;border-right:0px;" width="50px;">
+			<f:facet name="header">
+				<h:outputText value="" />
+			</f:facet>
+				<h:graphicImage value="../image/icons/icon-directory.gif" title='#{messages.HdfsInterface_properties_help}' 
+				rendered="#{item.row[0] == 'directory'}" styleClass="btfileSystem" />
+				<h:graphicImage value="../image/icons/icon-file.gif" title='#{messages.HdfsInterface_properties_help}' 
+				rendered="#{item.row[0] == 'file'}" styleClass="btfileSystem" />
+		</rich:column>
+		
+		<rich:column
+			style="border-bottom:0px;border-right:0px;">
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_name}" />
+			</f:facet>
+			<a4j:commandLink value="#{item.row[1]}"
+				title="#{item.row[1]}"
+				action="#{hdfsBean.selectFile}" reRender="pathCopy,hdfsfsCopy"
+				rendered="#{item.row[2] == 'true'}">
+				<f:param name="nameFile" value="#{item.row[1]}" />
+			</a4j:commandLink>
+			<h:outputText value="#{item.row[1]}"
+				title="#{item.row[1]}"
+				rendered="#{item.row[2] != 'true'}"/>
+		</rich:column>
+
+		<rich:columns value="#{hdfsBean.tableGrid.titles == null? canvasBean.emptyList : hdfsBean.tableGrid.titles}" var="column"
+			index="ind" style="border-bottom:0px;border-right:0px;" begin="4">
+			<f:facet name="header">
+				<h:outputText value="#{column}" />
+			</f:facet>
+			<h:outputText value="#{item.row[ind]}" title="#{item.row[ind]}" />
+		</rich:columns>
+
+	</rich:dataTable>
+    </div>
+
+	<h:panelGrid columns="2" id="copyMovelBt" style="border:none; float:right;">
+		<a4j:commandButton  styleClass="greenButton" value="#{messages.button_cancel}" type="button" onclick="#{rich:component('modalCopyMoveHdfs')}.hide();" />
+		<a4j:commandButton  styleClass="greenButton" action="#{hdfsBean.copyFileAfter}" value="#{messages.button_ok}" rendered="#{hdfsBean.showCopyMove == 'C'}" 
+			reRender="hdfsfs,msnError,hdfspath" oncomplete="createFilterOnChangeTriggerHdfs(); if(#{requestScope['msnError'] == null}){#{rich:component('modalCopyMoveHdfs')}.hide();}"/>
+		<a4j:commandButton  styleClass="greenButton" action="#{hdfsBean.moveFileAfter}" value="#{messages.button_ok}" rendered="#{hdfsBean.showCopyMove == 'M'}"
+			reRender="hdfsfs,msnError,hdfspath" oncomplete="createFilterOnChangeTriggerHdfs(); if(#{requestScope['msnError'] == null}){#{rich:component('modalCopyMoveHdfs')}.hide();}"/>
+	</h:panelGrid>
+
+</ui:composition>

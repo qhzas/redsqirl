@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<head>
+
+<script>
+
+</script>
+
+</head>
+
+<body>
+	<a4j:keepAlive beanName = "processManagerBean"/>
+	
+	<div id="processManager" style="min-width: 400px; overflow: hidden; min-height: 250px;">
+		<a4j:form>
+			<div class="pathHeader">
+				<a href="#{processManagerBean.oozieUrl}" target="_blank" style="color:transparent;">
+					<h:graphicImage  value="../image/icons/button-oozie_web_console.gif" title='#{messages.oozie_gotowebconsole}' alt="Oozie" class="fileSystemIcon"/>
+				</a>
+				
+				<a href="#{processManagerBean.applicationUrl}" target="_blank" style="color:transparent;">
+					<h:graphicImage  value="../image/icons/button-resource_console.gif" title='#{messages.oozie_gotoapplication}' alt="Applications" class="fileSystemIcon"/>
+				</a>
+				
+				<a4j:commandButton id="RefreshProcessManager" action="#{processManagerBean.updateProcessesGrid}" 
+				reRender="processManagerTable" oncomplete="resizeTables()" image="../image/icons/button-refresh.gif" title='#{messages.oozie_refresh}' styleClass="fileSystemIcon" />
+			</div>
+		</a4j:form>
+		
+		<a4j:form>
+			
+			<a4j:support event="onchange" rerender="processManagerTable"></a4j:support>
+			
+			<rich:extendedDataTable id="processManagerTable" value="#{processManagerBean.processesGrid}"
+				var="item" rowKeyVar="indexTable" width="100%"  style="border:none;" 
+				onRowMouseOver="this.style.backgroundColor='#f2b97a'"
+				enableContextMenu="false" 
+				onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+				rowClasses="even-row, odd-row"
+				tableState="#{processManagerBean.tableState}">
+				
+				<rich:column style="border-bottom:0px;border-right:0px;" width="60px;">
+					<f:facet name="header">
+						<h:outputText value="" />
+					</f:facet>
+					<a4j:commandLink action="#{processManagerBean.suspendProcess}"
+						reRender="processManagerTable"
+						rendered="#{item[3] == 'RUNNING' and item[1] == username}">
+						<h:graphicImage value="../image/icons/button-suspendJob.gif" title='#{messages.oozie_suspendjob}' style="padding-right:2px;width:16px;" />
+						<f:param name="id" value="#{item[0]}" />
+					</a4j:commandLink>
+					<a4j:commandLink action="#{processManagerBean.resumeProcess}"
+						reRender="processManagerTable"
+						rendered="#{item[3] == 'SUSPENDED' and item[1] == username}">
+						<h:graphicImage value="../image/icons/button-resumeJob.gif" title='#{messages.oozie_oozie_resumejob}' style="padding-right:2px;width:16px;" />
+						<f:param name="id" value="#{item[0]}" />
+					</a4j:commandLink>
+					<a4j:commandLink action="#{processManagerBean.killProcess}"
+						reRender="processManagerTable"
+						rendered="#{(item[3] == 'RUNNING' || item[3] == 'SUSPENDED') and item[1] == username}">
+						<h:graphicImage value="../image/icons/button-killJob.gif" title='#{messages.oozie_killjob}' style="padding-right:2px;width:16px;" />
+						<f:param name="id" value="#{item[0]}" />
+					</a4j:commandLink>
+				</rich:column>
+
+				<rich:column style="border-bottom:0px;border-right:0px;" sortBy="#{item[1]}" filterBy="#{item[1]}" filterEvent="onchange"
+					filterValue="#{processManagerBean.filterValue}" width="80px;">
+					<f:facet name="header">
+						<h:outputText value="#{messages.label_user}" />
+					</f:facet>
+					<h:outputText value="#{item[1]}" title="#{item[1]}" />
+				</rich:column>
+				
+				<rich:column style="border-bottom:0px;border-right:0px;" sortBy="#{item[1]}" filterBy="#{item[2]}" filterEvent="onchange"
+					width="300px;">
+					<f:facet name="header">
+						<h:outputText value="#{messages.label_process_name}" />
+					</f:facet>
+					<h:outputText value="#{item[2]}" title="#{item[2]}" />
+				</rich:column>
+				
+				<rich:column style="border-bottom:0px;border-right:0px;" sortBy="#{item[3]}" filterBy="#{item[3]}" filterEvent="onchange"
+					width="100px;">
+					<f:facet name="header">
+						<h:outputText value="#{messages.label_status}" />
+					</f:facet>
+					<h:outputText value="#{item[3]}" title="#{item[3]}" />
+				</rich:column>
+				
+				<rich:column style="border-bottom:0px;border-right:0px;" sortBy="#{item[4]}" filterBy="#{item[4]}" filterEvent="onchange"
+					width="200px;">
+					<f:facet name="header">
+						<h:outputText value="#{messages.label_lastmod_date}" />
+					</f:facet>
+					<h:outputText value="#{item[4]}" title="#{item[4]}" />
+				</rich:column>
+				
+				<rich:column style="border-bottom:0px;border-right:0px;" sortBy="#{item[5]}" filterBy="#{item[5]}" filterEvent="onchange"
+					width="200px;">
+					<f:facet name="header">
+						<h:outputText value="#{messages.label_start_date}" />
+					</f:facet>
+					<h:outputText value="#{item[5]}" title="#{item[5]}" />
+				</rich:column>
+				
+			</rich:extendedDataTable>
+		</a4j:form>
+		
+	</div>
+</body>
+</html>

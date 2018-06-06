@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Script</title>
+</head>
+<body id="help">
+<h1>Script</h1>
+
+<h3>Description</h3> 
+
+
+<p>Script action runs a script. The script can use any Oozie action and be written in any language that the cluster slaves can interpret. To use this node, you need Oozie and scripting expertise</p> 
+
+<p>Three script nodes exist:
+<ul>
+    <li>Script 0: Doesn't create any output</li>
+    <li>Script: creates one output</li>
+    <li>Script 2: creates two outputs</li>
+</ul>
+
+<p>If you want to execute a pre-written script, please look at <a class="stopLink"
+    id="vishelp_bespoke" onclick="return false;"
+href="../help/bespoke.html">bespoke</a></p>
+
+<h3>Quick Guide</h3>
+<p>
+<ul>
+    <li>Inputs - Any</li>
+    <li>Script - Choose a template</li>
+    <li>Define the output - Data Storage, Format and Field</li>
+    <li>Write the Oozie action</li>
+    <li>Write the script</li>
+    <li>Outputs - The output defined earlier</li>
+</ul>
+</p>
+
+<h3><a id="page1">Choose a template - Page 1</a></h3>
+
+<p>On the first page, you can choose a template. It will help you by filling out the output, the Oozie action and the script fields with something that is as close as possible to what you want.</p>
+
+<h3><a id="page2">Data Storage - Page 2</a></h3>
+
+<p>Define in which data storage the output data will be stored.</p>
+
+<h3><a id="page3">Data Format &amp; Header- Page 3</a></h3>
+
+<p>Define the data format of your output.</p>
+
+<p>The header is optional, if you don't fill it out, you will have the opportunity to fill the details into a table. The field is nice only if you have already a prepared header</p>
+
+<h3><a id="page4">Fields- Page 4</a></h3>
+
+<p>Describe every fields of the output, you may not need to change this table, if you have filled out a header on the previous page</p>
+
+
+<h3><a id="page5">Oozie- Page 5</a></h3>
+
+<p>Define the Oozie action xml. The Oozie action xml is defining how the job is kicked off, such as environment variables, arguments and file requirement</p>
+
+<p>Below, if you don't give any file extension, you won't be able to write a script to execute.</p>
+
+<h3><a id="page6">Script- Page 6</a></h3>
+
+<p>Write your script in the given text editor.</p>
+
+<h3>Create a Template script</h3>
+
+<p>In order to create your own template you can follow the steps below.</p>
+
+<ol>
+    <li>Create a directory with no special characters but dash and underscore. This directory can be located in a share folder, <i>RS_HOME/scripts</i>, so that other users can use your template or in your user folder, <i>RS_HOME/users/MY_USER/scripts</i>.</li>
+    <li>Copy the action xml and your script in a file called respectively <i>oozie-action.xml</i> and <i>script</i></li>
+    <li>Optionally, you can create a <i>script.properties</i> file
+    <ul>
+        <li><i>output.names</i> is a coma delimited list with the output name, note that if the list is empty, it defines one output with an empty name</li>
+        <li><i>output.type</i> type of the output to create. For example <i>TEXT MAP-REDUCE DIRECTORY</i>, you can find this value if you created a script in the Format page. If you have named output, you should define <i>output.type.NAME</i>.</li>
+        <li><i>output.header</i> is a header with types of the output. You can find this value if you created a script in the Header page. If you have named output, you should define <i>output.header.NAME</i>.</li>
+    </ul>
+    </li>
+</ol>
+
+</body>
+</html>

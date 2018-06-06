@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+	<h:panelGrid id="selectLinkList" width="280" heigth="160">
+		
+		<h:selectOneRadio value="#{canvasBean.selectedLink}" layout="pageDirection"  rendered="#{!empty canvasBean.linkPossibilities}">
+	   		<f:selectItems value="#{canvasBean.linkPossibilities}" />
+	   	</h:selectOneRadio>
+	   	
+	   	<h:panelGrid columns="2" style="float:right;"  rendered="#{!empty canvasBean.linkPossibilities}">
+			<a4j:commandButton value="#{messages.button_cancel}" styleClass="greenButton"
+			    onclick="removeLink('#{canvasBean.paramNameLink}'); #{rich:component('modalSelectLink')}.hide();"/>
+			<a4j:commandButton value="#{messages.button_ok}" styleClass="greenButton"
+				onclick="#{rich:component('modalSelectLink')}.hide();jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') }); setTimeout(function(){ addLinkBt();},250) "/>
+		</h:panelGrid>
+		
+		<h:panelGrid rendered="#{empty canvasBean.linkPossibilities}">
+			<p>Impossible to create link</p>
+			<a4j:commandButton value="#{messages.button_ok}" styleClass="greenButton"
+				oncomplete="removeLink('#{canvasBean.paramNameLink}'); #{rich:component('modalSelectLink')}.hide();"/>
+		</h:panelGrid>
+		
+	</h:panelGrid>
+
+</ui:composition>

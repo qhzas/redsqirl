@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Script 0 Output</title>
+</head>
+<body id="help">
+<h1>Script 0 Output</h1>
+
+<h2>Overview</h2>
+<p>
+Script action runs a script that produces no outputs. 
+This script can use any Oozie action and be written in any language that the cluster slaves can interpret. 
+To use this node, the user will need an understanding in both Oozie and scripting.
+Three script nodes exist:
+</p> 
+
+<ul>
+    <li>Script 0: Doesn't create any output</li>
+    <li>Script: creates one output</li>
+    <li>Script 2: creates two outputs</li>
+</ul>
+
+<p>If you want to execute a pre-written script, please look at <a class="stopLink"
+    id="vishelp_bespoke" onclick="return false;"
+href="../help/bespoke.html">bespoke</a></p>
+
+<p>
+<ul>
+    <li>Inputs - Any</li>
+    <li>Script - Choose a template</li>
+    <li>Write the Oozie action</li>
+    <li>Write the script</li>
+    <li>Outputs - No outputs</li>
+</ul>
+</p>
+
+<h2><a id="page1">Script Template</a></h2>
+<h3>Template</h3>
+
+<p>The user can choose a template to use to get started on the script. 
+It will help the user by filling the Oozie action and the script fields with something that is as close as 
+possible to what the user want.</p>
+
+<h2><a id="page2">Oozie</a></h2>
+<h3>Oozie Action Extract</h3>
+
+<p>Define the Oozie action xml. The Oozie action xml is defining how the job is kicked off. 
+It includes environment variables, arguments and file requirements.</p>
+
+<h3>Ignore Warnings</h3>
+
+<p>
+Clicking this box allows warnings to be ignored so that the user can move on
+</p>
+
+<h3>Script Extension</h3>
+<p>
+If the user don't give any file extension, the user won't be able to write a script to execute.
+</p>
+
+<h3>Credential</h3>
+<p>
+This is only used in a secure hadoop setting, sets the credential required by this job.
+</p>
+
+<h2><a id="page3">The Sscript</a></h2>
+<h3>Script Content</h3>
+<p>Write the user's script in the given text editor.</p>
+
+<h3>Create a Template script</h3>
+<p>In order to create your own template you can follow the steps below.</p>
+
+<ol>
+    <li>Create a directory with no special characters but dash and underscore. This directory can be located in a share folder, <i>RS_HOME/scripts</i>, so that other users can use your template or in your user folder, <i>RS_HOME/users/MY_USER/scripts</i>.</li>
+    <li>Copy the action xml and your script in a file called respectively <i>oozie-action.xml</i> and <i>script</i></li>
+    <li>Optionally, you can create a <i>script.properties</i> file
+    <ul>
+        <li><i>output.names</i> is a coma delimited list with the output name, note that if the list is empty, it defines one output with an empty name</li>
+        <li><i>output.type</i> type of the output to create. For example <i>TEXT MAP-REDUCE DIRECTORY</i>, you can find this value if you created a script in the Format page. If you have named output, you should define <i>output.type.NAME</i>.</li>
+        <li><i>output.header</i> is a header with types of the output. You can find this value if you created a script in the Header page. If you have named output, you should define <i>output.header.NAME</i>.</li>
+    </ul>
+    </li>
+</ol>
+
+</body>
+</html>
