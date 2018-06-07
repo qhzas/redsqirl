@@ -1,0 +1,4421 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<head>
+<link rel="icon" type="image/gif" href="../image/logo_redsqirl_favicon.gif" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/redsqirl.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jClocksGMT.css" />
+
+<script	src="#{facesContext.externalContext.requestContextPath}/js/jquery-1.9.1.js"	type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/jquery.contextmenu.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/jquery-ui-1.10.0.custom.js" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/kinetic-v4.3.3.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/voronoi.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/jquery.cookie.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/canvas.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/rs-history-engine.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/redsqirl.js"	type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/splitter.js"	type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/scrollabletab.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/plusTabs.js"	type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/jquery.blockUI.js" type="text/javascript" />
+<script	src="#{facesContext.externalContext.requestContextPath}/js/jquery.hotkeys.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jClocksGMT.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery.rotate.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/moment.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/moment-timezone-with-data-2010-2020.js" type="text/javascript" />
+<script	src='#{facesContext.externalContext.requestContextPath}/js/help.js' type="text/javascript" />
+	
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.core.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.ajax.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.arrow.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.autocomplete.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.clear.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.filter.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.focus.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.prompt.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.suggestions.js" type="text/javascript" />
+<script src="#{facesContext.externalContext.requestContextPath}/js/jquery-textext-master/textext.plugin.tags.js" type="text/javascript" />
+
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.core.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.plugin.arrow.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.plugin.autocomplete.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.plugin.clear.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.plugin.focus.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.plugin.prompt.css" />
+<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/jquery-textext-master/textext.plugin.tags.css" />
+
+<title><h:outputText value="#{messages.label_sistem}" /></title>
+
+<script type="text/javascript">
+		 
+		//Message that we need in javascript
+        var msg_confirm_changeid = '#{messages.confirm_changeid}';
+		var msg_delete_command='#{messages.msg_delete_command}';
+        var msg_addelement_command='#{messages.msg_addelement_command}';
+        var msg_addarrow_command='#{messages.msg_addarrow_command}';
+        var msg_paste_command='#{messages.msg_paste_command}';
+        var msg_replaceAll_command='#{messages.msg_replaceAll_command}';
+        var msg_moveelements_command='#{messages.msg_moveelements_command}';
+        var msg_changeelementid_command='#{messages.msg_changeelementid_command}';
+        var msg_updateelement_command='#{messages.msg_updateelement_command}';
+        var msg_changeworkflowcomment_command='#{messages.msg_changeworkflowcomment_command}';
+        var msg_aggregate_command='#{messages.msg_aggregate_command}';
+        var msg_expand_command='#{messages.msg_expand_command}';
+        var msg_refresh='#{messages.msg_refresh}';
+        var msg_recover_backup='#{messages.msg_recover_backup}';
+        var msg_newpackage_notification_footer_beg='#{messages.msg_newpackage_notification_footer_beg}';
+        var msg_newpackage_notification_footer_end='#{messages.msg_newpackage_notification_footer_end}';
+        var msg_coordinator_command='#{messages.msg_coordinator_command}';
+        var msg_coordinator_merge_command='#{messages.msg_coordinator_merge_command}';
+        var msg_coordinator_split_command='#{messages.msg_coordinator_split_command}';
+        var msg_move_arrow_command='#{messages.msg_move_arrow_command}';
+        
+		           
+		 var contTabCanvas = 1;
+		 var lastBlockedRunningWorkflow
+		 var lastBlockedRunningSchedulingWorkflow
+		 
+		 var isResizing = false;
+		           
+	    jQuery.noConflict();
+
+		  jQuery(function() {
+			  
+			  function fixOnChangeIssue() {
+		    		 jQuery('.rich-combobox ').each(function() {
+			    		 var combo = jQuery(this).closest('[component]');
+			    		 if(combo.length!=0) {
+				    		 combo = combo[0].component;
+				    		 if(combo.comboValue.value) {
+					    		 combo.field.prevValue = combo.comboValue.value;
+					    	 }
+					     }
+					 });
+				}
+			  
+			  nameTabs[0] = "canvas-1";
+
+	    	  jQuery("[id$='openCanvasScreenHdfs']").click();
+	    	  jQuery("[id$='openCanvasScreenJdbc']").click();
+	    	  jQuery("[id$='openCanvasScreenHcat']").click();
+	    	  jQuery("[id$='openCanvasScreenHdfsBrowser']").click();
+	    	  jQuery("[id$='openCanvasScreenRemoteFS']").click();
+
+	    	  var tabscanvas = jQuery("#canvas-tabs").tabs().scrollabletab();
+	    	  jQuery("#tabs1").tabs().scrollabletab();
+	    	  jQuery("#tabs2").tabs().scrollabletab();
+	    	  
+  	        var tabsGroup = jQuery("#tabs1, #tabs2, #tabFlowchart").tabs();
+  	        
+  	    	tabsGroup.find(".ui-tabs-nav").sortable({
+  	            connectWith: ".ulCss",
+  	          	items: "li:not(.locked)",
+  	            receive: function (event, ui) {
+  	            	
+  	            		var receiver = jQuery(this).parent(),
+  	                    sender = jQuery(ui.sender[0]).parent(),
+  	                    tab = ui.item[0],
+  	                    tab$ = jQuery(ui.item[0]),
+  	                    panelId = tab$.attr("aria-controls");
+            
+  	            		insertBefore = document.elementFromPoint(event.pageX,event.pageY);
+
+	  	                tab$ = jQuery(tab$.removeAttr(jQuery.makeArray(tab.attributes).map(function(item){ return item.name;}).join(' ')).remove());
+	  	                tab$.find('a').removeAttr('id tabindex role class');
+
+	  	              	if(insertBefore.parentElement == tab){
+		                    insertBefore = document.elementFromPoint(event.pageX + insertBefore.offsetWidth, event.pageY);
+		                }
+		                insertBefore = jQuery(insertBefore).closest('li[role="tab"]').get(0);
+		                if(insertBefore){
+		                    tab$.insertBefore(insertBefore);
+		                }else{
+		                	jQuery(this).append(tab$);
+		                }
+
+		                jQuery(jQuery("#" + panelId ).remove()).appendTo(receiver);
+	  	              	tabsGroup.tabs('refresh');
+	  	              	
+	  	              	//copy on source and delete from destination
+	  	              	var plusT = jQuery("#" + jQuery(this).parent().attr("id"));
+
+	  	              	var allTabsDestination = jQuery("#" + jQuery(this).parent().attr("id")).find(".allTabs");
+	  	              	var allTabsSource = jQuery("#" + jQuery(ui.sender[0]).parent().attr("id")).find(".allTabs");
+
+	  	              	allTabsDestination.find("a[href$=" + jQuery(ui.item[0]).attr("aria-controls") + "]").clone().click(function (event) {
+			    		  event.preventDefault();
+			    		  plusT.find('.allTabs').slideUp('fast');
+			    		}).appendTo(allTabsSource);
+	  	              	
+	  	            	allTabsDestination.find("a[href$=" + jQuery(ui.item[0]).attr("aria-controls") + "]").remove();
+	
+	  	              	jQuery("#canvas-tabs").tabs().tabs('refresh');
+	  	              	
+	  	              	jQuery("#"+jQuery(this).parent().attr("id")).tabs("option", "active", jQuery(ui.item[0]).index());
+	  	              	canvasResizeSplitter();
+  	            }
+
+  	        });
+
+  	    	jQuery("#idtabFlowchart-1").click(function () {
+  	    		//jQuery("#canvas-tabs").resize();
+  	    		console.log("idtabFlowchart-1");
+  	    		resizing();
+	        });
+  	    	
+	    	  jQuery('#addtabCanvas').click( function(){
+	              //<![CDATA[
+	              var tabName;
+	              do{
+	              	contTabCanvas++;
+	              	tabName = "canvas-"+contTabCanvas;
+	              }while(canvasArray[tabName])
+	              
+	              addWorkflow(tabName);
+	              addWorkflowTab(tabName);
+	              configureCanvas(tabName, true, "W");
+	              //setWorkflow(tabName);
+	              resizeCanvas(30,45);
+	              
+	              //]]>
+	          });
+
+	    	  jQuery('#addsubtabCanvas').click( function(){
+	              //<![CDATA[
+	              var tabName;
+	              do{
+	              	contTabCanvas++;
+	              	tabName = "canvas-"+contTabCanvas;
+	              }while(canvasArray[tabName])
+	              addSubWorkflow(tabName);
+	              addWorkflowTab(tabName,"S");
+	              configureCanvas(tabName, true, "S");
+	              //setWorkflow(tabName);
+	              resizeCanvas(30,45);
+	              
+	              //]]>
+	          });
+
+		  var menusplitVCanvas = [
+		  {'Right': function(menuItem,menu){
+			  jQuery(".splitter-bar-vertical").css("left", jQuery(window).width()-40+'px');
+			  jQuery("#splitHCanvas").css("width", 0+'px');
+			  jQuery("#tabFlowchart").css("width", jQuery(window).width()-40+'px');
+			  canvasResizeSplitter();
+			  }},
+		  {'Middle': function(menuItem,menu){
+			  onPageReady();
+			  }},
+		  {'Left': function(menuItem,menu){
+			  
+			  jQuery(".splitter-bar-vertical").css("left", 0+'px');
+			  jQuery("#splitHCanvas").css("width", jQuery(window).width()+'px');
+			  jQuery("#splitHCanvas").css("left", 0+'px');
+			  jQuery("#tabFlowchart").css("width", 0+'px');
+			  canvasResizeSplitter();
+			  }}
+		  ];
+          
+		  var menusplitHCanvas = [
+		  {'Top': function(menuItem,menu){
+			  jQuery("#tabs1").css("height", '0px');
+			  jQuery(".splitter-bar-horizontal").css("top", '0px');
+			  jQuery("#tabs2").css("top", '0px');
+			  jQuery("#tabs2").css("height", jQuery("#splitVCanvas").height()-20+'px');
+			  resizeTabs();
+			  jQuery("#divTabHelp").css("height", jQuery("#tabs-1").height()-56+'px');
+		  	}},
+		  {'Middle': function(menuItem,menu){ 
+			  jQuery("#tabs1").css("height", (jQuery("#splitVCanvas").height()-20)/2+'px');
+			  jQuery(".splitter-bar-horizontal").css("top", (jQuery("#splitVCanvas").height()-20)/2+'px');
+			  jQuery("#tabs2").css("top", (jQuery("#splitVCanvas").height()-20)/2+'px');
+			  jQuery("#tabs2").css("height", (jQuery("#splitVCanvas").height()-20)/2+'px');
+			  resizeTabs();
+			  jQuery("#divTabHelp").css("height", jQuery("#tabs-1").height()-56+'px');
+		  	}},
+		  {'Bottom': function(menuItem,menu){
+			  jQuery("#tabs1").css("height", jQuery("#splitVCanvas").height()-20+'px');
+			  jQuery(".splitter-bar-horizontal").css("top", jQuery("#splitVCanvas").height()-20+'px');
+			  jQuery("#tabs2").css("top", jQuery("#splitVCanvas").height()-20+'px');
+			  jQuery("#tabs2").css("height", '0px');
+			  resizeTabs();
+			  jQuery("#divTabHelp").css("height", jQuery("#tabs-1").height()-56+'px');
+		  	}}
+		  ];
+
+	    	  jQuery("#splitVCanvas").splitter({
+	        	  type: "v",
+	        	  outline: true,
+	        	  sizeLeft: jQuery(window).width()*2/3,
+	        	  //minLeft: 200,
+	        	  //minRight: 200,
+	        	  resizeToWidth: true,
+	        	  dock: "right",
+	        	  dockSpeed: 200,
+	        	  cookie: "splitVCanvas"
+	          });
+	
+	    	  jQuery("#splitHCanvas").splitter({
+	        	  type: "h",
+	        	  outline: true,
+	        	  sizeTop: true,
+	        	  //minTop: 100,
+	        	  //minBottom: 100,
+	        	  dock: "top",
+	        	  dockSpeed: 200,
+	        	  cookie: "splitHCanvas"
+	          });
+	
+		      jQuery(".splitter-bar-vertical").contextMenu(menusplitVCanvas);
+		      jQuery(".splitter-bar-horizontal").contextMenu(menusplitHCanvas);
+
+		      jQuery(".splitter-bar-vertical").mousedown(function() {
+		    	  jQuery('#helpmain_splitter').click();return false;
+		      });
+		      jQuery(".splitter-bar-horizontal").mousedown(function() {
+		    	  jQuery('#helpmain_splitter').click();return false;
+		      });
+		      
+	    	  onPageReady();
+	    	  
+              document.getElementById("canvas-tabs").addEventListener('contextmenu', function (event) {
+              	event.preventDefault();
+              });
+    
+				var i = 0;
+	    	  
+				var resizeTimer;
+				
+		    	jQuery(window).resize(function() {
+		    		if (!isResizing){
+			    	    clearTimeout(resizeTimer);
+			    	    resizeTimer = setTimeout(doneResizing, 100);
+		    		}
+		    	});
+	
+	    		function doneResizing(){
+	    			console.log("doneResizing");	
+	    			resizing();
+	    		}
+
+	    		jQuery("#tabs1").plusTabs({
+		  	        className: "plusTabs",
+		  	        seeMore: true,
+		  	        seeMoreText: " ",
+		  	        showCount: false,
+		  	        expandIcon: "&#9660; ",
+		  	        dropWidth: "66%",
+		  	        sizeTweak: 30
+		  	    });
+
+	    		jQuery("#tabs2").plusTabs({
+		  	        className: "plusTabs",
+		  	        seeMore: true,
+		  	        seeMoreText: " ",
+		  	        showCount: false,
+		  	        expandIcon: "&#9660; ",
+		  	        dropWidth: "66%",
+		  	        sizeTweak: 30
+		  	    });
+
+	    		jQuery("#tabFlowchart").plusTabs({
+		  	        className: "plusTabs",
+		  	        seeMore: true,
+		  	        seeMoreText: " ",
+		  	        showCount: false,
+		  	        expandIcon: "&#9660; ",
+		  	        dropWidth: "66%",
+		  	        sizeTweak: 30
+		  	    });
+
+	    		var allTabs = jQuery("#tabs1").find(".allTabs");
+		  	    
+	    		 jQuery("#changeTabTabs1").click(function() {
+
+	    			 if(jQuery("#tabs1").find(".allTabs").length > 1){
+	    				 jQuery("#tabs1").find(".allTabs:first").remove();
+	    			 }
+	    			 
+	    			 allTabs = jQuery("#tabs2").find(".allTabs");
+	    			 allTabs.hide();
+	    			 allTabs = jQuery("#tabFlowchart").find(".allTabs");
+	    			 allTabs.hide();
+	    			 
+	    			 allTabs = jQuery("#tabs1").find(".allTabs");
+
+	    			 var tabsRealWidth = 0;
+	    			 jQuery("#tabs1 ul:first li").each(function (index, element) {
+						if(jQuery(element).css("display") !== "none"){
+	    					tabsRealWidth += jQuery(element).width();
+						}
+		    		 });
+	    			 var maxSize = jQuery("#splitHCanvas").width();
+	    			 if(tabsRealWidth >= maxSize){
+	    				 tabsRealWidth = maxSize - 90;
+	    			 }
+	    			 allTabs.css("left", parseInt(tabsRealWidth) +'px');
+
+	    			 if(jQuery("#tabs1 ul:first li:not(:hidden) a").length > 0){
+	    				 var $tabIndex = jQuery("#tabs1").tabs('option', 'active');
+		    			 var $selected = jQuery("#tabs1 ul>li a").eq($tabIndex).attr('href');
+		    			 allTabs.css("margin-top", -1 * jQuery($selected).height() + 'px');
+	    			 }
+	    			 
+	    			 allTabs.show();
+
+		    		 allTabs.mouseleave(function() {
+			    	 	allTabs.hide();
+		    		 });
+		    		 
+		    		 setTimeout(function(){
+		    			 jQuery("#tabs2").find(".allTabs").remove();
+		    			 jQuery("#tabs2").tabs("refresh");
+		    			 jQuery("#tabFlowchart").find(".allTabs").remove();
+		    			 jQuery("#tabFlowchart").tabs("refresh");
+		    			 reloadAllTabs(jQuery("#tabs2"));
+		    			 reloadAllTabs(jQuery("#tabFlowchart"));
+		    		 }, 800);
+		    		 
+	    		  });
+
+	    		 jQuery("#changeTabTabs2").click(function() {
+
+	    			 if(jQuery("#tabs2").find(".allTabs").length > 1){
+	    				 jQuery("#tabs2").find(".allTabs:first").remove();
+	    			 }
+	    			 
+	    			 allTabs = jQuery("#tabs1").find(".allTabs");
+	    			 allTabs.hide();
+	    			 allTabs = jQuery("#tabFlowchart").find(".allTabs");
+	    			 allTabs.hide();
+	    			 
+	    			 allTabs = jQuery("#tabs2").find(".allTabs");
+
+	    			 var tabsRealWidth = 0;
+	    			 jQuery("#tabs2 ul:first li").each(function (index, element) {
+						if(jQuery(element).css("display") !== "none"){
+		    				tabsRealWidth += jQuery(element).width();
+	    				}
+		    		 });
+	    			 var maxSize = jQuery("#splitHCanvas").width();
+	    			 if(tabsRealWidth >= maxSize){
+	    				 tabsRealWidth = maxSize - 90;
+	    			 }
+	    			 allTabs.css("left", parseInt(tabsRealWidth) +'px');
+
+	    			 if(jQuery("#tabs2 ul:first li:not(:hidden) a").length > 0){
+	    				 var $tabIndex = jQuery("#tabs2").tabs('option', 'active');
+		    			 var $selected = jQuery("#tabs2 ul>li a").eq($tabIndex).attr('href');
+		    			 allTabs.css("margin-top", -1 * jQuery($selected).height() + 'px');
+	    			 }
+	    			 
+	    			 allTabs.show();
+	    			 
+	    			 allTabs.mouseleave(function() {
+	    				 allTabs.hide();
+					 });
+	    			 
+	    			 setTimeout(function(){
+	    				 jQuery("#tabs1").find(".allTabs").remove();
+		    			 jQuery("#tabs1").tabs("refresh");
+		    			 jQuery("#tabFlowchart").find(".allTabs").remove();
+		    			 jQuery("#tabFlowchart").tabs("refresh");
+		    			 reloadAllTabs(jQuery("#tabs1"));
+		    			 reloadAllTabs(jQuery("#tabFlowchart"));
+		    		 }, 800);
+		    		  
+	    		  });
+
+	    		 jQuery("#changeTabCanvas").click(function() {
+
+	    			 if(jQuery("#tabFlowchart").find(".allTabs").length > 1){
+	    				 jQuery("#tabFlowchart").find(".allTabs:first").remove();
+	    			 }
+	    			 
+	    			 allTabs = jQuery("#tabs1").find(".allTabs");
+	    			 allTabs.hide();
+	    			 allTabs = jQuery("#tabs2").find(".allTabs");
+	    			 allTabs.hide();
+	    			 
+	    			 allTabs = jQuery("#tabFlowchart").find(".allTabs");
+
+	    			 var tabsRealWidth = 0;
+	    			 jQuery("#tabFlowchart ul:first li").each(function (index, element) {
+	    				 if(jQuery(element).css("display") !== "none"){
+			    			 tabsRealWidth += jQuery(element).width();
+	    				 }
+		    		 });
+	    			 var maxSize = jQuery("#tabFlowchart").width() - jQuery(".divMenuImage").width();
+	    			 if(tabsRealWidth >= maxSize){
+	    				 tabsRealWidth = maxSize - 90;
+	    			 }
+	    			 allTabs.css("left", parseInt(tabsRealWidth) +'px');
+
+	    			 if(jQuery("#tabFlowchart ul:first li:not(:hidden) a").length > 0){
+	    				 var $tabIndex = jQuery("#tabFlowchart").tabs('option', 'active');
+		    			 var $selected = jQuery("#tabFlowchart ul>li a").eq($tabIndex).attr('href');
+		    			 allTabs.css("margin-top", -1 * jQuery($selected).height() + 'px');
+	    			 }
+	    			 
+	    			 allTabs.show();
+
+		    		 allTabs.mouseleave(function() {
+			    		 allTabs.hide();
+		    		 });
+		    		 
+		    		 setTimeout(function(){
+		    			 jQuery("#tabs1").find(".allTabs").remove();
+		    			 jQuery("#tabs1").tabs("refresh");
+		    			 jQuery("#tabs2").find(".allTabs").remove();
+		    			 jQuery("#tabs2").tabs("refresh");
+		    			 reloadAllTabs(jQuery("#tabs1"));
+		    			 reloadAllTabs(jQuery("#tabs2"));
+		    		 }, 800);
+		    		  
+	    		  });
+	    		  
+	    		 
+	    		 //var isChrome = window.chrome;
+	    		 //if(isChrome){
+		    		 
+		    		 //disable select in chrome
+		    		 jQuery('*').css('-webkit-user-select', 'none');
+		    		 jQuery('*').css('-khtml-user-select', 'none');
+		    		 jQuery('*').css('-moz-user-select', 'none');
+		    		 jQuery('*').css('-o-user-select', 'none');
+		    		 jQuery('*').css('user-select', 'none');
+		    		 
+		    		 jQuery('#divTabHelp *').css('-webkit-user-select', 'text');
+		    		 jQuery('#divTabHelp *').css('-khtml-user-select', 'text');
+		    		 jQuery('#divTabHelp *').css('-moz-user-select', 'text');
+		    		 jQuery('#divTabHelp *').css('-o-user-select', 'text');
+		    		 jQuery('#divTabHelp *').css('user-select', 'text');
+		    		 
+		    		 jQuery(':input').css('-webkit-user-select', 'text');
+		    		 jQuery(':input').css('-khtml-user-select', 'text');
+		    		 jQuery(':input').css('-moz-user-select', 'text');
+		    		 jQuery(':input').css('-o-user-select', 'text');
+		    		 jQuery(':input').css('user-select', 'text');
+		    		 
+		    		 jQuery('#flowchart-canvas-1').css('position', 'fixed');
+		    		 
+		    		 jQuery('.messageerro').css('word-break', 'break-word');
+		    		 
+				 //}
+
+	    		 jQuery("#tabsFooter").find("a").click(function() {
+	    			 resizeCanvas(30,30);
+	    		 });
+
+	    		 reRenderFooter();
+	    		 
+	    		 var tutorial = jQuery.cookie('tutorial');
+	    		 if(tutorial != 'true'){
+		    		 setTimeout( function(){
+		    			 jQuery("#tutorialBubble").show();
+		    			 jQuery.blockUI({ message: jQuery('#domMessageDivModal') });
+		    			 jQuery(".blockMsg").hide();
+		    		 }, 500);
+	    		 }else{
+					loadTabsPosition();
+					reinitializeCanvas();
+	    		 }
+	    		 
+	    		 
+				 //Fix the FileSystem refresh on filter
+	    		 setTimeout(function(){
+	    		 	jQuery("#hdfsFileSystem").find(".rich-filter-input").each(function(){
+	    		 		jQuery(this).change(function() {
+	    		 			setTimeout(
+	    		 				function(){ 
+	    		 					createFilterOnChangeTriggerHdfs();
+	    		 				}, 1000);
+	    		 		});
+	    		 	});
+	    		 	jQuery("#hcatFileSystem").find(".rich-filter-input").each(function(){
+	    		 		jQuery(this).change(function() {
+	    		 			setTimeout(
+	    		 				function(){ 
+	    		 					createFilterOnChangeTriggerHCat(); 
+	    		 				}, 1000);
+	    		 		});
+	    		 	});
+	    		 	jQuery("#jdbcFileSystem").find(".rich-filter-input").each(function(){
+	    		 		jQuery(this).change(function() {
+	    		 			setTimeout(
+	    		 				function(){ 
+	    		 					createFilterOnChangeTriggerJdbc();
+	    		 				}, 1000);
+	    		 		});
+	    		 	});
+	    		 },10000);
+	    		 	
+				 
+	    	});	//---------- END jQuery function
+	    	
+	    	function startTutotial(){
+	    		console.log("startTutotial");
+	    		
+	    		jQuery.cookie("tab1", null);
+	    		jQuery.cookie("tab2", null);
+	    		jQuery.cookie("tabFlowchart", null);
+	    		loadTabsPosition();
+	    		
+	    		if(jQuery("#tutorialCheckBox").prop("checked")){
+	       	        jQuery.cookie('tutorial', true, { expires: 30 });
+	    		}
+	    		
+	    		jQuery("#helpmain_gs_tutorial").click();
+	    		jQuery('#help_pin_div img').toggleClass('helpHideRSClass');
+	    		pinHelp = !pinHelp;
+	    		
+	    		startTutorialResizi();
+	    		jQuery.unblockUI();
+	    		jQuery("#tutorialBubble").hide();
+	    		
+	    		setTimeout( function(){ jQuery("#tabs-1").effect("shake", { direction: "left", times: 3, distance: 20}, 1000 );  }, 1000);
+	    	}
+	    	
+	    	function closeTutotial(){
+	    		console.log("closeTutotial");
+	    		loadTabsPosition();
+	    		
+				if(jQuery("#tutorialCheckBox").prop("checked")) {
+					jQuery.cookie('tutorial', true, { expires: 30 });
+	    		}
+	    		
+				reinitializeCanvas();
+				
+	    		jQuery.unblockUI();
+	    		jQuery("#tutorialBubble").hide();
+	    	}
+	    	
+	    	function endTutotial(){
+	    		jQuery.cookie('tutorial', true, { expires: 30 });
+	    	}
+	    	
+	    	function createFilterOnChangeTriggerHdfs(){
+	    		createFilterOnChangeTrigger("#hdfsFileSystem");
+	    	}
+	    	function createFilterOnChangeTriggerHCat(){
+	    		createFilterOnChangeTrigger("#hcatFileSystem");
+	    	}
+	    	function createFilterOnChangeTriggerJdbc(){
+	    		createFilterOnChangeTrigger("#jdbcFileSystem");
+	    	}
+	    	function createFilterOnChangeTriggerRemoteFS(){
+	    		createFilterOnChangeTrigger("#remotefsFileSystemFileSystem");
+	    	}
+	    	
+	    	function createFilterOnChangeTrigger(idElement){
+	    		console.log("resize");
+	    		resizeTables();
+	    		jQuery(idElement).find(".rich-filter-input").each(function(){
+	    		jQuery(this).change(function() {
+	    			setTimeout(
+	    				function(){ 
+	    					createFilterOnChangeTrigger(idElement);
+	    				}, 500);
+	    			});
+	    		});
+	    	}
+
+		    function reOpenCanvasJS(status){
+			//<![CDATA[
+				console.log("reOpenCanvasJS");
+				jQuery('#mainPanelDiv').block({ message: jQuery('#domMessageAllCanvas') });
+				for (var i = 0; i < status.length; i++) {
+					console.log("load: "+status[i][1]);
+					unblockRunningWorkflowJS();
+					
+					addElementJS(status[i][0],status[i][1],status[i][2],status[i][3],status[i][4], true, status[i][5],false);
+					if(status[i][1] != null && status[i][1]  !== 'undefined' && status[i][1] != "null"){
+						setSaved(status[i][0], true);
+					}else{
+						setSaved(status[i][0], false);
+					}
+					
+				}
+				rerenderCanvasTab();
+				jQuery('#mainPanelDiv').unblock();
+			    //]]>
+			}
+
+		    function delay(ms){
+			    ms += new Date().getTime();
+			    while (new Date() > ms){
+				    
+				}
+		    }
+	    	
+		    function hideTab(obj){
+		    	console.log("hideTab");
+		    	
+		    	jQuery(obj).parent("li").css("display","none");
+		    	var id = jQuery(obj).prev().attr("name");
+		    	var ul = jQuery(obj).parent("li").parent("ul");
+		    	
+		    	if(jQuery("#"+id).parent("div").attr("id") == jQuery("#tabs1").attr("id")){
+		    		jQuery("#tabs1").find(".allTabs").remove();
+		    		jQuery("#tabs1").tabs("refresh");
+		    		reloadAllTabs(jQuery("#tabs1"));
+		    		var tabs = jQuery("#tabs1").tabs();
+		    		if(jQuery("#tabs1 ul:first li:not(:hidden) a").length > 0){
+		    			var index = 0;
+		    			jQuery.each(ul.children("li:not(.seeMore)"), function(idx, obj){
+		                	if(jQuery(obj).css("display") !== "none"){
+		    					return false;
+		    				}
+		                	index = index+1;
+		                });
+	    				tabs.tabs("option", "active", index);
+		    		}
+		    		
+		    	}else if(jQuery("#"+id).parent("div").attr("id") == jQuery("#tabs2").attr("id")){
+		    		jQuery("#tabs2").find(".allTabs").remove();
+		    		jQuery("#tabs2").tabs("refresh");
+		    		reloadAllTabs(jQuery("#tabs2"));
+		    		var tabs = jQuery("#tabs2").tabs();
+		    		if(jQuery("#tabs2 ul:first li:not(:hidden) a").length > 0){
+		    			var index = 0;
+		    			jQuery.each(ul.children("li:not(.seeMore)"), function(idx, obj){
+		                	if(jQuery(obj).css("display") !== "none"){
+		    					return false;
+		    				}
+		                	index = index+1;
+		                });
+	    				tabs.tabs("option", "active", index);
+		    		}
+		    		
+		    	}else{
+		    		jQuery("#tabFlowchart").find(".allTabs").remove();
+		    		jQuery("#tabFlowchart").tabs("refresh");
+		    		reloadAllTabs(jQuery("#tabFlowchart"));
+		    		var tabs = jQuery("#tabFlowchart").tabs();
+		    		if(jQuery("#tabFlowchart ul:first li:not(:hidden) a").length > 0){
+		    			var index = 0;
+		    			jQuery.each(ul.children("li:not(.seeMore)"), function(idx, obj){
+		                	if(jQuery(obj).css("display") !== "none"){
+		    					return false;
+		    				}
+		                	index = index+1;
+		                });
+	    				tabs.tabs("option", "active", index);
+		    		}
+		    		
+		    	}
+	    		
+		    	jQuery('#'+id).hide();
+		    	
+		    	checkTabAreaToclose();
+			}
+		    
+		    function checkTabAreaToclose(){
+		    	//<![CDATA[
+		    	           
+		    	if(jQuery("#tabs1 ul:first li:not(:hidden) a").length == 0){
+		    		jQuery("#tabs1").css("height", '0px');
+	    			jQuery(".splitter-bar-horizontal").css("top", "0px");
+	    			jQuery("#tabs2").css("top", "0px");
+	    			jQuery("#tabs2").css("height", jQuery("#splitVCanvas").height()-20+'px');
+	    			resizeTabs();
+	    			jQuery("#divTabHelp").css("height", jQuery("#tabs-1").height()-56+'px');
+		    	}
+		    	
+		    	if(jQuery("#tabs2 ul:first li:not(:hidden) a").length == 0){
+		    		jQuery("#tabs1").css("height", jQuery("#splitVCanvas").height()-20+'px');
+	  			  	jQuery(".splitter-bar-horizontal").css("top", jQuery("#splitVCanvas").height()-20+'px');
+	  			  	jQuery("#tabs2").css("top", jQuery("#splitVCanvas").height()-20+'px');
+	  			  	jQuery("#tabs2").css("height", '0px');
+	  			  	resizeTabs();
+	  			  	jQuery("#divTabHelp").css("height", jQuery("#tabs-1").height()-56+'px');
+		    	}
+		    	
+		    	if(jQuery("#tabs1 ul:first li:not(:hidden) a").length == 0 && jQuery("#tabs2 ul:first li:not(:hidden) a").length == 0){
+		    		jQuery(".splitter-bar-vertical").css("left", jQuery(window).width()-40+'px');
+					jQuery("#splitHCanvas").css("width", 0+'px');
+					jQuery("#tabFlowchart").css("width", jQuery(window).width()-40+'px');
+					canvasResizeSplitter();
+		    	}
+		    	
+		    	divTabsEmpty();
+		    	
+		    	//]]>
+		    }
+		    
+	      function closeTab(arg,canvasName){
+
+	    	  console.log("closeTab");
+		      
+		      if(typeof canvasName !== 'undefined'){
+	    	  	//alert(canvasName);
+	    	  	
+	    	  	var cArray = getArrayPos(canvasName);
+	    	  	
+	    	  	cArray.stage.destroy();
+	    	  	cArray.legendStage.destroy();
+	    	  	delete cArray;
+	    	  }
+	    	  jQuery(jQuery( arg ).prev().attr('href')).remove();
+	    	  jQuery( arg ).offsetParent().remove();
+	      }
+	      
+	      function menuCloseTab(){
+
+	    	  console.log("menuCloseTab");
+		      
+	    	  var tabName = getSelectedByName();
+	    	  var tabNameHtml = getNameHtml();
+	    	  var ul = jQuery("#canvas-tabs ul:first li #"+tabNameHtml+"-icon-close");
+	    	  closeWorkflowTab(ul, tabName);
+	      }
+	      
+	      function addElementJS(canvasName, path, positions, links, selecteds, reset, workflowType, forceRefresh, setWf){
+
+	    	  console.log("addElementJS");
+	    	  
+	    	  /*
+	    	  console.log("canvasName " + canvasName);
+	    	  console.log("path " + path);
+	    	  console.log("positions " + positions);
+	    	  console.log("links " + links);
+	    	  console.log("selecteds " + selecteds);
+	    	  console.log("reset " + path);
+	    	  console.log("workflowType " + workflowType);
+	    	  console.log("forceRefresh " + forceRefresh);
+	    	  console.log("setWf " + setWf);
+	    	  */
+	    	  
+	    	  var cArray = getArrayPos(canvasName);
+	    	  
+	    	  forceRefresh = typeof forceRefresh !== 'undefined' ? forceRefresh : false;
+	    	  canvasExist = typeof cArray !== 'undefined' ? true : false;
+	    	  setWf = typeof setWf !== 'undefined' ? setWf : true;
+		      
+		 	  console.log("canvasExist " + canvasExist);
+		 	  
+	          //Add the workflow tab only if the name does not exist yet.
+	          if(document.getElementById(canvasName) == null || !canvasExist) {
+	    	      addWorkflowTab(canvasName,workflowType, path);
+	    	      configureCanvas(canvasName, reset, workflowType);
+		    	  forceRefresh = true;
+	          }
+	          
+	          cArray = getArrayPos(canvasName);
+	          
+	          if(forceRefresh) {
+	    	      addElements(cArray, positions, selecteds);
+	    	      addLinks(cArray, links);
+	    	      setSaved(canvasName, true);
+	    	      setPathFile(canvasName, path);
+                  if(setWf){
+		    	     setWorkflow(canvasName);
+		    	     resizeCanvas(30,30);
+		    	     cArray.stage.draw();
+		    	  }
+	          }
+	          
+	      }
+
+	      function addSelectedElement(canvasName, path, positions, links, selecteds, isStartVoronoi){
+
+	    	  console.log("addSelectedElement");
+	    	  
+	    	  isStartVoronoi = typeof isStartVoronoi !== 'undefined' ? isStartVoronoi : true;
+		      
+	    	  var cArray = getArrayPos(canvasName);
+	    	  
+	   	      addElements(cArray, positions, selecteds, isStartVoronoi);
+	   	      addLinks(cArray, links);
+	   	      cArray.layer.draw();
+	   	      cArray.polygonLayer.draw();
+	   	      cArray.stage.draw();
+    
+	      }
+	      
+	      function updateCanvasRunningStatus(status){
+
+	    	  console.log("updateCanvasRunningStatus");
+		      
+		      var polygonLayer = getArrayPos(selectedCanvas).polygonLayer;
+	    	//<![CDATA[
+	    	  for (var i = 0; i < status.length; i++) {
+		    	  updateActionRunningStatus(status[i][0], status[i][1], status[i][2],false);
+	    	  }
+		      polygonLayer.draw();
+	    	//]]>
+	      }
+
+	      function updateArcStatus(status){
+
+	    	  console.log("updateArcStatus");
+	    	//<![CDATA[
+	    	  for (var i = 0; i < status.length; i++) {
+
+				   //alert(status[i][7]);
+		    	  //console.log("updateActionRunningStatus");
+		    	  //alert(status[i][0] + " " + status[i][1] + " " + status[i][2]);
+		    	  try{
+		    	       updateActionOutputStatus(status[i][0], status[i][1], status[i][2], status[i][3], status[i][4], status[i][5],false, status[i][7]);
+		    	  }catch(e){
+		    	       updateActionOutputStatusUntilItDoesntFail(status[i][0], status[i][1], status[i][2], status[i][3], status[i][4], status[i][5],true, status[i][7], 0);
+		    	  }
+		    	  
+		    	  for(var j = 0; j < status[i][6].length;j++) {
+		    	  	updateArrowType(status[i][6][j][0], status[i][6][j][1], status[i][6][j][2], status[i][6][j][3], status[i][6][j][4],false);
+		    	  	updateArrowLabel(status[i][6][j][0], status[i][6][j][1], status[i][6][j][5],false);
+		    	  }
+	    	  }
+	    	  
+	    	  getArrayPos(selectedCanvas).stage.draw();
+		      
+		      console.log("updateArcStatus END");
+		      
+	    	//]]>
+	      }
+	      
+	      var numTabs = 1;
+	      var nameTabs = {};
+	      
+	      function addWorkflowTab(tabName,type, path){
+
+	    	  console.log("addWorkflowTab " + tabName);
+	    	  
+	    	  var tabNameHtml = removeDot(tabName);
+		      
+	    	//<![CDATA[
+	    	  var tabImage = typeof type == 'undefined' || type == "W" ? "../image/workflow_tab.gif" : "../image/subworkflow_tab.gif";
+	    	  
+	    	  var tabs = jQuery("#canvas-tabs").tabs();
+              var ul = jQuery("#canvas-tabs").tabs().find( "ul:first" );
+              
+              if(path == undefined || path == null || path == '' || path == 'undefined'){
+            	  path = 'Not Saved';
+              }
+              
+              jQuery( "<li class='locked canvasTabsInactive' title='"+ path +"' ><a href='#"+ getCanvasId(tabName) +"' class='canvasTab' onclick=\"setWorkflow('"+tabName+"');return false;\"><img src='"+tabImage+"' style='width:15px;padding-right:5px;position:relative;top:3px;'/><span id='canvasNameStar-"+tabNameHtml+"'>"+ 
+            		  tabName +"</span></a> <span id='"+tabNameHtml+"-icon-close' class='ui-icon ui-icon-close' role='presentation' onclick=\"closeWorkflowTab(this, '"+tabName+"'); return false;\"></span> </li>" ).appendTo( ul );
+              
+              var div = "<div id='"+getCanvasId(tabName)+"' class='container-canvas'>"+
+				"<div id='container-"+tabNameHtml+"' class='container-"+tabNameHtml+"'>"+
+				"<div class='rich-panel headerLegend' onclick=\"jQuery('#panelLegend-"+tabNameHtml+"').toggle();jQuery('#container-comment-"+tabNameHtml+"').hide();return false;\"  style='position: fixed; z-index:101; width:60px'>"+
+					"<div class='rich-panel-header'>Legend</div>"+
+				"</div>"+
+				"<div class='rich-panel' id='panelLegend-"+tabNameHtml+"' style='position: fixed; z-index:100; display: none; width:190px; '>"+
+					"<div class='rich-panel-body' style='overflow:auto;'>"+
+						"<div id='container-legend-"+tabNameHtml+"' class='container-legend-"+tabNameHtml+"' style='overflow:hidden; position: relative; top:20px;'/>"+
+					"</div>"+
+	        	"</div>"+
+	        	"<div class='rich-panel headerComment' "+
+	        	      "onclick=\"jQuery('#container-comment-"+tabNameHtml+"').toggle();jQuery('#panelLegend-"+tabNameHtml+"').hide();return false;\""+
+                      " style='left:82px;position: fixed; z-index: 101; width: 60px'>"+
+                      " <div class='rich-panel-header'>Comment</div>"+
+                " </div>"+
+                " <div id='container-comment-"+tabNameHtml+"' class='rich-panel container-comment-"+tabNameHtml+"'"+
+                    " style='overflow: auto;position: fixed; z-index: 100; display: none; width: 330px; height:400px;resize:both;'>"+
+                " </div>"+
+              	"</div>"+
+				"</div>";
+              
+              jQuery(div).appendTo( tabs );
+              tabs.tabs( "refresh" );
+              
+              //select new tab
+              tabs.tabs("option", "active", numTabs);
+              nameTabs[numTabs] = tabName;
+              numTabs++;
+              setSelectedByName(tabName);
+            //]]>
+	      }
+	      
+          function closeCurrentTabWithoutCallingBackend(){
+            //<![CDATA[
+            
+            console.log("closeCurrentTabWithoutCallingBackend");
+            
+              var tabName = getSelectedByName();
+              var tabNameHtml = getNameHtml();
+              var tab = jQuery("#canvas-tabs ul:first li #"+tabNameHtml+"-icon-close");
+              
+              closeTab(tab,tabName);
+              
+              jQuery("#canvas-tabs").tabs( "refresh" );
+              
+              var names = {};
+              var cont = 0;
+              for (var i = 0; i < numTabs; ++i){
+                  if (nameTabs[i] != tabName){
+                      names[cont++] = nameTabs[i];
+                  }
+              }
+              numTabs--;
+              nameTabs = names;
+              selectTab(numTabs-1);
+            //]]>
+          }
+	      
+	      function closeWorkflowTab(tab, tabName){
+	      //<![CDATA[
+	    	
+	    	console.log("closeWorkflowTab");
+	    	
+	    	var nameHtml = removeDot(tabName);
+	    	
+	    	var canvasNameStar = jQuery('#canvasNameStar-'+nameHtml).text();
+			if(canvasNameStar[canvasNameStar.length-1] == "*" ){
+				if(!confirm('Are you sure you want to close the selected canvas?')){
+			    	return false;
+			    }else{
+			    	closeWorkflowTabJS(tab, tabName);
+				}
+			}else{
+				closeWorkflowTabJS(tab, tabName);
+			}
+			
+	      //]]>
+	      }
+
+	      function closeWorkflowTabJS(tab, tabName){
+	      //<![CDATA[
+	      
+      		console.log("closeWorkflowTabJS");
+      
+    	  	closeTab(tab,tabName);
+	    	closeWorkflow(tabName);
+	    	  
+	    	jQuery("#canvas-tabs").tabs( "refresh" );
+	    	  
+	    	var names = {};
+	    	var cont = 0;
+	    	for (var i = 0; i < numTabs; ++i){
+	    		if (nameTabs[i] != tabName){
+	    			names[cont++] = nameTabs[i];
+	    		}
+	    	}
+	    	numTabs--;
+	    	nameTabs = names;
+	    	selectTab(numTabs-1);
+	      
+	    	if(numTabs == 0){
+	    		if(runningIntervalID){
+					clearInterval(runningIntervalID);
+				}
+	    	}
+	      
+		  //]]>
+	      }
+	      
+	      
+	      function closeAllWorkflowTabs(){
+          //<![CDATA[
+	    	  console.log("closeAllWorkflowTabs");
+		      
+              var ul = jQuery("#canvas-tabs ul:first li .ui-icon");
+              
+              jQuery.each(ul, function(index, value){
+            	  closeTab(value);
+              });
+              
+              if(canvasArray){
+                 var arrayLength = canvasArray.length;
+                 for (var i = 0; i < arrayLength;++i) {
+	    	  	    canvasArray[i].stage.destroy();
+	    	  	    canvasArray[i].legendStage.destroy();
+	    	  	    delete canvasArray[i];
+                 }
+              }else{
+                 canvasArray = {};
+              }
+	    	  
+              contTabCanvas = 0;
+              numTabs = 0;
+    	      nameTabs = {};
+              
+              //addWorkflow("canvas-1");
+              //addWorkflowTab("canvas-1");
+              //configureCanvas("canvas-1", true, "W");
+              //setWorkflow("canvas-1");
+
+              //resizeCanvas(30,45);
+              
+              if(runningIntervalID){
+              	clearInterval(runningIntervalID);
+              }
+              
+          //]]>
+	      }
+
+		var runningIntervalID;
+		var copyRunningMsgIdx = 0;
+		var copyRunningMsgIdxScheduling = 0;
+	      
+	     function unblockRunningWorkflowJS(){
+	     	//<![CDATA[
+
+		         
+	         if(lastBlockedRunningWorkflow){
+	        	 console.log("unblockRunningWorkflowJS ", lastBlockedRunningWorkflow);
+	             jQuery('#'+lastBlockedRunningWorkflow).unblock();
+	             try{DMRDIV_disableProgressBar();}catch(exception){}
+	             try{jQuery('#domMessageRunning'+ copyRunningMsgIdx).remove();}catch(exception){}
+	             
+	         }else{
+		    	 console.log("unblockRunningWorkflowJS");
+		     }
+
+
+	         lastBlockedRunningWorkflow = null;
+	         clearInterval(runningIntervalID);
+	         
+	     	//]]>
+	     }
+
+	     
+	     function blockRunningWorkflowJS(){
+	     	//<![CDATA[
+	     	           
+			//console.log("blockRunningWorkflowJS " + selectedCanvas);
+			//console.log("blockRunningWorkflowJS " + isIfISchedule(selectedCanvas));
+	     	           
+			console.log("ISchedule " + isIfISchedule(selectedCanvas));
+			console.log("scheduleNoPastDate " + getScheduleNoPastDate(selectedCanvas));
+			
+	     	if((isIfISchedule(selectedCanvas) == 'true' || isIfISchedule(selectedCanvas) == true) && (getScheduleNoPastDate(selectedCanvas) == 'true' || getScheduleNoPastDate(selectedCanvas) == true)){
+	     		//console.log("blockRunningWorkflowJS A");
+	     		blockRunningSchedulingWorkflowJS();
+	     	}else{
+	     		//console.log("blockRunningWorkflowJS B");
+	     		runningWorkflowJS();
+	     	}
+            
+            //]]>
+         }
+	     
+	     function runningWorkflowJS(){
+	    	//<![CDATA[
+	    	 console.log("runningWorkflowJS");
+	     		
+		        //unblockRunningWorkflowJS();
+		        lastBlockedRunningWorkflow = null;
+	         	clearInterval(runningIntervalID);
+		         
+	            lastBlockedRunningWorkflow = getSelectedById();
+	             
+		    	console.log("blockRunningWorkflowJS" , lastBlockedRunningWorkflow);
+	
+				try{
+			    	var origDiv = document.getElementById('domMessageRunning');
+			    	var newDiv = document.createElement("div");
+			    	newDiv.id = 'domMessageRunning'+ (++copyRunningMsgIdx);
+			    	newDiv.style.display = "none";
+			    	if(copyRunningMsgIdx == 1){
+			    		origDiv.innerHTML = origDiv.innerHTML.replace(/DMRDIV_/g,'DORDIV_');
+			    	}
+			    	newDiv.innerHTML = origDiv.innerHTML.replace(/DORDIV_/g,'DMRDIV_');
+		            jQuery('#'+lastBlockedRunningWorkflow).block({ message: newDiv });
+		     	}catch(exception){
+			    	//alert("d " + lastBlockedRunningWorkflow + " " + exception);
+			    }
+	             
+	            resizeBlockUICanvas();
+	
+	            runningIntervalID = setInterval(function(){ DMRDIV_updateProgressBar(); },1500);
+	            setTimeout(function(){ DMRDIV_updateProgressBar(); }, 100);
+	          //]]>
+	     }
+	     
+	     function blockRunningSchedulingWorkflowJS(){
+		     	//<![CDATA[
+		        
+		        //unblockRunningSchedulingWorkflowJS();
+		        lastBlockedRunningSchedulingWorkflow = null;
+		        clearInterval(runningIntervalID);
+		         
+		        lastBlockedRunningSchedulingWorkflow = getSelectedById();
+	             
+		    	console.log("blockRunningSchedulingWorkflowJS" , lastBlockedRunningSchedulingWorkflow);
+		     	
+		     	try{
+			    	var origDiv = document.getElementById('domMessageSchedulingRunning');
+			    	var newDiv = document.createElement("div");
+			    	newDiv.id = 'domMessageSchedulingRunning'+ (++copyRunningMsgIdxScheduling);
+			    	newDiv.style.display = "none";
+			    	if(copyRunningMsgIdxScheduling == 1){
+			    		origDiv.innerHTML = origDiv.innerHTML.replace(/DMRDIV_/g,'DORDIV_');
+			    	}
+			    	newDiv.innerHTML = origDiv.innerHTML.replace(/DORDIV_/g,'DMRDIV_');
+		            jQuery('#'+lastBlockedRunningSchedulingWorkflow).block({ message: newDiv });
+		     	}catch(exception){
+		     		console.log("error " + lastBlockedRunningSchedulingWorkflow + " " + exception);
+			    }
+		     	
+		     	console.log("blockRunningSchedulingWorkflowJS end ");
+	             
+	            resizeBlockUICanvas();
+
+	            runningIntervalID = setInterval(function(){ DMRDIV_updateSchedulingStatus(); },5000);
+	            setTimeout(function(){ DMRDIV_updateSchedulingStatus(); }, 100);
+	             
+	            //]]>
+	         }
+	     
+	     function unblockRunningSchedulingWorkflowJS(){
+		     	//<![CDATA[
+			         
+		         if(lastBlockedRunningSchedulingWorkflow){
+		        	 console.log("unblockRunningSchedulingWorkflowJS ", lastBlockedRunningSchedulingWorkflow);
+		             
+		        	 jQuery('#'+lastBlockedRunningSchedulingWorkflow).unblock();
+		             try{jQuery('#domMessageSchedulingRunning'+ copyRunningMsgIdxScheduling).remove();}catch(exception){}
+		             
+		         }else{
+			    	 console.log("unblockRunningSchedulingWorkflowJS");
+			     }
+
+		         lastBlockedRunningSchedulingWorkflow = null;
+		         clearInterval(runningIntervalID);
+		         
+		     	//]]>
+		     }
+	     
+	     function selectTab(tabIndex){
+
+	    	 console.log("selectTab");
+		     
+	    	 var tabs = jQuery("#canvas-tabs").tabs();
+	    	 tabs.tabs("option", "active", tabIndex);
+	    	 setWorkflow(nameTabs[tabIndex]);
+	     }
+	     
+	    var ctrlEventControler = true;
+        jQuery(document).bind('keyup', function (event) {
+	         ctrlEventControler = true;
+        });
+        
+        jQuery(document).bind('keydown', function (event) {
+			 //<![CDATA[
+        	console.log("jquery bind keydown");
+        	
+			if( !jQuery(".rich-mp-container").is(":visible") &&
+				jQuery("#"+getSelectedById()).find(".blockUI").filter(":visible").size() == 0 ){
+				if (event.keyCode == 46) { // Delete
+	                deleteSelected(selectedCanvas);
+	            }
+	        }
+	        if( jQuery("#"+getSelectedById()).find(".blockUI").filter(":visible").size() == 0 ){
+	            if(event.ctrlKey) {
+        			console.log("set false");
+	                if(ctrlEventControler || (event.keyCode > 48 && event.keyCode < 58)){
+	            		showHelp(event);
+	            		ctrlEventControler = false;
+	            		if(jQuery(".rich-mp-container").is(":visible")){
+	            			console.log("Dispable tooltip button");
+	            			jQuery(".tooltipCanvas").find("button").attr("disabled", "disabled");
+	            		}
+	            	}else if(event.keyCode <= 48 || event.keyCode >= 58){
+        			console.log("remove tooltip");
+    					jQuery(".tooltipCanvas").remove();
+    					curToolTip = null;
+	            	}
+	        	}
+			}
+				
+			if (event.keyCode === 8) { //backspace
+				var targ;
+				if (!event) var event = window.event;
+				if (event.target) targ = event.target;
+				else if (event.srcElement) targ = event.srcElement;
+
+				if(targ.tagName == "BODY"){
+					event.preventDefault();
+				}
+			}
+			 
+			 //chrome
+			 if(event.altKey){
+				if (event.keyCode === 37) {
+					event.preventDefault();
+				}else if (event.keyCode === 39) {
+					event.preventDefault();
+				}else if (event.keyCode === 69) {
+					event.preventDefault();
+				}else if (event.keyCode === 70) { //Alt+F 
+					event.preventDefault();
+				}else if (event.keyCode === 69) { //Alt+e
+					event.preventDefault();
+				}else if (event.keyCode === 84 && event.shiftKey) { //Shift+Alt+T
+					event.preventDefault();
+				}
+			 }else if(event.ctrlKey){
+			 	if(event.keyCode > 48 && event.keyCode < 58){//Ctr+1/2...9
+					event.preventDefault();
+				}else if (event.keyCode === 66 && event.shiftKey) { //Ctrl+Shift+B
+					event.preventDefault();
+				}else if (event.keyCode === 73) { //Ctrl+H
+					event.preventDefault();
+				}else if (event.keyCode === 74) { //Ctrl+J
+					event.preventDefault();
+				}else if (event.keyCode === 74 && event.shiftKey) { //Ctrl+Shift+J
+					event.preventDefault();
+				}else if (event.keyCode === 46 && event.shiftKey) { //Ctrl+Shift+Delete
+					event.preventDefault();
+				}else if (event.keyCode === 77 && event.shiftKey) { //Ctrl+Shift+M
+					event.preventDefault();
+				}else if (event.keyCode === 80) { //Ctrl+P 
+					event.preventDefault();
+				}else if (event.keyCode === 83) { //Ctrl+S
+					event.preventDefault();
+				}else if (event.keyCode === 82) { //Ctrl+R
+					event.preventDefault();
+				}else if (event.keyCode === 116) { //f5
+					event.preventDefault();
+				}else if (event.keyCode === 70) { //Ctrl+F
+					event.preventDefault();
+				}else if (event.keyCode === 71) { //Ctrl+G
+					event.preventDefault();
+				}else if (event.keyCode === 113) { //f3
+					event.preventDefault();
+				}else if (event.keyCode === 71 && event.shiftKey) { //Ctrl+Shift+G   
+					event.preventDefault();
+				}else if (event.keyCode === 116) { //Ctrl+F5
+					event.preventDefault();
+				}else if (event.keyCode === 80) { //Ctrl+U
+					event.preventDefault();
+				}else if (event.keyCode === 85) { //Ctrl+D
+					event.preventDefault();
+				}else if (event.keyCode === 68 && event.shiftKey) { //Ctrl+Shift+D
+					event.preventDefault();
+				}else if (event.keyCode === 122) { //f11
+					event.preventDefault();
+				}else if (event.keyCode === 48) { //Ctrl+0
+					event.preventDefault();
+				}
+			 }else{
+			 	if (event.keyCode === 112) { //f1
+					event.preventDefault();
+				}else if (event.keyCode === 117) { //f6
+					event.preventDefault();
+				}else if (event.keyCode === 117 && event.shiftKey) { //Shift+F6
+					event.preventDefault();
+				}else if (event.keyCode === 116 && event.shiftKey) { //Shift+F5
+					event.preventDefault();
+				}
+			 }
+			event.stopImmediatePropagation();
+			//]]>
+			
+            
+        });
+	   		
+	   	function disableEnterKey(e){
+
+	   		console.log("disableEnterKey");
+		   	
+	        var key;
+	        if(window.event)
+	             key = window.event.keyCode;
+	        else
+	             key = e.which;
+	        return (key != 13);
+	   }
+	   	
+	   	function menuSave(){
+	   		console.log("menuSave");
+	   		var name = getSelectedByName();
+			if (isSaved(name)){
+				if(!isRunning(name)){
+					var path = getPathFile(name);
+					//console.log("menuSave path " + path);
+					//console.log("menuSave name " + name);
+					save(path);
+			   	}
+	   		} else{
+	   			openModalFileHdfs('T');
+	   		}
+	   	}
+
+	   	function importSubWorkflow(){
+	   		console.log("importSubWorkflow");
+			openModalImportSubworkflow();
+		}
+
+
+	   	function configureFooter(){
+	   		console.log("configureFooter");
+   		 	var tabsFooter = jQuery("#tabsFooter").tabs().scrollabletab();
+	    	configureFooterCss();
+	    	validateArrows(jQuery("#tabsFooter"),jQuery("#buttonsTabsFooter"));
+   		}
+
+	    function updateObjsNameReplace(status){
+	    	console.log("updateObjsNameReplace");
+		    
+		    //<![CDATA[
+		    for (var i = 0; i < status.length; i++) {
+			    //alert(status[i][0] + "  " + status[i][1]);
+		    	updateLabelObj(status[i][0], status[i][1]);
+			}
+			//]]>
+		}
+
+	    function checkOpenModalAggregate(){
+	    	console.log("checkOpenModalAggregate");
+		    
+	    	if(getSelectedIconsCommaDelimited() != ""){
+	    		openModalAggregate(getSelectedIconsCommaDelimited());
+		    }else{
+		    	alert("You need select at least one object.");
+		    	jQuery('#canvas-tabs').unblock();
+			}
+	    }
+	    
+	    function checkExpand(elementId){
+	    	console.log("checkExpand");
+	    	jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });
+		    
+	    	 //<![CDATA[
+	    	if(elementId){
+	    		undoRedoExpand(elementId);
+		    }else{
+		    	alert("You need select one object or select just Super Actions");
+		    	jQuery('#canvas-tabs').unblock();
+			}
+	    	//]]>
+	    }
+
+	    function refreshRelativeHelp(){
+	    	console.log("refreshRelativeHelp");
+			jQuery('[id$="refreshRelativeHelp"]').click();
+	    }
+
+	    function checkPageError(){
+	    	console.log("checkPageError");
+		    
+		   	if(jQuery("#msnErrorPageContainer")){
+			 	jQuery("#msnErrorPageContainer").css("z-index", '1000');
+	    	}
+	   	}
+
+	   	function reinitializeCanvasScreen(refresh,backUpWf){
+	   	    //<![CDATA[
+	   		console.log("reinitializeCanvasScreen");
+	   		var wf = "";
+	   		if(backUpWf != null){
+				wf = "\n\t- "+backUpWf.replace(/, /g,"\n\t- ");
+	   		}
+			if(refresh != null){
+				closeAllWorkflowTabs();
+				if(backUpWf != null && confirm(msg_refresh+wf)){
+				   	reOpenCanvas();
+				}else{
+					rerenderCanvasTab();
+				}
+			}else{
+    	   		//re open canvas
+    	   		if(backUpWf != null && confirm(msg_recover_backup+wf)){
+	    	     	reOpenCanvas();
+	    	   	}
+    		   	notifyUser();
+			}
+			reRenderFooter();
+	    	//]]>
+		}
+	   	
+	   	function notifyUserJS(notificationFooter){
+	   	    //<![CDATA[
+	   		if(notificationFooter && notificationFooter.length > 0){
+    		  	var pack = "\n";
+    		   	for (var i = 0; i < notificationFooter.length; i++) {
+    			  	pack += "\t- "+notificationFooter[i]+"\n";
+    		   	}
+    		   	pack += "\n";
+    		   	
+    		   	var tutorial = jQuery.cookie('tutorial');
+    		   	if(tutorial == 'true'){
+    		   		if(confirm(msg_newpackage_notification_footer_beg+pack+msg_newpackage_notification_footer_end)){
+    	    		   	updateFooterWithNewPackages();
+    	    	   	}else{
+    	    		   	updateNewPackageAsNotified();
+    	    	   	}
+    		   	}else{
+    		   		updateNewPackageAsNotified();
+    		   	}
+	    	   
+    	   	}
+	    	//]]>
+	   	}
+
+	   	function setShowInstallPackageModelValue(value){
+	   		console.log("setShowInstallPackageModelValue");
+		   	
+	        if(value == 'P'){
+		    	jQuery('[id$="installPackagesMsg"]').show();
+	    		jQuery('[id$="installModelMsg"]').hide();
+	        }else{
+	        	jQuery('[id$="installPackagesMsg"]').hide();
+	    		jQuery('[id$="installModelMsg"]').show();
+	        }
+	    }
+	   	
+	   	function checkPathRestoreToRun(canvasName){
+	   		console.log("checkPathRestoreToRun");
+	   		
+	   		var nameHtml = removeDot(canvasName);
+	   		
+	   		if (!isSaved(canvasName)) {
+	   			//alert("Please, don't forget to save "+canvasName+"!");
+	   			openModalFileHdfs('T');
+	   		}else{
+	   		  //remove star if necessary
+	   		  setSaved(canvasName, true);
+		      var canvasNameStar = jQuery('#canvasNameStar-'+nameHtml).text();
+		      if(canvasNameStar[canvasNameStar.length-1] == "*" ){
+		 		jQuery('#canvasNameStar-'+canvasName).text(canvasName);
+		 		updateCanvasNameStar();
+		 	  }
+	   		}
+	   	}
+	   	
+	   	function checkOpenModalMerge(){
+	   		//<![CDATA[
+		    	console.log("checkOpenModalMerge");
+		    	console.log(getSelectedByName());
+		    	console.log(isIfISchedule(getSelectedByName()));
+		    	
+		    	jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });
+		    	
+		    	if(isIfISchedule(getSelectedByName())){
+		    		openModalMerge();
+			    }else{
+			    	alert("This is not a schedule canvas.");
+				}
+		    	
+		    	jQuery('#canvas-tabs').unblock();
+	    	//]]>
+	    }
+	   	
+	   	function checkSplit(){
+	   		//<![CDATA[
+		   		console.log("checkSplit");
+		    	console.log(getSelectedByName());
+		    	
+		    	jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });
+		    	
+		    	if(isIfISchedule(getSelectedByName())){
+		    		if(getSelectedIconsCommaDelimited() != ""){
+		    			undoRedoSplitCoordinator(getSelectedIconsCommaDelimited());
+				    }else{
+				    	alert("You need select at least one object.");
+					}
+		    	}else{
+			    	alert("This is not a schedule canvas.");
+				}
+	
+		    	jQuery('#canvas-tabs').unblock();
+	    	//]]>
+	   	}
+	   	
+	   	function saveTabsPosition(){
+	   		console.log("saveTabsPosition");
+    		var tab1 = jQuery("#tabs1 ul:first li:not(:hidden)");
+    		var tab1Names = [];
+    		jQuery.each(tab1, function(idx, obj){
+    			tab1Names.push(jQuery(obj).children("a").attr("name"));
+            });
+    		
+    		var tab2 = jQuery("#tabs2 ul:first li:not(:hidden)");
+    		var tab2Names = [];
+    		jQuery.each(tab2, function(idx, obj){
+    			tab2Names.push(jQuery(obj).children("a").attr("name"));
+            });
+    		
+    		var tabFlowchart = jQuery("#tabFlowchart ul:first li:not(.locked):not(:hidden)");
+    		var tabFlowchartNames = [];
+    		jQuery.each(tabFlowchart, function(idx, obj){
+    			tabFlowchartNames.push(jQuery(obj).children("a").attr("name"));
+            });
+    		
+	   		jQuery.cookie('tab1', tab1Names.toString(), { expires: 30 });
+	   		jQuery.cookie('tab2', tab2Names.toString(), { expires: 30 });
+	   		jQuery.cookie('tabFlowchart', tabFlowchartNames.toString(), { expires: 30 });
+	   	}
+	   	
+	   	function loadTabsPosition(){
+	   		console.log("loadTabsPosition");
+	   		
+	   		mountTab("#tabs1", "tab1", []);
+	   		mountTab("#tabs2", "tab2", ["tabs-1"]);
+	   		mountTab("#tabFlowchart", "tabFlowchart", []);
+	   	}
+	   	
+	   	function mountTab(divName, cookieName, tabsNamesArray){
+	   	//<![CDATA[
+	   		console.log("mountTab");
+	   		
+	   		var tab;
+	   		var names = jQuery.cookie(cookieName);
+	   		if(JSON.stringify(names) === undefined || names == "null"){
+	   			tab = tabsNamesArray;
+	   		}else{
+	   			tab = names.split(",");
+	   		}
+	   		
+	   		var tabs = jQuery(divName).tabs();
+	   		var allTabsDestination = tabs.find(".allTabs");
+	   		jQuery.each(tab, function(idx, obj){
+	   			allTabsDestination.find("a[name$=" + obj + "]").click();
+            });
+	   		
+	   		var ulTab = jQuery(divName).children("ul");
+			var index = 0;
+			var divId;
+			jQuery.each(ulTab.children("li:not(.seeMore)"), function(idx, obj){
+            	if(jQuery(obj).css("display") !== "none"){
+					divId = jQuery(obj).children("a").attr("href");
+					console.log("index " + index);
+					return false;
+				}
+            	index = index+1;
+            });
+			jQuery(divName).tabs("option", "active", index);
+			jQuery(divId).show();
+	   		
+			setTimeout(function(){
+				jQuery(divName).find(".allTabs").remove();
+				jQuery(divName).tabs("refresh");
+				checkTabAreaToclose();
+				reloadAllTabs(jQuery(divName));
+			}, 1000);
+			
+			//click home on help page
+			jQuery("#btIndex").click();
+			//]]>
+	   	}
+	   	
+	   	/*keyboard shortcuts*/
+	   	
+	   	shortcut.add("Ctrl+n",function() {
+	   		if( !jQuery(".rich-mp-container").is(":visible") ){
+		   		jQuery("#formMenu\\:newMenuItem").click();
+	   		}
+	   	});
+	   	
+	   	shortcut.add("Ctrl+o",function() {
+	   		if( !jQuery(".rich-mp-container").is(":visible") ){
+		   		jQuery("#formMenu\\:openMenuItem").click();
+	   		}
+	   	});
+	   	
+	   	shortcut.add("Ctrl+s",function() {
+	   		if( !jQuery(".rich-mp-container").is(":visible") ){
+		   		jQuery("#formMenu\\:saveMenuItem").click();
+	   		}
+	   	});
+	   	
+		shortcut.add("Ctrl+Alt+x",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:saveAsMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+Shift+s",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:saveAllMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+w",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:closeMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+Shift+w",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:closeAllMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+a",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:selectAllMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+Shift+a",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:deselectAllMenuItem").click();
+			}
+	   	});
+	   	
+        shortcut.add("Ctrl+h",function() {
+        	if( !jQuery(".rich-mp-container").is(":visible") ){
+	            jQuery("#formMenu\\:replaceMenuItem").click();
+        	}
+        });
+	   	
+		shortcut.add("Ctrl+j",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:oozieMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+l",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:cleanMenuItem").click();
+			}
+	   	});
+	   	
+		shortcut.add("Ctrl+e",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:runMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+Alt+e",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:runSelectedMenuItem").click();
+			}
+	   	});
+		
+		shortcut.add("Ctrl+i",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:installationMenuItem").click();
+			}
+	   	});
+	   	
+	   	shortcut.add("Ctrl+Alt+p",function() {
+	   		if( !jQuery(".rich-mp-container").is(":visible") ){
+	            jQuery("#formMenu\\:settingsMenuItem").click();
+	   		}
+        });
+	   	
+	   	shortcut.add("Ctrl+Alt+m",function() {
+	   		if( !jQuery(".rich-mp-container").is(":visible") ){
+	            jQuery("#formMenu\\:manageModelsItem").click();
+	   		}
+        });
+
+	   	shortcut.add("Ctrl+Shift+c",function() {
+	   		if( !jQuery(".rich-mp-container").is(":visible") ){
+	            jQuery("#formMenu\\:copyMenuItem").click();
+	   		}
+	   	});
+        
+        shortcut.add("Ctrl+Shift+v",function() {
+        	if( !jQuery(".rich-mp-container").is(":visible") ){
+            	jQuery("#formMenu\\:pasteMenuItem").click();
+        	}
+        });
+
+        shortcut.add("Ctrl+Shift+z",function() {
+        	if( !jQuery(".rich-mp-container").is(":visible") ){
+            	jQuery("#formMenu\\:undoMenuItem").click();
+        	}
+        });
+
+        shortcut.add("Ctrl+Shift+y",function() {
+        	if( !jQuery(".rich-mp-container").is(":visible") ){
+            	jQuery("#formMenu\\:redoMenuItem").click();
+        	}
+        });
+
+        shortcut.add("Ctrl+Alt+a",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:aggregateMenuItem").click();
+			}
+	   	});
+        
+        shortcut.add("Ctrl+Alt+R",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:mergeMenuItem").click();
+			}
+	   	});
+        
+        shortcut.add("Ctrl+Alt+S",function() {
+			if( !jQuery(".rich-mp-container").is(":visible") ){
+				jQuery("#formMenu\\:splitMenuItem").click();
+			}
+	   	});
+	</script>
+
+</head>
+<body id="body">
+
+	<a4j:keepAlive beanName="canvasModalBean" />
+	
+	<div id="tutorialBubble" class="bubble" style="position: absolute; z-index: 10000000; background-color: rgb(255, 255, 255); border-color: rgb(127, 127, 127); border-width: 4px; width: 300px; height: 110px; top: 60px; left: 20px; border-radius: 33px; display:none;">
+		<div class="pointer" style="content: '';position: absolute;border-style: solid;border-width: 0 12px 24px;border-color: #FFFFFF transparent;display: block;width: 0;z-index: 1;top: -24px;left: 48px;" />
+		<div class="pointerBorder" style="content: '';position: absolute;border-style: solid;border-width: 0 15px 27px;border-color: #7F7F7F transparent;display: block;width: 0;z-index: 0;top: -31px;left: 45px;" />
+		
+		<h:outputText value="#{messages.label_tutorial_Bubble}" style="padding-left:20px; position: absolute; padding-top: 10px;"/>
+		<br/>
+		<h:outputText value="#{messages.label_tutorial_question}" style="padding-left:20px; position: absolute; padding-top: 10px;"/>
+		
+		<a4j:commandButton styleClass="greenButton" style="position: absolute;margin-top: 30px; margin-left: 20px;" value="#{messages.button_no}" onclick="closeTutotial();" />
+		<a4j:commandButton styleClass="greenButton" style="position: absolute;margin-top: 30px; margin-left: 60px;" value="#{messages.button_yes}" onclick="startTutotial();" />
+		<br/><br/><br/>
+		
+		<h:panelGroup style="display: inline; position: absolute;padding-left: 20px;padding-top: 10px;">
+			<h:selectBooleanCheckbox id="tutorialCheckBox" />
+			<h:outputText value="#{messages.label_dont_show}" />
+		</h:panelGroup>
+		
+		<a class="stopLink" id="helpmain_gs_tutorial" href="../help/getting_started/getting-started-intro.html" style="display:none;" />
+		
+	</div>
+	
+	
+	<a4j:region renderRegionOnly="true">
+					
+		<div id="domMessageRunning" style="display: none;">
+			<h:form>
+			
+				<a4j:jsFunction name="DMRDIV_updateProgressBar" reRender="DMRDIV_runningActionsList, DMRDIV_completedActionsList, DMRDIV_FormTitle, DMRDIV_idProgBarRunning" 
+					data="#{canvasBean.runningAndUpdate}" oncomplete="if(data === undefined || !data[1]){unblockRunningWorkflowJS();}else{console.log('updateProgressBar: ',data[0],data[1],getSelectedByName()); if(data[0] == 'false' &amp;&amp; data[1] == getSelectedByName()){unblockRunningWorkflowJS();setRunning(getSelectedByName(), false);console.log('updateArcsAfterRunning: ',data[0],data[1],getSelectedByName());updateAllArcsStatus();}}"  />
+				<a4j:jsFunction name="DMRDIV_disableProgressBar" reRender="DMRDIV_idProgBarRunning" 
+				     oncomplete="try{#{rich:component('DMRDIV_idProgBarRunning')}.disable();}catch(exception){}"/>
+				<span style="float:left;margin-left:5px;">
+				<h:outputLink id="DMRDIV_workflowUrl" value="#{canvasBean.workflowUrl}"
+					target="_blank"
+					rendered="#{canvasBean.workflowUrl != null}">
+					<h:graphicImage
+						value="../image/icons/button-oozie_web_console.gif"
+						title='#{messages.oozie_gotowebconsole}' alt="Oozie Console"
+						class="fileSystemIcon" />
+				</h:outputLink>
+				<a4j:commandButton id="DMRDIV_copyWfBtn" styleClass="fileSystemIcon" 
+    	    		action="#{canvasBean.copyRunningWorkflow}" image="../image/icons/button-copy.gif"
+					title="Copy Workflow"
+    				reRender="msnError,errorTable,formMenu"
+    				oncomplete="if(#{requestScope['msnError'] == null} ){#{rich:component('modalFileHdfs')}.hide();loadWorkflow();}">
+    			</a4j:commandButton>
+    			</span>
+				<img src="../image/icons/waitingRun.gif" />
+				<h:panelGroup id="DMRDIV_right_area" layout="block">
+					<br/>
+					<h:outputText id="DMRDIV_FormTitle" value="#{canvasBean.nameWorkflow}" style="test-align:center;font-weight: bold;font-size:16px;" />
+					<br/>
+					<a4j:outputPanel id="DMRDIV_runningprogressComponent">
+						<rich:simpleTogglePanel id="DMRDIV_runningActionsList" label="Running Actions (#{canvasBean.runningElementsSize})" switchType="client" style="max-height: 90px;overflow:auto;" >
+							<ui:repeat value="#{canvasBean.runningElements}" var="item">
+	                   			#{item}<br />
+	               			</ui:repeat>
+						</rich:simpleTogglePanel>
+						<rich:simpleTogglePanel id="DMRDIV_completedActionsList" label="Actions Completed (#{canvasBean.doneElementsSize})" switchType="client" style="max-height: 90px;overflow:auto;" >
+							<ui:repeat value="#{canvasBean.doneElements}" var="item">
+	                   			#{item}<br />
+	               			</ui:repeat>
+						</rich:simpleTogglePanel>
+						<rich:progressBar id="DMRDIV_idProgBarRunning" interval="5000" enabled="#{canvasBean.progressBarEnabled}"
+							reRenderAfterComplete="DMRDIV_runningprogressComponent" value="#{canvasBean.valueProgressBar}" minValue="0" maxValue="100" >
+						    <h:outputText value="#{canvasBean.valueProgressBar} %" />
+					    </rich:progressBar>
+					</a4j:outputPanel>
+					<a4j:commandButton id="DMRDIV_killProcessBtn" styleClass="greenButton"
+						style="float:right;margin-right:5px;" value="Kill Process"
+						action="#{canvasBean.stopRunningWorkflow}"
+						oncomplete="#{rich:component('DMRDIV_idProgBarRunning')}.disable();" />
+				</h:panelGroup>
+			
+			</h:form>
+		</div>
+	
+	</a4j:region>
+	
+	
+	
+	<a4j:region renderRegionOnly="true">
+					
+		<a4j:loadBundle basename="MessagesResources" var="messages" />
+					
+		<div id="domMessageSchedulingRunning" style="display:none;">
+			<h:form>
+			
+				<a4j:jsFunction name="DMRDIV_updateSchedulingStatus" 
+					reRender="DMRDIV_tableListScheduling, nameScheduling, statusScheduling, actionsScheduling, skippedScheduling, errorsScheduling, runningScheduling, DMRDIV_panelGroupSchedulingBT" 
+					data="#{canvasBean.runningAndUpdateScheduling}" oncomplete="if(data[0] == 'false' &amp;&amp; data[1] == getSelectedByName()){unblockRunningSchedulingWorkflowJS(); setRunning(getSelectedByName(), false); updateAllArcsStatus();}" />
+			
+				<a4j:jsFunction name="DMRDIV_openModalSchedulingRunning" action="#{canvasBean.setSelectedScheduling}"
+					reRender="modalSchedulingRunning"
+					oncomplete="#{rich:component('modalSchedulingRunning')}.show();">
+					<a4j:actionparam name="selectedScheduling" />
+				</a4j:jsFunction>
+			
+				<span style="float:left;margin-left:5px;">
+				<h:outputLink id="DMRDIV_workflowUrl" value="#{canvasBean.workflowUrl}"
+					target="_blank"
+					rendered="#{canvasBean.workflowUrl != null}">
+					<h:graphicImage
+						value="../image/icons/button-oozie_web_console.gif"
+						title='#{messages.oozie_gotowebconsole}' alt="Oozie Console"
+						class="fileSystemIcon" />
+				</h:outputLink>
+				<a4j:commandButton id="DMRDIV_copyWfBtn" styleClass="fileSystemIcon" 
+    	    		action="#{canvasBean.copyRunningWorkflow}" image="../image/icons/button-copy.gif"
+					title="Copy Workflow"
+    				reRender="msnError,errorTable,formMenu"
+    				oncomplete="if(#{requestScope['msnError'] == null} ){#{rich:component('modalFileHdfs')}.hide();loadWorkflow();}">
+    			</a4j:commandButton>
+    			</span>
+				<img src="../image/icons/waitingRun.gif" />
+				<br/>
+				
+				
+				<div style="height:100px;overflow:auto;border:1px solid;" >
+				<rich:dataTable value="#{canvasBean.listScheduling}" id="DMRDIV_tableListScheduling"
+                   var="item" width="100%" style="border:none;" onRowMouseOver="this.style.backgroundColor='#f2b97a'"
+                   enableContextMenu="false" selectionMode="none" rowKeyVar="index"
+                   onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+                   rowClasses="even-row, odd-row" >
+
+					<rich:column>
+						<f:facet name="header">
+							<h:selectBooleanCheckbox onclick="selectAllCheckbox(this, /listCoordinatorSchedulingSelected$/);" />
+						</f:facet>
+						<h:selectBooleanCheckbox id="listCoordinatorSchedulingSelected" value="#{item.selected}" />
+					</rich:column>                   
+					<rich:column>
+						<f:facet name="header">
+                        	<h:outputText value="#{messages.label_voronoi_nameScheduling}" title="#{messages.title_voronoi_nameScheduling_desc}" />
+						</f:facet>
+						<a4j:commandLink onclick="DMRDIV_openModalSchedulingRunning('#{item.nameScheduling}');" >
+							<h:outputText value="#{item.nameScheduling}" id="nameScheduling"/>
+						</a4j:commandLink>
+					</rich:column>
+					<rich:column>
+                    	<f:facet name="header">
+                        	<h:outputText value="#{messages.label_voronoi_statusScheduling}" title="#{messages.title_voronoi_statusScheduling_desc}" />
+						</f:facet>
+						<h:outputText value="#{item.statusScheduling}" id="statusScheduling" />
+					</rich:column>
+                    <rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_actionsScheduling}" title="#{messages.title_voronoi_actionsScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item.actionsScheduling}" id="actionsScheduling" />
+					</rich:column>
+					 <rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_okScheduling}" title="#{title_voronoi_okScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item.okScheduling}" id="okScheduling" />
+					</rich:column>
+					<rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_skippedScheduling}" title="#{messages.title_voronoi_skippedScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item.skippedScheduling}" id="skippedScheduling" />
+					</rich:column>
+					<rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_errorsScheduling}" title="#{messages.title_voronoi_errorsScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item.errorsScheduling}" id="errorsScheduling" />
+					</rich:column>
+					
+					<rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_runningScheduling}" title="#{messages.title_voronoi_runningScheduling_desc}" />
+                       </f:facet>
+						<a4j:commandLink action="#{canvasBean.killCoordWfScheduling}"
+							rendered="#{item.runningScheduling == 'true'}"
+							reRender="DMRDIV_tableListScheduling" >
+							<h:graphicImage value="../image/icons/button-killJob.gif" title='#{messages.oozie_killjob}' style="padding-right:2px;width:16px;" />
+							<f:param name="selectedScheduling" value="#{item.nameScheduling}" />
+						</a4j:commandLink>
+                       
+					</rich:column>
+					
+                </rich:dataTable>
+				</div>
+				
+				
+				<br/>
+				
+				<rich:panel columns="2" style="border:none; float:left;">
+				<h:panelGroup layout="block" id="DMRDIV_panelGroupSchedulingBT">
+					<a4j:commandButton styleClass="greenButton" value="#{messages.oozie_resume}" 
+						rendered="#{canvasBean.showResumeScheduling}" action="#{canvasBean.resumeScheduling}" />
+					<a4j:commandButton styleClass="greenButton" value="#{messages.oozie_suspend}" 
+						rendered="#{canvasBean.showSuspendScheduling}" action="#{canvasBean.suspendScheduling}" />
+				</h:panelGroup>
+				</rich:panel>
+				
+				<rich:panel columns="2" style="border:none; float:right;">
+				
+					<a4j:commandButton styleClass="greenButton"	value="#{messages.oozie_reRun_all}" action="#{canvasBean.openSchedulModal}"
+						oncomplete="#{rich:component('reRunScheduleModal')}.show(); reRunOpenSchedulModal();" reRender="modalReRunSchedule, reRunOozieTimeZone" />
+					
+					<a4j:commandButton styleClass="greenButton"	value="#{messages.oozie_KillProcess}"
+						action="#{canvasBean.stopRunningWorkflow}" />
+					
+				</rich:panel>
+				
+			</h:form>
+		</div>
+	
+		<rich:modalPanel id="modalSchedulingRunning" width="600" height="500" style="overflow:hidden;" resizeable="false">
+	
+	        <f:facet name="header">Running</f:facet>
+	        <f:facet name="controls">
+	            <h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+	                onclick="#{rich:component('modalSchedulingRunning')}.hide();" />
+	        </f:facet>
+	        
+			<h:form>
+				<table style="width:100%;">
+					<tr class="odd-row">
+						<td>
+							<h:outputText value="#{messages.label_voronoi_nameScheduling}" title="#{messages.title_voronoi_nameScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.nameScheduling}" id="nameScheduling" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="#{messages.label_voronoi_jobid}" title="#{messages.title_voronoi_jobid_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.jobId}" id="jobidScheduling" />
+						</td>
+					</tr>
+					<tr class="odd-row">
+						<td>
+							<h:outputText value="#{messages.label_voronoi_lastActionScheduling}" title="#{messages.title_voronoi_lastActionScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.lastActionScheduling}" id="lastActionScheduling" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="#{messages.label_voronoi_nextActionScheduling}" title="#{messages.title_voronoi_nextActionScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.nextActionScheduling}" id="nextActionScheduling" />
+						</td>
+					</tr>
+					<tr class="odd-row">
+						<td>
+							<h:outputText value="#{messages.label_voronoi_actionsScheduling}" title="#{messages.title_voronoi_actionsScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.actionsScheduling}" id="actionsScheduling" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="#{messages.label_voronoi_okScheduling}" title="#{messages.title_voronoi_okScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.okScheduling}" id="okScheduling" />
+						</td>
+					</tr>
+					<tr class="odd-row">
+						<td>
+							<h:outputText value="#{messages.label_voronoi_skippedScheduling}" title="#{messages.title_voronoi_skippedScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.skippedScheduling}" id="skippedScheduling" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="#{messages.label_voronoi_errorsScheduling}" title="#{messages.title_voronoi_errorsScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.errorsScheduling}" id="errorsScheduling" />
+						</td>
+					</tr>
+					<tr class="odd-row">
+						<td>
+							<h:outputText value="#{messages.label_voronoi_runningScheduling}" title="#{messages.title_voronoi_runningScheduling_desc}" />
+						</td>
+						<td>
+							<h:outputText value="#{canvasBean.selectedScheduling.runningScheduling}" id="runningScheduling" />
+						</td>
+					</tr>
+				</table>
+				
+				<br/>
+				
+				<div style="height:230px;overflow:auto;border:1px solid;">
+				<rich:dataTable id="listJobsScheduling" value="#{canvasBean.selectedScheduling.listJobsScheduling}"
+                   var="item" width="100%" style="border:none;" onRowMouseOver="this.style.backgroundColor='#f2b97a'"
+                   enableContextMenu="false" selectionMode="none" rowKeyVar="index"
+                   onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+                   rowClasses="even-row, odd-row" >
+                   
+                   <rich:column>
+	                    <f:facet name="header">
+							<h:selectBooleanCheckbox onclick="selectAllCheckbox(this, /listJobsSchedulingSelected$/);" />
+						</f:facet>
+						<h:selectBooleanCheckbox id="listJobsSchedulingSelected" value="#{item[0]}" />
+                   </rich:column>
+                    <rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_actnbScheduling}" title="#{messages.title_voronoi_actnbScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item[1]}" />
+                   </rich:column>
+                   <rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_nominaltimeScheduling}" title="#{messages.title_voronoi_nominaltimeScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item[2]}" />
+                   </rich:column>
+                   <rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_statusScheduling}" title="#{messages.title_voronoi_statusScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item[3]}" />
+                   </rich:column>
+                   <rich:column>
+                       <f:facet name="header">
+                           <h:outputText value="#{messages.label_voronoi_widScheduling}" title="#{messages.title_voronoi_widScheduling_desc}" />
+                       </f:facet>
+                       <h:outputText value="#{item[4]}" />
+                   </rich:column>
+                   
+                </rich:dataTable>
+				</div>
+				
+				<br/>
+				
+				<rich:panel columns="3" style="border:none; float:right;">
+				
+				<a4j:commandButton styleClass="greenButton"	value="#{messages.oozie_kill_waiting}" action="#{canvasBean.killWaitingSelectedScheduling}"
+					oncomplete="if(#{requestScope['msnError'] == null}){#{rich:component('modalSchedulingRunning')}.hide();}" reRender="msnErrorRunning" />
+				
+				<a4j:commandButton styleClass="greenButton"	value="#{messages.oozie_reRun_selected}" action="#{canvasBean.reRunSelectedScheduling}"
+					oncomplete="if(#{requestScope['msnError'] == null}){#{rich:component('modalSchedulingRunning')}.hide();}" reRender="msnErrorRunning" />
+				
+				<a4j:commandButton styleClass="greenButton"	style="float:right;margin-right:5px;" value="Close"
+					oncomplete="#{rich:component('modalSchedulingRunning')}.hide();" />
+					
+				</rich:panel>
+	
+			</h:form>
+	
+	    </rich:modalPanel>
+	    
+	    <rich:modalPanel id="msnErrorRunning" showWhenRendered="#{requestScope['msnError'] != null}">
+			<div style="width: 100%; height: 100%; overflow: auto; z-index: 1000; position: relative;">
+				<rich:messages id="msgErrorRunning" globalOnly="false" layout="list"
+					styleClass="message" infoClass="messageok" errorClass="messageerro"
+					warnClass="messagealert" showDetail="true" showSummary="false"
+					ajaxRendered="false" />
+	
+				<a4j:commandButton styleClass="greenButton"
+					value="#{messages.button_ok}"
+					onclick="#{rich:component('msnErrorRunning')}.hide(); return false;"
+					style="bottom:14%;position:relative;"
+					reRender="msnError, msgErrorRunning, errorTable" />
+	
+			</div>
+		</rich:modalPanel>
+	    
+	    <a4j:region>
+			<rich:modalPanel id="reRunScheduleModal" width="500" height="430" style="overflow:hidden;" resizeable="false" styleClass="noMaskClass">
+				
+				<f:facet name="header">Rerun Schedule Job</f:facet>
+				<f:facet name="controls">
+					<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;" onclick="#{rich:component('reRunScheduleModal')}.hide();" />
+				</f:facet>
+	
+				<h:panelGroup>
+					<a4j:include viewId="/pages/reRunScheduleModal.xhtml" ajaxRendered="false" />
+				</h:panelGroup>
+	
+			</rich:modalPanel>
+		</a4j:region>
+	    
+    </a4j:region>
+	
+	
+
+	<div id="invisible"></div>
+
+	<div id="menu" style="width: 100%">
+		<h:form id="formMenu" class="menu">
+
+			<div id="domMessageDivCanvas1" style="display: none;">
+				<img src="../image/icons/waiting.gif" />
+			</div>
+			
+			<div id="domMessageAllCanvas" style="display: none;">
+				<img src="../image/icons/waiting.gif" />
+			</div>
+			
+			<a4j:region>
+				<a4j:jsFunction name="updateCanvasNameStar" reRender="canvasNameStar" />
+			</a4j:region>
+
+			<a4j:region id="functionsForSave">
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+					
+				<a4j:jsFunction name="openModalFileHdfs" reRender="modalFileHdfs, hdfsfsFile"
+					oncomplete="console.log('openModalFileHdfs');mountComboboxExtensionsFileSystemModalHDFS();refreshHdfsOpenFileTable();#{rich:component('modalFileHdfs')}.show();">
+					<a4j:actionparam name="openCtrl" assignTo="#{browserHdfsBean.showSave}" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			<a4j:region>
+				<a4j:jsFunction name="cloneBeforeExpand" action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="console.log('cloneBeforeExpand'); tmpCommandObj.cloneId = data;expand(tmpCommandObj.selectedSAIcons);">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+			
+				<a4j:jsFunction name="expand" action="#{canvasBean.expand}" reRender="errorTable, msnError" 
+					oncomplete="console.log('expand'); if(#{requestScope['msnError'] == null}){refreshCanvas();}jQuery.unblockUI();" >
+					<a4j:actionparam name="selectedIcons" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:jsFunction name="openModalImportSubworkflow"
+					oncomplete="console.log('openModalImportSubworkflow'); jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });openModalFileHdfs('F');">
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region renderRegionOnly="true">
+				<a4j:jsFunction name="saveAllCanvasesStatus" action="#{canvasBean.updateAllCanvasesStatus}">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="closeAll" action="#{canvasBean.closeAll}"
+					oncomplete="console.log('closeAll'); closeAllWorkflowTabs()" />
+			</a4j:region>
+
+			
+            <a4j:region>
+				<a4j:jsFunction name="notifyUser" data="#{configureTabsBean.notificationUser}"
+					oncomplete="console.log('notifyUser');notifyUserJS(data);"
+					/>
+			</a4j:region>
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="reRenderFooter" oncomplete="console.log('reRenderFooter');configureFooter();mountObj('#{canvasBean.nameWorkflow}')" reRender="tabsFooterForm" />
+                
+				<a4j:jsFunction name="updateFooterWithNewPackages" action="#{configureTabsBean.updateFooterWithNewPackages}"
+					oncomplete="console.log('updateFooterWithNewPackages');reRenderFooter();"
+					 />
+                    
+                <a4j:jsFunction name="updateNewPackageAsNotified" action="#{configureTabsBean.updateNewPackageAsNotified}"
+                     />
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateOutputStatus"
+					data="#{canvasBean.outputStatus}"
+					oncomplete="console.log('updateOutputStatus'); updateArcStatus(data);checkIfScheduleArc(data[0][8]);" reRender="errorTable, msnError">
+					<a4j:actionparam name="groupId" />
+				</a4j:jsFunction>
+
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateSelectedOutputStatus"
+					data="#{canvasBean.selectedOutputStatus}"
+					oncomplete="console.log('updateSelectedOutputStatus'); updateArcStatus(data);" reRender="errorTable, msnError">
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateWfComment"
+					action="#{canvasBean.updateWfComment}"
+					oncomplete="console.log('updateWfComment'); updateWfDisplayComment()">
+					<a4j:actionparam name="commentWf"
+						assignTo="#{canvasBean.commentWf}" />
+				</a4j:jsFunction>
+
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:jsFunction name="changeWfComment" 
+					data="#{canvasBean.changeWfComment}"
+					oncomplete="execChangeCommentWfCommand(data[0], data[1]);">
+				</a4j:jsFunction>
+			
+				<a4j:jsFunction name="updateWfDisplayComment"
+					data="#{canvasBean.savedWfComment}"
+					oncomplete="console.log('updateWfDisplayComment'); jQuery('.container-comment-'+getNameHtml()).html(data);"
+					reRender="errorTable, msnError">
+				</a4j:jsFunction>
+			</a4j:region>
+
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="openWorkflowElementUrl"
+					action="#{canvasBean.calcWorkflowElementUrl}"
+					data="#{canvasBean.workflowElementUrl}"
+					oncomplete="console.log('openWorkflowElementUrl');var win=window.open(data,'_blank');win.focus();win.location;" reRender="errorTable">
+					<a4j:actionparam name="groupId" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateAllArcsStatus"
+					data="#{canvasBean.allOutputStatus}"
+					oncomplete="console.log('updateAllArcsStatus'); updateArcStatus(data); checkIfScheduleArc(data[0][8]);"
+					reRender="errorTable" />
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateRunningStatus"
+					data="#{canvasBean.runningStatus}"
+					oncomplete="console.log('updateRunningStatus'); updateCanvasRunningStatus(data);jQuery('#canvas-tabs').unblock();"
+					reRender="errorTable, msnError" />
+			</a4j:region>
+
+			<a4j:region>
+                <a4j:status
+                    onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+                    onerror="jQuery('#canvas-tabs').unblock();"
+                    onsuccess="jQuery('#canvas-tabs').unblock();"
+                    onstop="jQuery('#canvas-tabs').unblock();" />
+                    
+				<a4j:jsFunction name="setWorkflow"
+					reRender="menuSoftware,installSubWorkflow,menuEdit, mergeMenuItem,splitMenuItem,runMenuItem,runSelectedMenuItem,menuProject"
+					action="#{canvasBean.changeWorkflow}" data="#{canvasBean.checkIfSchedule}"
+					oncomplete="setcheckJobId(); selectedCanvas='#{canvasBean.nameWorkflow}';console.log('setWorkflow', getSelectedByName(), getSelectedWorkflowType(), #{canvasBean.running}, selectedCanvas);setIfISchedule(getSelectedByName(),data);updateWfDisplayComment();if(getSelectedWorkflowType() == 'W'){if(#{canvasBean.running} == true){setRunning(getSelectedByName(), true); setTimeout(function(){ blockRunningWorkflowJS(); },2000); }else{unblockRunningWorkflowJS();updateAllArcsStatus();}}else{updateAllArcsStatus();}changeFooter(getSelectedByName());" >
+					<a4j:actionparam name="selectedCanvas" assignTo="#{canvasBean.nameWorkflow}" />
+				</a4j:jsFunction>
+				    
+				<a4j:jsFunction name="reRenderMenuMergeSplit" reRender="menuEdit, mergeMenuItem,splitMenuItem" />
+				
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="addWorkflow" action="#{canvasBean.addWorkflow}" oncomplete="console.log('addWorkflow'); setWorkflow(getSelectedByName());">
+					<a4j:actionparam name="name" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="addSubWorkflow" action="#{canvasBean.addSubWorkflow}" oncomplete="console.log('addSubWorkflow'); setWorkflow(getSelectedByName());">
+					<a4j:actionparam name="name" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="removeLinkBt"
+					action="#{canvasBean.removeLink}">
+					<a4j:actionparam name="paramOutId" />
+					<a4j:actionparam name="paramOutName" />
+					<a4j:actionparam name="paramInId" />
+					<a4j:actionparam name="paramInName" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="removeElement"
+					action="#{canvasBean.removeElement}">
+					<a4j:actionparam name="paramGroupID" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:jsFunction name="addElementBt"
+					action="#{canvasBean.addElement}"
+					data="#{canvasBean.idLastElementInserted}"
+					oncomplete="console.log('addElementBt'); tmpCommandObj.elementId = data;">
+					<a4j:actionparam name="paramNameElement" />
+					<a4j:actionparam name="paramGroupID" />
+					<a4j:actionparam name="paramIdElement" />
+					<a4j:actionparam name="isUndoRedo" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="saveWorkflow" action="#{canvasBean.save}"
+					reRender="msnError, errorTable"
+					oncomplete="if(#{requestScope['msnError'] == null}){renameTab();}">
+					<a4j:actionparam name="nameWorkflow" />
+					<a4j:actionparam name="pathFile" />
+					<a4j:actionparam name="canvasStatus" />
+					<a4j:actionparam name="selecteds" />
+					<a4j:actionparam name="workflowType" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="copy" action="#{canvasBean.copy}" reRender="errorTable">
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status onerror="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="addLinkBt" data="#{canvasBean.resultAfterAddingLink}"
+					oncomplete="console.log('addLinkBt'); updateLink(data[0], data[1], data[2]);
+                	updateArrowColor('#{canvasBean.paramOutId}','#{canvasBean.paramInId}', '#{canvasBean.nameOutput}'); updateVoranoiAllPolygonTitle(data[3]);" />
+			</a4j:region>
+			
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });" />
+
+				<a4j:jsFunction name="addLinkModalBt"
+					action="#{canvasBean.updateLinkPossibilities}"
+					oncomplete="console.log('addLinkModalBt'); if(#{canvasBean.nbLinkPossibilities} == 1){addLinkBt();}else{jQuery('#canvas-tabs').unblock();#{rich:component('modalSelectLink')}.show();};"
+					reRender="selectLinkList">
+					<a4j:actionparam name="paramOutId" assignTo="#{canvasBean.paramOutId}" />
+					<a4j:actionparam name="paramInId" assignTo="#{canvasBean.paramInId}" />
+					<a4j:actionparam name="paramNameLink" assignTo="#{canvasBean.paramNameLink}" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateArrowColor"
+					data="#{canvasBean.arrowType}"
+					oncomplete="console.log('updateArrowColor'); updateArrowType(data[0], data[1], data[2], data[3], data[4]);updateArrowLabel(data[0], data[1], data[5]);">
+					<a4j:actionparam name="groupOutId" />
+					<a4j:actionparam name="groupInId" />
+					<a4j:actionparam name="outputName" />
+				</a4j:jsFunction>
+
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="openModal"
+					data="#{canvasModalBean.openCanvasModal}"
+					oncomplete="canvasModalParam = data;console.log('openModal'); if(#{requestScope['msnError'] == null} &amp;&amp; data[0] == 'true'){cloneCommandUpdateElementBuffer = data[6];createOptionTitles();#{rich:component('canvasModalPanel')}.show();checkPageError();reLoadDisplayTable();}"
+					reRender="pageTitle, panelDynamicForm, panelBtCanvasModal, msnError, errorTable, canvasModalTabPanel, msnErrorPage,tableInteraction">
+					<a4j:actionparam name="paramGroupId" />
+					<a4j:actionparam name="paramPathImage" />
+					<a4j:actionparam name="paramSelectedTab" />
+					<a4j:actionparam name="paramPageNb" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="openChangeIdModal"
+					data="#{canvasModalBean.openCanvasModal}"
+					oncomplete="canvasModalParam = data;console.log('openChangeIdModal'); if( #{requestScope['msnError'] == null}){setNewIdElement(data[3]);setCommentElement(data[4]);#{rich:component('modalChangeId')}.show();}"
+					reRender="msnError, errorTable" >
+					<a4j:actionparam name="paramGroupId" />
+					<a4j:actionparam name="paramPathImage" />
+					<a4j:actionparam name="paramLoadMainWindow" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:jsFunction name="closeChangeIdModal"
+					reRender="pageTitle, panelDynamicForm, panelBtCanvasModal, msnError, errorTable, canvasModalTabPanel"
+					oncomplete="console.log('closeChangeIdModal'); if(canvasModalParam[0] == 'true'){changeModalTitle();changeHelpAnchor(canvasModalParam[1]);setPageNb(canvasModalParam[2],canvasModalParam[1]);cloneBeforeUpdateElement();}else{updateOutputStatus(currentChangeIdGroup);}">
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="openPackageModal" action="#{packageMngBean.start}"
+					oncomplete="console.log('openPackageModal'); #{rich:component('modalPackage')}.show();">
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="loadWorkflow" data="#{canvasBean.positions}"
+					oncomplete="console.log('loadWorkflow'); unblockRunningWorkflowJS();addElementJS(data[0],data[1],data[2],data[3],data[4], true, data[5]); updateVoranoiAllPolygonTitle(data[6]);"
+					reRender="tabFlowchart,errorTable,msnError" />
+
+                <a4j:jsFunction name="loadSubWorkflowFromCanvas" data="#{canvasBean.positions}"
+                    oncomplete="console.log('loadSubWorkflowFromCanvas'); addElementJS(data[0],data[1],data[2],data[3],data[4], true, data[5]);getArrayPos(selectedCanvas).saved=false;"
+                    reRender="tabFlowchart,errorTable,msnError" />
+                    
+                <a4j:jsFunction name="rebuildCanvas" data="#{canvasBean.positions}"
+					oncomplete="console.log('rebuildCanvas'); addElementJS(data[0],data[1],data[2],data[3],data[4], true, data[5],true);"
+					reRender="tabFlowchart,errorTable,msnError" />
+                    
+			</a4j:region>
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#mainPanelDiv').block({ message: jQuery('#domMessageAllCanvas') });"
+					onerror="jQuery('#mainPanelDiv').unblock();"
+					onsuccess="jQuery('#mainPanelDiv').unblock();"
+					onstop="jQuery('#mainPanelDiv').unblock();" />
+			
+                <a4j:jsFunction name="reOpenCanvas" data="#{canvasBean.buildLoadMapCanvasToOpen}" oncomplete="console.log('reOpenCanvas');closeAllWorkflowTabs();reOpenCanvasJS(data);" />
+                
+                <a4j:jsFunction name="rerenderCanvasTab" reRender="tabFlowchart,errorTable,msnError" />
+			</a4j:region>
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+			
+				<a4j:jsFunction name="openSubWorkflow" action="#{canvasBean.openSubWorkflow}" reRender="msnError" data="#{canvasBean.positions}"
+					oncomplete="console.log('openSubWorkflow'); if(#{requestScope['msnError'] == null} ){addElementJS(data[0],data[1],data[2],data[3],data[4], true, data[5]);getArrayPos(selectedCanvas).saved=false;}" >
+					<a4j:actionparam name="nameSubWorkflow" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="renameTab" data="#{canvasBean.positions}"
+					oncomplete="console.log('renameTab'); closeCurrentTabWithoutCallingBackend();addElementJS(data[0],data[1],data[2],data[3],data[4], true, data[5]);updateVoranoiAllPolygonTitle(data[6]);onHideModalSaveWorkflow(true);jQuery.unblockUI();"
+					reRender="tabFlowchart" />
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivcanvas-tabs') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+
+				<a4j:jsFunction name="closeWorkflow" action="#{canvasBean.closeWorkflow}">
+					<a4j:actionparam name="workflow" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivcanvas-tabs') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="cleanElement" action="#{canvasBean.cleanElement}" 
+					data="#{canvasBean.idGroup}" oncomplete="console.log('cleanElement'); updateOutputStatus(data)">
+					<a4j:actionparam name="idGroup" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivcanvas-tabs') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="refreshSubWorkflow" action="#{canvasBean.refreshSubWorkflow}" 
+					data="#{canvasBean.idGroup}" oncomplete="console.log('refreshSubWorkflow'); updateOutputStatus(data);">
+					<a4j:actionparam name="idGroup" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+				<a4j:jsFunction name="updateIdObj"
+					action="#{canvasBean.updateIdObj}">
+					<a4j:actionparam name="idGroup" />
+					<a4j:actionparam name="id" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			
+			
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();"  />
+			
+				<a4j:jsFunction name="reinitializeCanvas" data="#{canvasBean.reinitialize}" 
+					oncomplete="console.log('reinitializeCanvas'); reinitializeCanvasScreen(data[0],data[1])" />
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="runWorkflowBtnFct" data="#{canvasBean.checkIfScheduleBeforeRun}" action="#{canvasBean.openSchedulModal}"
+					oncomplete="setIfISchedule(selectedCanvas,data[3]);if(data[3] == 'false'){ runWorkflow(data[0],data[1],data[2]);}else{ jQuery('#mainPanelDiv').unblock(); #{rich:component('scheduleModal')}.show(); openSchedulModal(); }" reRender="msnError,oozieTimeZone">
+					<a4j:actionparam name="canvasStatus" />
+					<a4j:actionparam name="savedFile" />
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="runWorkflow"
+					action="#{canvasBean.runWorkflow}"
+					oncomplete="console.log('runWorkflow', getSelectedByName()); setRunning(getSelectedByName(), true); jQuery('#mainPanelDiv').unblock(); blockRunningWorkflowJS(); checkPathRestoreToRun(getSelectedByName());"
+					reRender="msnError">
+					<a4j:actionparam name="canvasStatus" />
+					<a4j:actionparam name="savedFile" />
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="runScheduleWorkflow"
+					action="#{canvasBean.runScheduleWorkflow}"
+					oncomplete="console.log('runScheduleWorkflow', getSelectedByName()); setRunning(getSelectedByName(), true);blockRunningWorkflowJS(); checkPathRestoreToRun(getSelectedByName());"
+					reRender="msnError">
+					<a4j:actionparam name="canvasStatus" />
+					<a4j:actionparam name="savedFile" />
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="runScheduleWorkflowCheckPastDate"
+					action="#{canvasBean.runScheduleWorkflow}" data="#{canvasBean.checkPastDate}"
+					oncomplete="setScheduleNoPastDate(getSelectedByName(), data); if(data == 'false'){ setRunning(getSelectedByName(), true); jQuery('#mainPanelDiv').unblock(); runningWorkflowJS(); checkPathRestoreToRun(getSelectedByName()); }else{ setRunning(getSelectedByName(), true);blockRunningWorkflowJS(); checkPathRestoreToRun(getSelectedByName()); }"
+					reRender="msnError">
+					<a4j:actionparam name="canvasStatus" />
+					<a4j:actionparam name="savedFile" />
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="checkIfScheduleJS" data="#{canvasBean.checkIfSchedule}"
+					oncomplete="checkIfSchedule(data);" reRender="msnError,runSelectedMenuItem,menuProject">
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="setIfIScheduleJS" data="#{canvasBean.checkIfSchedule}"
+					oncomplete="setIfISchedule(getSelectedByName(),data);" reRender="msnError,runSelectedMenuItem,menuProject">
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="setcheckJobId" data="#{canvasBean.checkJobId}"
+					oncomplete="setScheduleNoPastDate(getSelectedByName(), data);" reRender="msnError">
+				</a4j:jsFunction>
+				
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivcanvas-tabs') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="backupAll" action="#{canvasBean.backupAll}"/>
+				<a4j:jsFunction name="backupAndCloseAll" action="#{canvasBean.backupAndCloseAll}" 
+					oncomplete="console.log('backupAndCloseAll'); closeAllWorkflowTabs();"/>
+			</a4j:region>
+
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="deleteElements"
+					action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="console.log('deleteElements');  console.log(tmpCommandObj.selectedArrows); tmpCommandObj.cloneId = data;deleteElementsJS(tmpCommandObj.selecteds, tmpCommandObj.selectedArrows)">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="replaceWFByClone"
+					action="#{canvasBean.replaceWFByClone}" oncomplete="console.log('replaceWFByClone'); rebuildJS();"
+					reRender="errorTable,tabFlowchart">
+					<a4j:actionparam name="selectedItens" />
+					<a4j:actionparam name="idCloneMap" />
+					<a4j:actionparam name="keepClone" />
+				</a4j:jsFunction>
+
+			</a4j:region>
+
+			<a4j:region>
+			
+				<a4j:jsFunction name="rebuildJS" data="#{canvasBean.positions}"
+					oncomplete="console.log('rebuildJS'); setTimeout(function(){ addSelectedElement(data[0],data[1],data[2],data[3],data[4],false); updateVoranoiAllPolygonTitle(data[6]); },900);updateAllArcsStatusRebuildJS();"
+					reRender="tabFlowchart" />
+				
+				<a4j:jsFunction name="rebuildJSPaste" data="#{canvasBean.positions}"
+					oncomplete="console.log('rebuildJS'); setTimeout(function(){ addSelectedElement(data[0],data[1],data[2],data[3],data[4],true); updateVoranoiAllPolygonTitle(data[6]); },900);updateAllArcsStatusRebuildJS();"
+					reRender="tabFlowchart" />
+			
+				<a4j:jsFunction name="updateAllArcsStatusRebuildJS"
+					data="#{canvasBean.allOutputStatus}"
+					oncomplete="console.log('updateAllArcsStatusRebuildJS'); updateArcStatus(data); jQuery('#canvas-tabs').unblock();"
+					reRender="errorTable" />
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:jsFunction name="showReplaceAllModal" reRender="errorTable"
+					oncomplete="console.log('showReplaceAllModal'); #{rich:component('modalReplaceAll')}.show();">
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="replaceAllJS"
+					action="#{canvasBean.replaceAll}" reRender="errorTable"
+					oncomplete="console.log('replaceAllJS'); updateSelectedElementLegend(tmpCommandObj.selecteds);updateAllArcsStatus();">
+					<a4j:actionparam name="select" />
+					<a4j:actionparam name="oldStr" />
+					<a4j:actionparam name="newStr" />
+					<a4j:actionparam name="changeLabel" />
+					<a4j:actionparam name="regex" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="rebuildElementsFromClone"
+					action="#{canvasBean.replaceWFByClone}"
+					oncomplete="console.log('rebuildElementsFromClone'); rebuildReplaceJS();" reRender="errorTable,tabFlowchart">
+					<a4j:actionparam name="selectedItens" />
+					<a4j:actionparam name="idCloneMap" />
+					<a4j:actionparam name="keepClone" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="rebuildReplaceJS"
+					data="#{canvasBean.positions}"
+					oncomplete="console.log('rebuildReplaceJS'); updateSelectedElementLegend(tmpCommandObj.selecteds);updateSelectedOutputStatus(tmpCommandObj.selecteds);"
+					reRender="tabFlowchart" />
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="updateSelectedElementLegend"
+					data="#{canvasBean.selectedElementLegend}"
+					oncomplete="console.log('updateSelectedElementLegend'); updateObjsNameReplace(data);"
+					reRender="errorTable, msnError">
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="replaceJS"
+					action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="console.log('replaceJS'); tmpCommandObj.cloneId = data; replaceAllJS(tmpCommandObj.selecteds, tmpCommandObj.oldStr, tmpCommandObj.newStr, tmpCommandObj.changeLabel, tmpCommandObj.regex );">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="cloneBeforeUpdateElement"
+					action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="console.log('cloneBeforeUpdateElement'); cloneCommandUpdateElementBuffer = data;createOptionTitles();#{rich:component('canvasModalPanel')}.show();">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="cloneAfterUpdateElement"
+					action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="console.log('cloneAfterUpdateElement'); stackUpdateElement('#{canvasModalBean.idGroup}', cloneCommandUpdateElementBuffer,data);">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="removeCloneWorkflow" action="#{canvasBean.removeCloneWorkflow}">
+					<a4j:actionparam name="idCloneMap" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="pasteCloneWorkflow"
+					action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="console.log('pasteCloneWorkflow'); tmpCommandObj.cloneId = data;">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="undoPasteCloneWorkflow"
+					action="#{canvasBean.replaceWFByClone}"
+					oncomplete="console.log('undoPasteCloneWorkflow'); rebuildPasteJS();" reRender="errorTable,tabFlowchart">
+					<a4j:actionparam name="selectedItens" />
+					<a4j:actionparam name="idCloneMap" />
+					<a4j:actionparam name="keepClone" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="rebuildPasteJS" data="#{canvasBean.positions}"
+					oncomplete="console.log('rebuildPasteJS'); addSelectedElement(data[0],data[1],data[2],data[3],data[4],false);updateAllArcsStatus();"
+					reRender="tabFlowchart" />
+
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="pasteJS" action="#{canvasBean.paste}"
+					data="#{canvasBean.idsToPaste}" reRender="msnError"
+					oncomplete="console.log('pasteJS'); saveAllCanvasesStatus(getAllCanvasesStatus()); rebuildJSPaste(); tmpCommandObj.idsToPaste = data; pasteCloneWorkflow(getAllCanvasesStatus());" />
+			</a4j:region>
+			<a4j:region>
+
+				<a4j:commandLink id="openCanvasScreenHdfs"
+					action="#{hdfsBean.openCanvasScreen}" style="display:none;"
+					reRender="fileSysGridForm"
+					onclick="jQuery('#tabs-4').block({ message: jQuery('#domMessageDiv4') });"
+					oncomplete="console.log('openCanvasScreenHdfs'); jQuery('#tabs-4').unblock();resizeFileSystem();" />
+
+				<a4j:commandLink id="openCanvasScreenJdbc"
+					action="#{jdbcBean.openCanvasScreen}" style="display:none;"
+					reRender="fileSysGridFormJdbc"
+					onclick="jQuery('#tabs-5').block({ message: jQuery('#domMessageDiv5') });"
+					oncomplete="console.log('openCanvasScreenJdbc'); jQuery('#tabs-5').unblock();resizeFileSystem();" />
+					
+				
+				<a4j:commandLink id="openCanvasScreenRemoteFS"
+					action="#{remotefsBean.openCanvasScreen}" style="display:none;"
+					reRender="fileSysGridFormremotefs"
+					onclick="jQuery('#tabs-9').block({ message: jQuery('#domMessageDiv9') });"
+					oncomplete="console.log('openCanvasScreenRemoteFS'); jQuery('#tabs-9').unblock();resizeFileSystem();" />
+					
+				<a4j:commandLink id="openCanvasScreenHcat"
+					action="#{hcatBean.openCanvasScreen}" style="display:none;"
+					reRender="fileSysGridFormHcat"
+					onclick="jQuery('#tabs-6').block({ message: jQuery('#domMessageDiv9') });"
+					oncomplete="console.log('openCanvasScreenHcat'); jQuery('#tabs-6').unblock();resizeFileSystem();" />
+
+				<a4j:commandLink id="openCanvasScreenHdfsBrowser"
+					action="#{browserHdfsBean.openCanvasScreen}" style="display:none;" />
+
+			</a4j:region>
+
+			<a4j:region>
+				<a4j:jsFunction name="cleanCanvasProjectJS" action="#{canvasBean.cleanCanvasProject}" oncomplete="updateAllArcsStatus();" >
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			<a4j:region>
+			
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+			
+				<a4j:jsFunction name="setOutputToBuffered" action="#{canvasBean.setOutputToBuffered}" oncomplete="updateAllArcsStatus();" >
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+				<a4j:jsFunction name="setOutputToTemporary" action="#{canvasBean.setOutputToTemporary}" oncomplete="updateAllArcsStatus();" >
+					<a4j:actionparam name="select" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="openVoronoiModal" action="#{voronoiBean.openVoronoi}" oncomplete="#{rich:component('voronoiModal')}.show();openVoronoihPopUp();"
+					reRender="oozieTime, selectedScheduling,modalVoronoi,voronoiName,voronoiExecutionTime,voronoiScheduling,voronoiPeriodic,tableVoronoi">
+					<a4j:actionparam name="paramGroupId" />
+					<a4j:actionparam name="paramSelectedTab" />
+				</a4j:jsFunction>
+			</a4j:region>
+			
+			<a4j:region>
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="undoRedoVoronoiJS" data="#{canvasBean.voronoi}"
+					oncomplete="updateVoranoiAllPolygonTitle(data[0]);updateSelectedOutputStatus(getIdsFromVoronoi(data[1]));" />
+					
+				<a4j:jsFunction name="undoRedoVoronoiJSArc" data="#{canvasBean.voronoi}" oncomplete="updateVoranoiAllPolygonTitle(data[0]);" />
+			</a4j:region>
+			
+			<a4j:region>
+
+				<a4j:status
+					onstart="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+					onerror="jQuery('#canvas-tabs').unblock();"
+					onsuccess="jQuery('#canvas-tabs').unblock();"
+					onstop="jQuery('#canvas-tabs').unblock();" />
+
+				<a4j:jsFunction name="cloneVoronoi"
+					action="#{canvasBean.cloneWorkflow}" data="#{canvasBean.cloneWFId}"
+					oncomplete="tmpCommandObj.cloneId = data;">
+					<a4j:actionparam name="allCanvasesStatus" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="replaceWFByCloneVoronoi" action="#{canvasBean.replaceWFByClone}" oncomplete="rebuildJS();"
+					reRender="errorTable,tabFlowchart">
+					<a4j:actionparam name="selectedItens" />
+					<a4j:actionparam name="idCloneMap" />
+					<a4j:actionparam name="keepClone" />
+				</a4j:jsFunction>
+						
+				<a4j:jsFunction name="applyUndoRedoCoordinator"	action="#{voronoiBean.undoRedoCordinator}" data="#{voronoiBean.scheduling}"
+					oncomplete="checkIfSchedule(data);" reRender="msnError, errorTable, selectedScheduling,modalVoronoi,voronoiName,voronoiExecutionTime,voronoiScheduling,voronoiPeriodic,tableVoronoi">
+					<a4j:actionparam name="name" />
+					<a4j:actionparam name="executionTime" />
+					<a4j:actionparam name="selectedSchedulingOption" />
+					<a4j:actionparam name="periodic" />
+					<a4j:actionparam name="list" />
+					<a4j:actionparam name="isSchedule" />
+				</a4j:jsFunction>
+
+				<a4j:jsFunction name="openModalMerge" action="#{canvasBean.openModalMergeCoordinator}" 
+					oncomplete="#{rich:component('modalMergeCoordinator')}.show();" reRender="msnError, errorTable, panelMergeCoordinatorA, panelMergeCoordinatorB">
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="applyMergeCoordinator"
+					action="#{canvasBean.applyMergeCoordinator}" reRender="errorTable, msnError"
+					oncomplete="if(#{requestScope['msnError'] == null}){ undoRedoVoronoi();#{rich:component('modalMergeCoordinator')}.hide(); }">
+					<a4j:actionparam name="coordinatorsSelectedA" />
+					<a4j:actionparam name="coordinatorsSelectedB" />
+				</a4j:jsFunction>
+				
+				<a4j:jsFunction name="splitCoordinator"
+					action="#{canvasBean.splitCoordinator}"	reRender="errorTable, msnError"
+					oncomplete="if(#{requestScope['msnError'] == null}){ undoRedoVoronoi(); }">
+					<a4j:actionparam name="selectedIcons" />
+				</a4j:jsFunction>
+
+			</a4j:region>
+			
+			<a4j:region>
+				<a4j:jsFunction name="retrieveVoranoiPolygonTitle" action="#{voronoiBean.retrieveVoranoiPolygonTitle}" data="#{voronoiBean.voronoiNewName}" 
+					oncomplete="updateVoranoiPolygonTitle(data[0], data[1], data[2], data[3]);">
+					<a4j:actionparam name="canvasName" />
+					<a4j:actionparam name="idElement" />
+					<a4j:actionparam name="groupID" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<a4j:region>
+
+				<table
+					style="width: 100%; display: block; background: none repeat scroll 0 0 #FFFFFF;">
+
+					<tr style="width: 100%; right: 0px; position: relative;">
+						<td style=""><a class="stopLinkInternal" id="help_main"
+							onclick="return false;" href="../help/main.html"> <h:graphicImage
+									id="logoImg" width="150px" url="../image/logo.png" />
+						</a></td>
+						<td style="width: 100%; vertical-align: bottom;"><rich:toolBar>
+
+								<rich:dropDownMenu itemClass="canvasMenu"  onexpand="document.getElementById('helpmain_menu').click();">
+
+									<f:facet name="label">
+										<h:panelGroup>
+											<h:outputText value="#{messages.label_menu_file}" />
+										</h:panelGroup>
+									</f:facet>
+
+									<rich:menuGroup value="#{messages.label_menu_new}">
+
+										<rich:menuItem id="newMenuItem" submitMode="none"
+											value="#{messages.label_menu_new_canvas}"
+											onclick="jQuery('#addtabCanvas').click();">
+											<h:outputText value="Ctrl+N" class="menuItemHotKey" />
+										</rich:menuItem>
+										<rich:menuItem id="newSubMenuItem" submitMode="none"
+											value="#{messages.label_menu_new_subcanvas}"
+											onclick="jQuery('#addsubtabCanvas').click();">
+										</rich:menuItem>
+
+									</rich:menuGroup>
+
+									<rich:menuItem id="openMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_open}"
+										onclick="openModalFileHdfs('F')" rerender="hdfsfsOpenFile">
+										<h:outputText value="Ctrl+O" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuSeparator />
+									<rich:menuItem id="saveMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_save}" onclick="menuSave();">
+										<h:outputText value="Ctrl+S" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="saveAsMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_saveas}"
+										onclick="openModalFileHdfs('T')">
+										<h:outputText value="Ctrl+Alt+X" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="saveAllMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_saveall}" onclick="saveAll();">
+										<h:outputText value="Ctrl+Shift+S" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuSeparator />
+									<rich:menuItem id="closeMenuItem" submitMode="none"
+										value="#{messages.label_menu_close}" onclick="menuCloseTab();">
+										<h:outputText value="Ctrl+W" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="closeAllMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_closeall}" onclick="closeAll();">
+										<h:outputText value="Ctrl+Shift+W" class="menuItemHotKey" />
+									</rich:menuItem>
+
+								</rich:dropDownMenu>
+
+								<rich:dropDownMenu itemClass="canvasMenu" id="menuEdit" onexpand="document.getElementById('helpmain_menu').click();">
+
+									<f:facet name="label">
+										<h:panelGroup>
+											<h:outputText value="#{messages.label_menu_edit}" />
+										</h:panelGroup>
+									</f:facet>
+									<rich:menuItem id="selectAllMenuItem" submitMode="none"
+										value="#{messages.label_menu_selectall}"
+										onclick="selectAll(getArrayPosSelectedCanvas());">
+										<h:outputText value="Ctrl+A" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="deselectAllMenuItem" submitMode="none"
+										value="#{messages.label_menu_deselectall}"
+										onclick="deselectAll(getArrayPosSelectedCanvas());">
+										<h:outputText value="Ctrl+Shift+A" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuSeparator />
+									<rich:menuItem id="copyMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_copy}"
+										onclick="saveAllCanvasesStatus(getAllCanvasesStatus());copy(getSelectedIconsCommaDelimited());">
+										<h:outputText value="Ctrl+Shift+C" class="menuItemHotKey"/>
+									</rich:menuItem>
+									<rich:menuItem id="pasteMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_paste}"
+										onclick="paste(getSelectedByName());">
+										<h:outputText value="Ctrl+Shift+V" class="menuItemHotKey"/>
+									</rich:menuItem>
+									<rich:menuSeparator />
+									<rich:menuItem id="undoMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_undo}" onclick="undo();">
+										<h:outputText value="Ctrl+Shift+Z" class="menuItemHotKey"/>
+									</rich:menuItem>
+									<rich:menuItem id="redoMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_redo}" onclick="redo();">
+										<h:outputText value="Ctrl+Shift+Y" class="menuItemHotKey"/>
+									</rich:menuItem>
+									<rich:menuSeparator />
+									<rich:menuItem id="replaceMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_replace}"
+										onclick="var sels=getSelectedIconsCommaDelimited();if(sels.length > 0){showReplaceAllModal();}else{alert('#{messages.msg_err_no_action_selected}')}" >
+										<h:outputText value="Ctrl+H" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="aggregateMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_aggregate}"
+										onclick="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });checkOpenModalAggregate();">
+										<h:outputText value="Ctrl+Alt+A" class="menuItemHotKey" />
+									</rich:menuItem>
+									
+									<rich:menuSeparator />
+									
+									<rich:menuItem id="mergeMenuItem" submitMode="ajax"
+										value="#{messages.label_voronoi_merge}"
+										onclick="checkOpenModalMerge();"
+										disabled="#{!canvasBean.schedule}" >
+										<h:outputText value="Ctrl+Alt+R" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="splitMenuItem" submitMode="ajax"
+										value="#{messages.label_voronoi_split}"
+										onclick="checkSplit();"
+										disabled="#{!canvasBean.schedule}" >
+										<h:outputText value="Ctrl+Alt+S" class="menuItemHotKey" />
+									</rich:menuItem>
+									
+									<rich:menuSeparator />
+									
+									<rich:menuItem id="cleanMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_clean_project}"
+										onclick="var sels=getSelectedIconsCommaDelimited();if(sels.length > 0){ cleanCanvasProjectJS(sels); }else{alert('#{messages.msg_err_no_action_selected}')}"
+										disabled="#{canvasBean.workflowType == 'S'}">
+										<h:outputText value="Ctrl+L" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuGroup value="#{messages.label_output_state}" >
+										<rich:menuItem id="setBufferMenuItem" submitMode="ajax"
+											value="#{messages.label_output_buffer}"
+											onclick="var sels=getSelectedIconsCommaDelimited();if(sels.length > 0){setOutputToBuffered(sels);}else{alert('#{messages.msg_err_no_action_selected}')}">
+										</rich:menuItem>
+										<rich:menuItem id="setTemporaryMenuItem" submitMode="ajax"
+											value="#{messages.label_output_temporary}"
+											onclick="var sels=getSelectedIconsCommaDelimited();if(sels.length > 0){setOutputToTemporary(sels);}else{alert('#{messages.msg_err_no_action_selected}')}">
+										</rich:menuItem>
+									</rich:menuGroup>
+									<rich:menuSeparator />
+									<rich:menuItem submitMode="none"
+										value="#{messages.label_menu_delete}"
+										onclick="deleteSelected(getSelectedByName());">
+										<h:outputText value="Del" class="menuItemHotKey" />
+									</rich:menuItem>
+
+								</rich:dropDownMenu>
+
+								<rich:dropDownMenu itemClass="canvasMenu" id="menuProject" onexpand="document.getElementById('helpmain_menu').click();">
+
+									<f:facet name="label">
+										<h:panelGroup>
+											<h:outputText value="#{messages.label_menu_project}" />
+										</h:panelGroup>
+									</f:facet>
+
+									<rich:menuItem id="oozieMenuItem" submitMode="none">
+										<h:outputLink value="#{canvasBean.workflowUrl}"
+											style="font-size:13px;" target="_blank">#{messages.label_menu_see_oozie_job}</h:outputLink>
+									</rich:menuItem>
+
+									<rich:menuSeparator />
+
+									<rich:menuItem id="runSelectedMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_runitems}"
+										onclick="var sels=getSelectedIconsCommaDelimited();if(sels.length > 0){ jQuery('#mainPanelDiv').block({ message: jQuery('#domMessageAllCanvas') }); runWorkflowBtnFct(getCanvasStatus(),getPathFile(getSelectedByName()),sels)}else{alert('#{messages.run_nothing_selected}')}"
+										reRender="formMenu"
+										disabled="#{canvasBean.workflowType == 'S' || canvasBean.scheduleStr == 'Y'}">
+										<h:outputText value="Ctrl+Alt+E" class="menuItemHotKey" />
+									</rich:menuItem>
+
+									<rich:menuItem id="runMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_runproject}"
+										onclick="jQuery('#mainPanelDiv').block({ message: jQuery('#domMessageAllCanvas') }); runWorkflowBtnFct(getCanvasStatus(),getPathFile(getSelectedByName()));"
+										reRender="formMenu"
+										disabled="#{canvasBean.workflowType == 'S'}">
+										<h:outputText value="Ctrl+E" class="menuItemHotKey" />
+									</rich:menuItem>
+
+									<rich:menuSeparator />
+
+									<rich:menuItem id="wfeditorMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_editorWfcomment}"
+										oncomplete="#{rich:component('modalWfEditor')}.show();document.getElementById('helpmain_commenteditor').click();"
+										reRender="wfEditor">
+									</rich:menuItem>
+
+								</rich:dropDownMenu>
+
+								<rich:dropDownMenu itemClass="canvasMenu" id="menuSoftware"  onexpand="document.getElementById('helpmain_menu').click();">
+
+									<f:facet name="label">
+										<h:panelGroup>
+											<h:outputText value="#{messages.label_menu_software}" />
+										</h:panelGroup>
+									</f:facet>
+									
+									<rich:menuItem id="manageModelsItem" submitMode="ajax"
+										value="#{messages.label_menu_manage_models}"
+										reRender="modelsList"
+										oncomplete="#{rich:component('modalModels')}.show();document.getElementById('helpmain_modelview').click();"
+										action="#{modelBean.refreshModelList}">
+										<h:outputText value="Ctrl+Alt+M" class="menuItemHotKey" />
+									</rich:menuItem>
+									<rich:menuItem id="installationMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_package}"
+										onclick="openPackageModal();document.getElementById('helpmain_packageview').click();">
+										<h:outputText value="Ctrl+I" class="menuItemHotKey" />
+									</rich:menuItem>
+
+									<rich:menuItem id="settingsMenuItem" submitMode="ajax"
+										value="#{messages.label_setting_modal}" action="#{settingsBean.defaultSettings}" reRender="user_core_prop_password, user_core_prop_non_password" 
+										oncomplete="#{rich:component('modalSettings')}.show();document.getElementById('helpmain_setting').click();">
+										<h:outputText value="Ctrl+Alt+P" class="menuItemHotKey" />
+									</rich:menuItem>
+
+									<rich:menuSeparator />
+
+									<rich:menuItem id="installSubWorkflow" submitMode="ajax"
+										value="#{messages.label_menu_install_sub_workflow}"
+										disabled="#{canvasBean.workflowType == 'W'}"
+										onclick="#{rich:component('modalSubWfInstall')}.show();"
+										action="#{modelBean.mountSubName}">
+										<f:param name="subWorkflowName"
+											value="#{canvasBean.nameWorkflow}" />
+									</rich:menuItem>
+									
+									<rich:menuSeparator />
+									
+									<rich:menuGroup value="#{messages.label_remove_from_stores}" >
+										<rich:menuItem id="remove_from_all_stores" submitMode="ajax"
+											value="#{messages.label_all_store}" 
+											onclick="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+											action="#{canvasBean.cleanTmp}"
+											oncomplete="jQuery('#canvas-tabs').unblock();updateAllArcsStatus();">
+											<f:param name="browserName"
+											value="all" />
+										</rich:menuItem>
+										<rich:menuSeparator />
+										<c:forEach items="#{canvasBean.browsers}" var="curBrowserName" >
+										<rich:menuItem submitMode="ajax" 
+											value="#{curBrowserName}"
+											action="#{canvasBean.cleanTmp}"
+											onclick="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });"
+											oncomplete="jQuery('#canvas-tabs').unblock();updateAllArcsStatus();">
+											<f:param name="browserName" value="#{curBrowserName}" />
+										</rich:menuItem>
+										</c:forEach>
+									</rich:menuGroup>
+
+									<rich:menuSeparator />
+
+									<rich:menuItem id="aboutMenuItem" submitMode="ajax"
+										value="#{messages.label_menu_about}" disable="true"
+										onclick="#{rich:component('modalAbout')}.show();">
+									</rich:menuItem>
+
+								</rich:dropDownMenu>
+
+
+								<rich:toolBarGroup location="right">
+
+									<a4j:commandButton value="#{messages.label_menu_signout}"
+										styleClass="signoutButton"
+										onclick="saveTabsPosition();saveAllCanvasesStatus(getAllCanvasesStatus());jQuery.blockUI({ message: jQuery('#domMessageDivCanvas1') });signOut();"
+										ajax="true" />
+
+
+									<!-- Restart does not work
+							<rich:dropDownMenu value="#{messages.label_menu_signout}">
+		
+								<f:facet name="label">
+									<h:panelGroup styleClass="signoutButton">
+                                        <h:outputText value="#{messages.label_menu_signout}" />
+                                    </h:panelGroup>
+								</f:facet>
+		
+								<rich:menuItem submitMode="ajax"
+									value="#{messages.label_menu_signout}"
+									onclick="saveAllCanvasesStatus(getAllCanvasesStatus());jQuery.blockUI({ message: jQuery('#domMessageDivCanvas1') });signOut();" />
+	
+								<rich:menuItem submitMode="ajax"
+									value="#{messages.label_menu_restart}"
+									onclick="jQuery.blockUI({ message: jQuery('#domMessageDivCanvas1') });reStart();" />
+		
+							</rich:dropDownMenu>
+							-->
+								</rich:toolBarGroup>
+
+							</rich:toolBar>
+							</td>
+					</tr>
+				</table>
+
+
+			</a4j:region>
+
+			<a4j:jsFunction name="signOut" action="#{userInfoBean.goToSignOut}"	oncomplete="jQuery.unblockUI();" />
+			<a4j:jsFunction name="reStart" action="#{userInfoBean.goToSignOut}"	oncomplete="jQuery.unblockUI();" />
+
+		</h:form>
+	</div>
+
+	<div id="mainPanelDiv">
+
+
+		<div id="splitVCanvas">
+
+			<div id="tabFlowchart">
+				<ul class="ulCss" id="ulTabFlowchart"
+					style="width: 100%; min-width: 600px;">
+
+					<li class="locked">
+						<a href="#tabFlowchart-1" id="idtabFlowchart-1"	onclick="jQuery('#helpmain_canvas').click();return false;">
+							<h:outputText value="#{messages.label_tab_flowchart}" />
+						</a>
+					</li>
+					<button id="changeTabCanvas" style="border: hidden;">&#9660;</button>
+
+					<div class="divMenuImage">
+					
+						<span style="cursor: pointer;">
+							<img src="../image/icons/button-merge.gif" alt="merge" class="shortMenuIcon" 
+								onclick="checkOpenModalMerge();" title="#{messages.label_voronoi_merge}" />
+						</span>
+						
+						<span style="cursor: pointer;">
+							<img src="../image/icons/button-split.gif" alt="merge" class="shortMenuIcon" 
+								onclick="checkSplit();" title="#{messages.label_voronoi_split}" />
+						</span>
+						
+						<span style="cursor: pointer;">
+							<img src="../image/icons/button-aggregate.gif" alt="aggregate" class="shortMenuIcon" 
+								onclick="jQuery('#canvas-tabs').block({ message: jQuery('#domMessageDivCanvas1') });checkOpenModalAggregate();" title="#{messages.label_menu_aggregate}" />
+						</span>
+					
+						<span style="cursor: pointer;"> <img
+							src="../image/icons/button-open.gif" alt="open"
+							class="shortMenuIcon" onclick="openModalFileHdfs('F')"
+							title="#{messages.label_menu_open}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-save.gif" alt="save"
+							class="shortMenuIcon" onclick="menuSave()"
+							title="#{messages.label_menu_save}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-save_as.gif" alt="saveas"
+							class="shortMenuIcon" onclick="openModalFileHdfs('T');"
+							title="#{messages.label_menu_saveas}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-save_all.gif" alt="saveall"
+							class="shortMenuIcon" onclick="saveAll();"
+							title="#{messages.label_menu_saveall}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-copy.gif" alt="copy"
+							class="shortMenuIcon"
+							onclick="saveAllCanvasesStatus(getAllCanvasesStatus());copy(getSelectedIconsCommaDelimited());"
+							title="#{messages.label_menu_copy}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-paste.gif" alt="paste"
+							class="shortMenuIcon" onclick="paste(getSelectedByName());"
+							title="#{messages.label_menu_paste}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-undo.gif" id="buttonundo"
+							alt="#{messages.label_menu_undo}" class="shortMenuIcon"
+							onclick="undo();" title="#{messages.label_menu_undo}" />
+						</span> <span style="cursor: pointer;"> <img
+							src="../image/icons/button-redo.gif" id="buttonredo"
+							alt="#{messages.label_menu_redo}" class="shortMenuIcon"
+							onclick="redo();" title="#{messages.label_menu_redo}" />
+						</span>
+					</div>
+
+				</ul>
+				<div id="tabFlowchart-1">
+
+					<div id="canvas-tabs">
+						<ul class="ulCssCanvas removeDefaults topBanner" style="width: 100%;">
+							<li class="locked canvasTabsInactive" title="Not Saved" >
+								<a href="#flowchart-canvas-1" class="canvasTab"
+									onclick="setWorkflow('canvas-1');">
+									<img src="../image/workflow_tab.gif" style="width:15px;padding-right:5px;position:relative;top:3px;"/>
+									<span id="canvasNameStar-canvas-1">canvas-1</span>
+								</a>
+								<span id="canvas-1-icon-close" class="ui-icon ui-icon-close "
+									role="presentation" onclick="closeWorkflowTab(this,'canvas-1')">
+								</span>
+							</li>
+							<img src="../image/icons/button-new_canvas.gif" alt="add" style="width: 25px; padding-top: 2px;" id="addtabCanvas" />
+							<img src="../image/icons/button-new_canvas.gif" alt="add" style="display: none" id="addsubtabCanvas" />
+						</ul>
+
+						<div id="flowchart-canvas-1" class="container-canvas">
+
+							<div id="container-canvas-1" class="container-canvas-1">
+								<div class="rich-panel headerLegend"
+									onclick="jQuery('#panelLegend-canvas-1').toggle();jQuery('#container-comment-canvas-1').hide();return false;"
+									style="position: fixed; z-index: 101; width: 60px">
+									<div class="rich-panel-header">Legend</div>
+								</div>
+								<div class="rich-panel" id="panelLegend-canvas-1"
+									style="position:fixed; z-index:100; display:none; width:190px; overflow:auto;">
+									<div class="rich-panel-body" style="overflow: auto;">
+										<div id="container-legend-canvas-1"	class="container-legend-canvas-1"
+											style="overflow:auto; position:relative; top:20px;" />
+									</div>
+								</div>
+								<div class="rich-panel headerComment"
+									onclick="jQuery('#container-comment-canvas-1').toggle();jQuery('#panelLegend-canvas-1').hide();return false;"
+									style="left: 82px; position: fixed; z-index: 101; width: 60px">
+									<div class="rich-panel-header">Comment</div>
+								</div>
+								<div id="container-comment-canvas-1"
+									class="rich-panel container-comment-canvas-1"
+									style="overflow: auto; position: fixed; z-index: 100; display: none; width: 330px; height: 400px; resize: both;">
+								</div>
+							</div>
+
+						</div>
+						<h:panelGroup id="tabsFooterForm">
+							<div id="tabsFooter">
+								<ul class="canvasFooter" style="width: 100%; min-width: 400px;">
+
+									<ui:repeat value="#{configureTabsBean.tabs}" var="tab" varStatus="status">
+										<li class="locked footerTab"><a href="#tabFooter-#{tab}">#{tab}</a></li>
+									</ui:repeat>
+
+									<h:form>
+
+										<a4j:region>
+											<a4j:commandButton image="../image/icons/button-property.gif"
+												title="#{messages.label_property_button}"
+												action="#{configureTabsBean.openConfigureTabsBean}"
+												oncomplete="#{rich:component('modalConfigureFooterTabs')}.show();document.getElementById('helpmain_actfooter').click();"
+												style="border: hidden;width:35px;vertical-align:middle;"
+												styleClass="configureFooterButton" 
+												reRender="tabsMenu" />
+										</a4j:region>
+
+									</h:form>
+
+								</ul>
+
+								<span id="buttonsTabsFooter" class="spanButtons">
+									<button class="buttonsArrowsLeft">
+										<img src="../image/icons/button-left_arrow.gif"
+											style="width: 30px;" />
+									</button>
+									<button class="buttonsArrowsRight">
+										<img src="../image/icons/button-right_arrow.gif"
+											style="width: 30px;" />
+									</button>
+								</span>
+
+								<ui:repeat value="#{configureTabsBean.tabsMapList}" var="tab">
+									<div id="tabFooter-#{tab.key}" style="overflow-y: hidden;">
+										<ui:repeat value="#{tab.value}" var="action">
+											<span id="spanImagensObj" style="display: none"> <img
+												src="#{action[1]}" class="footerIcon" /> <span>#{action[0]}</span>
+												<span>#{action[2]}</span>
+											</span>
+										</ui:repeat>
+									</div>
+								</ui:repeat>
+							</div>
+						</h:panelGroup>
+
+					</div>
+
+				</div>
+			</div>
+
+
+			<div id="splitHCanvas">
+				<div id="tabs1">
+					<ul class="ulCss" id="ulTabs1">
+
+						<li style="display:none;" >
+							<a href="#tabs-1" name="tabs-1" onclick="jQuery('#helpmain_help').click();return false;">
+								<h:outputText value="#{messages.label_tab_help}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);" ></span>
+						</li>
+
+						<button id="changeTabTabs1" style="border: hidden;">&#9660;</button>
+
+					</ul>
+
+					<div id="tabs-1" class="tabBorder">
+						<a4j:region>
+
+							<a4j:status
+								onstart="jQuery('#tabs-1').block({ message: jQuery('#domMessageDiv1') });"
+								onerror="jQuery('#tabs-1').unblock();"
+								onsuccess="jQuery('#tabs-1').unblock();"
+								onstop="jQuery('#tabs-1').unblock();" />
+
+							<div id="domMessageDiv1" style="display: none;">
+								<img src="../image/icons/waiting.gif" />
+							</div>
+
+							<h:panelGroup>
+								<ui:include src="/pages/help.xhtml" />
+							</h:panelGroup>
+						</a4j:region>
+					</div>
+				</div>
+
+
+				<div id="tabs2">
+					<ul class="ulCss" id="ulTabs2">
+					
+						<li style="display:none;" >
+							<a href="#tabs-4" name="tabs-4" onclick="jQuery('#helpmain_hdfs').click();return false;">
+								<h:outputText value="#{messages.label_tab_hadoopfilesystem}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);"></span>
+						</li>
+						<li style="display:none;" >
+							<a href="#tabs-2" name="tabs-2" onclick="jQuery('#helpmain_procman').click();return false;">
+								<h:outputText value="#{messages.label_tab_processmanager}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);"></span>
+						</li>
+						<li style="display:none;" >
+							<a href="#tabs-3" name="tabs-3" onclick="jQuery('#helpmain_error').click();return false;">
+								<h:outputText value="#{messages.label_tab_error}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);"></span>
+						</li>
+						<li style="display:none;" >
+							<a href="#tabs-5" name="tabs-5" onclick="jQuery('#helpmain_jdbc').click();return false;">
+								<h:outputText value="#{messages.label_tab_jdbcview}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);"></span>
+						</li>
+						<li style="display:none;" >
+							<a href="#tabs-6" name="tabs-6" onclick="jQuery('#helpmain_hcat').click();return false;">
+								<h:outputText value="#{messages.label_tab_hcatview}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);"></span>
+						</li>
+						<li style="display:none;">
+							<a href="#tabs-9" name="tabs-9" onclick="jQuery('#helpmain_remotefs').click();return false;">
+								<h:outputText value="#{messages.label_tab_remotefsview}" />
+							</a>
+							<span class="whitecross" onclick="hideTab(this);"></span>
+						</li>
+
+						<button id="changeTabTabs2" style="border: hidden;">&#9660;</button>
+
+					</ul>
+					
+					<div id="tabs-4" class="tabBorder" style="overflow: hidden;">
+						<a4j:region>
+
+							<a4j:status
+								onstart="jQuery('#tabs-4').block({ message: jQuery('#domMessageDiv4') });"
+								onerror="jQuery('#tabs-4').unblock();"
+								onsuccess="jQuery('#tabs-4').unblock();"
+								onstop="jQuery('#tabs-4').unblock();" />
+
+							<div id="domMessageDiv4" style="display: none;">
+								<img src="../image/icons/waiting.gif" />
+							</div>
+
+							<h:panelGroup>
+								<ui:include src="/pages/hdfs/hdfsfileSystemGrid.xhtml" />
+							</h:panelGroup>
+						</a4j:region>
+					</div>
+					
+					<div id="tabs-2" class="tabBorder" style="overflow: hidden;">
+						<a4j:region>
+
+							<a4j:status
+								onstart="jQuery('#tabs-2').block({ message: jQuery('#domMessageDiv2') });"
+								onerror="jQuery('#tabs-2').unblock();"
+								onsuccess="jQuery('#tabs-2').unblock();"
+								onstop="jQuery('#tabs-2').unblock();" />
+
+							<div id="domMessageDiv2" style="display: none;">
+								<img src="../image/icons/waiting.gif" />
+							</div>
+
+							<h:panelGroup>
+								<ui:include src="/pages/processManager.xhtml" />
+							</h:panelGroup>
+						</a4j:region>
+					</div>
+					<div id="tabs-3" class="tabBorder" style="overflow: hidden;">
+
+						<h:panelGroup>
+							<ui:include src="/pages/errorCanvas.xhtml" />
+						</h:panelGroup>
+
+					</div>
+
+					<div id="tabs-5" class="tabBorder" style="overflow: hidden;">
+						<a4j:region>
+
+							<a4j:status
+								onstart="jQuery('#tabs-5').block({ message: jQuery('#domMessageDiv5') });"
+								onerror="jQuery('#tabs-5').unblock();"
+								onsuccess="jQuery('#tabs-5').unblock();"
+								onstop="jQuery('#tabs-5').unblock();"  />
+
+							<div id="domMessageDiv5" style="display: none;">
+								<img src="../image/icons/waiting.gif" />
+							</div>
+
+							<h:panelGroup>
+								<ui:include src="/pages/jdbc/jdbcfileSystemGrid.xhtml" />
+							</h:panelGroup>
+						</a4j:region>
+					</div>
+					<div id="tabs-6" class="tabBorder" style="overflow: hidden;">
+						<a4j:region>
+
+							<a4j:status
+								onstart="jQuery('#tabs-6').block({ message: jQuery('#domMessageDiv4') });"
+								onerror="jQuery('#tabs-6').unblock();"
+								onsuccess="jQuery('#tabs-6').unblock();"
+								onstop="jQuery('#tabs-6').unblock();" />
+
+							<div id="domMessageDiv4" style="display: none;">
+								<img src="../image/icons/waiting.gif" />
+							</div>
+
+							<h:panelGroup>
+								<ui:include src="/pages/hcat/hcatfileSystemGrid.xhtml" />
+							</h:panelGroup>
+						</a4j:region>
+					</div>
+					<div id="tabs-9" class="tabBorder" style="overflow: hidden;">
+						<a4j:region>
+
+							<a4j:status
+								onstart="jQuery('#tabs-9').block({ message: jQuery('#domMessageDiv9') });"
+								onerror="jQuery('#tabs-9').unblock();"
+								onsuccess="jQuery('#tabs-9').unblock();"
+								onstop="jQuery('#tabs-9').unblock();"  />
+
+							<div id="domMessageDiv9" style="display: none;">
+								<img src="../image/icons/waiting.gif" />
+							</div>
+
+							<h:panelGroup>
+								<ui:include src="/pages/remotefs/remotefileSystemGrid.xhtml" />
+							</h:panelGroup>
+						</a4j:region>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<a4j:region>
+		<rich:modalPanel id="canvasModalPanel" width="800" height="660"
+			style="overflow:hidden;" resizeable="false" styleClass="noMaskClass">
+
+			<f:facet name="header">
+				<h:outputText value="#{canvasModalBean.canvasTitle}" id="pageTitle" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/canvasModal.xhtml" ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="voronoiModal" width="800" height="600" style="overflow:hidden;" resizeable="false" styleClass="noMaskClass">
+			
+			<f:facet name="header">Configuration</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;" onclick="#{rich:component('voronoiModal')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/voronoiModal.xhtml" ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="scheduleModal" width="500" height="430" style="overflow:hidden;" resizeable="false" styleClass="noMaskClass">
+			
+			<f:facet name="header">Run a Schedule Job</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;" onclick="#{rich:component('scheduleModal')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/scheduleModal.xhtml" ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="modalMergeCoordinator" width="200" height="200" style="overflow:hidden;" resizeable="false" styleClass="noMaskClass">
+			
+			<f:facet name="header">Configuration</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;" onclick="#{rich:component('modalMergeCoordinator')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/modalMergeCoordinator.xhtml" ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	
+	
+	<rich:modalPanel id="voronoiTextEditorModalCM" width="800" height="450" style="overflow:hidden;" >
+            
+	    <f:facet name="header">
+	    	<h:outputText value="#{messages.label_Editor}" />
+	    </f:facet>
+	    <f:facet name="controls">
+	    	<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+	            onclick="#{rich:component('voronoiTextEditorModalCM')}.hide()" />
+	    </f:facet>
+	    
+	    <h:form>
+		    <h:panelGroup>
+		    	<ui:include src="/pages/voronoiTextEditorCanvasModal.xhtml" />
+		    </h:panelGroup>
+	    </h:form>
+            
+    </rich:modalPanel>
+
+	<a4j:region>
+		<rich:modalPanel id="modalConfigureFooterTabs" width="450" height="400"
+			 style="overflow:none;" resizeable="false" styleClass="noMaskClass">
+
+			<f:facet name="header">Configuration</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalConfigureFooterTabs')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup style="width:100%">
+				<a4j:include viewId="/pages/configureFooterTabs.xhtml" ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalFileHdfs" width="620" height="430"
+			style="overflow:hide;" resizeable="false">
+
+			<f:facet name="header">Hadoop Distributed File System Browser</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalFileHdfs')}.hide()" />
+			</f:facet>
+
+			<h:form>
+				<h:panelGroup>
+					<a4j:include viewId="/pages/modalFileHdfs.xhtml" ajaxRendered="true" />
+				</h:panelGroup>
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+
+	<a4j:region renderRegionOnly="true">
+		<rich:modalPanel id="modalSelectLink" width="300" height="200"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">Create Link</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalSelectLink')}.hide()" />
+			</f:facet>
+
+			<h:form id="formSelectLink">
+				<h:panelGroup>
+					<a4j:include viewId="/pages/selectLink.xhtml" ajaxRendered="true" />
+				</h:panelGroup>
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalChangeId" width="300" height="235"
+			style="overflow:auto;" resizeable="false" >
+
+			<f:facet name="header">Change Element Id</f:facet>
+
+			<h:form>
+				<h:panelGroup>
+					<a4j:include viewId="/pages/modalChangeId.xhtml" ajaxRendered="true" />
+				</h:panelGroup>
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalWfEditor" width="800" height="600"
+			domElementAttachment="parent" style="overflow:auto;"
+			resizeable="true" zindex="2000" styleClass="noMaskClass">
+
+			<f:facet name="header">Workflow Editor</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalWfEditor')}.hide()" />
+			</f:facet>
+
+			<h:form>
+				<rich:panel>
+					<rich:editor id="wfEditor" value="#{canvasBean.commentWf}"
+						theme="advanced" width="765" height="500">
+						<f:param name="theme_advanced_toolbar_location" value="top" />
+					</rich:editor>
+
+					<rich:panel style="margin-top:8px; border:none; float:right;">
+
+						<a4j:commandButton styleClass="greenButton"
+							value="#{messages.button_cancel}"
+							oncomplete="#{rich:component('modalWfEditor')}.hide()" />
+						<a4j:commandButton value="#{messages.button_save}"
+							styleClass="greenButton"
+							oncomplete="changeWfComment();#{rich:component('modalWfEditor')}.hide();" />
+
+					</rich:panel>
+				</rich:panel>
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalReplaceAll" width="470" height="260"
+			style="overflow:auto;" resizeable="true" zindex="2000">
+
+			<f:facet name="header">Replace All</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalReplaceAll')}.hide()" />
+			</f:facet>
+
+			<h:form>
+				<h:outputText value="#{messages.label_string_to_replace}" />
+				<br />
+				<h:inputText value="#{canvasBean.rpModal.string}" size="50" />
+				<br />
+				<br />
+				<h:outputText value="#{messages.label_replace_value}" />
+				<br />
+				<h:inputText value="#{canvasBean.rpModal.replace}" size="50" />
+				<br />
+				<br />
+				<h:outputText value="#{messages.label_replace_action_names}" />
+				<br />
+				<h:selectBooleanCheckbox
+					value="#{canvasBean.rpModal.replaceActionNames}">
+					<f:selectItem itemValue="true" />
+				</h:selectBooleanCheckbox>
+				<br />
+				<br />
+				<h:outputText value="#{messages.label_regular_expression}" /><br />
+				<h:selectBooleanCheckbox
+					value="#{canvasBean.rpModal.regularExpression}">
+					<f:selectItem itemValue="true" />
+				</h:selectBooleanCheckbox>
+				<br />
+
+				<rich:panel style="border:none; float:right;">
+
+					<a4j:commandButton styleClass="greenButton"
+						value="#{messages.button_cancel}"
+						oncomplete="#{rich:component('modalReplaceAll')}.hide()" />
+					<a4j:commandButton value="#{messages.button_ok}"
+						onclick="#{rich:component('modalReplaceAll')}.hide();"
+						styleClass="greenButton"
+						oncomplete="replaceAll(getSelectedByName(),getSelectedIconsCommaDelimited(),'#{canvasBean.rpModal.string}','#{canvasBean.rpModal.replace}','#{canvasBean.rpModal.replaceActionNames}','#{canvasBean.rpModal.regularExpression}');" />
+
+				</rich:panel>
+
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalPackage" width="832" height="620"
+			style="overflow:auto;" resizeable="false" styleClass="noMaskClass">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_packages}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalPackage')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/modalPackage.xhtml" ajaxRendered="true" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="modalPackageSettings" width="820" height="600"
+			style="overflow:none;" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_packages}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalPackageSettings')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/packageSettings.xhtml" ajaxRendered="true" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalInstallPackage" width="860" height="600"
+			resizeable="true">
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value='#{messages.label_packages}' id="installPackagesMsg" />
+					<h:outputText value='#{messages.label_model}' id="installModelMsg" />
+				</h:panelGroup>
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalInstallPackage')}.hide();#{rich:component('modalPackage')}.hide();#{rich:component('modalModels')}.hide();refreshRelativeHelp();" />
+			</f:facet>
+			<h:panelGroup>
+				<a4j:include viewId="/pages/modalInstallPackage.xhtml" ajaxRendered="true" />
+			</h:panelGroup>
+		</rich:modalPanel>
+	</a4j:region>
+
+	<a4j:region>
+		<rich:modalPanel id="modalSettings" width="800" height="600"
+			style="overflow:auto;" resizeable="false" styleClass="noMaskClass">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_setting_modal}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalSettings')}.hide()" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/modalSettings.xhtml" ajaxRendered="true" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalSubWfInstall" width="300" height="300"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_menu_install_sub_workflow}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalSubWfInstall')}.hide()" />
+			</f:facet>
+
+			<h:panelGroup>
+				<h:form>
+					<a4j:include viewId="/pages/subWF/modalSubWFInstall.xhtml"
+						ajaxRendered="true" />
+				</h:form>
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalModels" width="832" height="620"
+			style="overflow:auto;" resizeable="false" styleClass="noMaskClass">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_menu_manage_models}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalModels')}.hide()" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/subWF/modalModels.xhtml"
+					ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalEditModel" width="600" height="450"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value='Edit Model' />
+				</h:panelGroup>
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalEditModel')}.hide();" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/subWF/modalEditModel.xhtml"
+					ajaxRendered="false" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalListModel" width="600" height="450"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value='List Models' />
+				</h:panelGroup>
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalListModel')}.hide();" />
+			</f:facet>
+
+			<h:form>
+				<h:panelGroup>
+					<a4j:include viewId="/pages/subWF/modalListModel.xhtml" ajaxRendered="true"/>
+				</h:panelGroup>
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalAddModel" width="600" height="450"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value='New Model' />
+				</h:panelGroup>
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalAddModel')}.hide();" />
+			</f:facet>
+
+			<h:form>
+				<h:panelGroup>
+					<a4j:include viewId="/pages/subWF/modalAddModel.xhtml" ajaxRendered="true"/>
+				</h:panelGroup>
+			</h:form>
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalRenameSubWF" width="600" height="450"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:panelGroup>
+					<h:outputText value='Rename Subworkflow' />
+				</h:panelGroup>
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalRenameSubWF')}.hide();" />
+			</f:facet>
+
+			<h:form>
+				<h:panelGroup>
+					<a4j:include viewId="/pages/subWF/modalRenameSubWF.xhtml" ajaxRendered="true"/>
+				</h:panelGroup>
+			</h:form>
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalExportModel" width="300" height="300"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_menu_export_model}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalExportModel')}.hide()" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/subWF/modalExportModel.xhtml"
+					ajaxRendered="true" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalImportModel" width="500" height="120"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_menu_import_model}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalImportModel')}.hide()" />
+			</f:facet>
+
+			<h:panelGroup>
+				<a4j:include viewId="/pages/subWF/modalImportModel.xhtml"
+					ajaxRendered="true" />
+			</h:panelGroup>
+
+		</rich:modalPanel>
+		
+	</a4j:region>
+	<a4j:region>
+		<rich:modalPanel id="modalAggregate" width="450" height="510" style="overflow:auto;" resizeable="false" styleClass="noMaskClass">
+
+			<f:facet name="header">
+				<h:outputText value="#{messages.label_menu_aggregate}" />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalAggregate')}.hide()" />
+			</f:facet>
+			<h:form>
+					<a4j:include viewId="/pages/modalAggregate.xhtml" ajaxRendered="false" />
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="hdfseditModalPanel" width="600" height="500"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value='#{messages.hdfsinterface_edit_file}' />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('hdfseditModalPanel')}.hide()" />
+			</f:facet>
+
+			<h:form id="hdfsform5">
+				<h:panelGrid>
+					<a4j:include viewId="/pages/hdfs/editHdfs.xhtml" ajaxRendered="true" />
+				</h:panelGrid>
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="modalAbout" width="300" height="220"
+			style="overflow:auto;" resizeable="false">
+
+			<f:facet name="header">
+				<h:outputText value='#{messages.label_menu_about}' />
+			</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('modalAbout')}.hide()" />
+			</f:facet>
+
+			<a target="_blank" style="float: right" href="http://redsqirl.com">
+				<h:graphicImage width="150px" url="../image/logo.png" />
+			</a>
+			<table style="margin-top:50px;font-size:13px;">
+				<tr>
+					<td><a target="_blank" href="http://redsqirl.com">#{messages.label_software}</a></td>
+					<td>#{userInfoBean.software}</td>
+				</tr>
+				<tr>
+					<td>#{messages.label_softwareName}</td>
+					<td>#{userInfoBean.softwareName}</td>
+				</tr>
+				<tr>
+					<td>#{messages.label_softwareVersion}</td>
+					<td>#{userInfoBean.softwareVersion}</td>
+				</tr>
+				<tr>
+					<td><a target="_blank" href="https://www.redsqirl.com/termsConditions.html">#{messages.label_softwareLicense}</a></td>
+				</tr>
+			</table>
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>
+		<rich:modalPanel id="modalOutputBrowser" width="800" height="430" style="overflow:hidden;" resizeable="false">
+	
+	        <f:facet name="header">Browser</f:facet>
+	        <f:facet name="controls">
+	            <h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;"
+	                onclick="#{rich:component('modalOutputBrowser')}.hide();" />
+	        </f:facet>
+	
+	        <h:form>
+	            <h:panelGroup>
+	                <a4j:include viewId="/pages/modalOutputBrowser.xhtml" />
+	            </h:panelGroup>
+	        </h:form>
+	
+	    </rich:modalPanel>
+    </a4j:region>
+	
+	<rich:modalPanel id="msnErrorPage"
+		showWhenRendered="#{requestScope['msnErrorPage'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto;">
+			<rich:messages id="msgPage" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnErrorPage')}.hide(); return false;"
+				style="bottom:14%;position:relative;"
+				reRender="msnErrorPage, msgPage, errorTable" />
+
+		</div>
+
+	</rich:modalPanel>
+	
+	<a4j:region>
+		<rich:modalPanel id="replacePanel" width="270" height="270"
+			style="overflow:auto;" resizeable="true" zindex="2000" styleClass="noMaskClass">
+
+			<f:facet name="header">Replace</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif" style="cursor:pointer;width:22px;" onclick="#{rich:component('replacePanel')}.hide();" />
+			</f:facet>
+
+			<h:form>
+				<h:outputText value="#{messages.label_string_to_replace}" />
+				<br />
+				<h:inputText value="#{canvasModalBean.stringToReplace}" id="stringToReplace" size="25" />
+				<br />
+				<br />
+				<h:outputText value="#{messages.label_replace_value}" />
+				<br />
+				<h:inputText value="#{canvasModalBean.replaceValue}" id="replaceValue" size="25" />
+				
+				<br /><br />
+				
+				<rich:panel style="border:none;float:right;background:transparent;">
+					<a4j:commandButton styleClass="greenButton" style="width:95px;" value="#{messages.button_find}" onclick="jQuery('#divTableInteraction').focus();findTable();" reRender="divTableInteraction" />
+					<a4j:commandButton styleClass="greenButton" style="width:95px;" value="#{messages.button_find_replace}" onclick="jQuery('#divTableInteraction').focus();replacefindTable();" reRender="divTableInteraction" />
+					<br/>
+					<a4j:commandButton styleClass="greenButton" style="width:95px;" value="#{messages.button_replace}" onclick="jQuery('#divTableInteraction').focus();replaceTable();" reRender="divTableInteraction" />
+					<a4j:commandButton styleClass="greenButton" style="width:95px;" value="#{messages.button_replace_all}" onclick="jQuery('#divTableInteraction').focus();replaceAllTable();" reRender="divTableInteraction" />
+					<br/>
+					<a4j:commandButton styleClass="greenButton" style="width:95px;float:right;" value="#{messages.label_menu_close}" oncomplete="setInputFocus();#{rich:component('replacePanel')}.hide();" />
+				</rich:panel>
+				
+			</h:form>
+
+		</rich:modalPanel>
+	</a4j:region>
+
+	<rich:modalPanel id="msnError"
+		showWhenRendered="#{requestScope['msnError'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto; z-index: 1000; position: relative;">
+			<rich:messages id="msg" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnError')}.hide(); return false;"
+				style="bottom:14%;position:relative;"
+				reRender="msnError, msg, errorTable" />
+
+		</div>
+	</rich:modalPanel>
+	
+	<a4j:region>
+		<rich:modalPanel id="msnErrorInit" showWhenRendered="#{sessionScope['msnErrorInit'] != null}">
+			<div style="width: 100%; height: 100%; overflow: auto;">
+				<h:form>
+					<dl class="message">
+					<dt class="messageerro" style="padding-left:40px;">
+						<h:outputText value="#{sessionScope['msnErrorInit']}" escape="false" />
+					</dt>
+					</dl>
+					<center>
+					<a4j:commandButton styleClass="greenButton"
+						value="#{messages.button_ok}"
+						onclick="#{rich:component('msnErrorInit')}.hide(); return false;"
+						style="bottom:14%;position:relative;"
+						reRender="msnError, msg, errorTable"
+						action="#{canvasBean.removeMsgErrorInit}" />
+					</center>
+				</h:form>
+			</div>
+		</rich:modalPanel>
+	</a4j:region>
+
+	<rich:modalPanel id="msnSuccess"
+		showWhenRendered="#{requestScope['msnSuccess'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto;">
+			<rich:messages id="msgS" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnSuccess')}.hide(); return false;"
+				style="bottom:14%;position:relative;" reRender="msnSuccess, msgS" />
+		</div>
+	</rich:modalPanel>
+	
+	<rich:modalPanel id="msnErrorSsh"
+		showWhenRendered="#{requestScope['msnError'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto; z-index: 1000; position: relative;">
+			<rich:messages id="msgSsh" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnErrorSsh')}.hide(); return false;"
+				style="bottom:14%;position:relative;"
+				reRender="msnErrorSsh, msgSsh, errorTable" />
+
+		</div>
+	</rich:modalPanel>
+
+</body>
+</html>

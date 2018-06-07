@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+    <h:form>
+	
+		<h:panelGrid columns="2">
+			<h:outputText value="#{messages.newUser_first_name}" class="formLabel"/>
+			<h:panelGroup>
+				<h:inputText id="first-name-input" value="#{analyticsStoreNewUserBean.firstName}" style="width:400px;" required="true" />
+			</h:panelGroup>
+					
+			<h:outputText value="#{messages.newUser_last_name}" class="formLabel"/>
+			<h:panelGroup>
+				<h:inputText id="last-name-input" value="#{analyticsStoreNewUserBean.lastName}" style="width:400px;" />
+			</h:panelGroup>
+					
+			<h:outputText value="#{messages.newUser_email}" class="formLabel"/>
+			<h:panelGroup>
+				<h:inputText id="email-input" value="#{analyticsStoreNewUserBean.email}" style="width:400px;" />
+			</h:panelGroup>
+					
+			<h:outputText value="#{messages.newUser_company}" class="formLabel"/>
+			<h:panelGroup>
+				<h:inputText id="company-input" value="#{analyticsStoreNewUserBean.company}" style="width:400px;" />
+			</h:panelGroup>
+					
+			<h:outputText value="#{messages.newUser_password}" class="formLabel"/>
+			<h:panelGroup>
+				<h:inputSecret id="password-input" value="#{analyticsStoreNewUserBean.password}" 
+				style="width:400px;"  />
+			</h:panelGroup>
+			
+			<h:outputText value="#{messages.newUser_repeat_password}" class="formLabel"/>
+			<h:panelGroup>
+				<h:inputSecret id="repeat-password-input" value="#{analyticsStoreNewUserBean.repeatPassword}" 
+				style="width:400px;" />
+			</h:panelGroup>
+		</h:panelGrid>
+		
+		<a4j:commandButton value="#{messages.newUser_register_btn}" action="#{analyticsStoreNewUserBean.createUser}"
+			oncomplete="if(#{requestScope['msnSuccessNewUser'] != null}){#{rich:component('registerNewUserModalPanel')}.hide();}" styleClass="greenButton" />
+	
+	<rich:modalPanel id="msnErrorNewUserModal" showWhenRendered="#{requestScope['msnErrorNewUser'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto; z-index: 1000; position: relative;">
+			<rich:messages id="msnErrorNewUser" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnErrorNewUserModal')}.hide(); return false;"
+				style="bottom:14%;position:relative;"
+				reRender="msnErrorNewUser,msnErrorNewUserModal" />
+
+		</div>
+	</rich:modalPanel>
+	
+	<rich:modalPanel id="msnSuccessNewUserModal" showWhenRendered="#{requestScope['msnSuccessNewUser'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto; z-index: 1000; position: relative;">
+			<rich:messages id="msnSuccessNewUser" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnSuccessNewUserModal')}.hide(); return false;"
+				style="bottom:14%;position:relative;"
+				reRender="msnSuccessNewUser, msnSuccessNewUserModal" />
+
+		</div>
+	</rich:modalPanel>
+	
+	</h:form>
+    
+    
+</ui:composition>

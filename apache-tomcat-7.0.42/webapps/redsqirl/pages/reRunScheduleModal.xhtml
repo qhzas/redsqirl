@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<a4j:loadBundle basename="MessagesResources" var="messages" />
+	
+<script>
+//<![CDATA[
+
+	function reRunOpenSchedulModal(){
+		console.log("reRunOpenSchedulModal");
+		console.log(jQuery("[id$='reRunClockSchedule1']").children().attr('class'));
+		if(jQuery("[id$='reRunClockSchedule1']").children().attr('class') !== 'undefined' && jQuery("[id$='reRunClockSchedule1']").children().attr('class') != "jcgmt-lbl"){
+			var aux  = jQuery('[id$="reRunOozieTimeZone"]').val();
+			console.log("hidden " + aux);
+			try{
+				var d = moment().tz(aux);
+			}catch(e){
+				alert("Oozie timezone "+ aux +" is not correct set");
+			}
+			console.log(d.utcOffset());
+			jQuery('#reRunClockSchedule1').jClocksGMT({offset: 0, title: 'Local Time'});
+			jQuery('#reRunClockSchedule2').jClocksGMT({offset: (d.utcOffset()/60), title: 'Oozie Time'});
+		}
+	}
+           
+//]]>
+</script>
+
+	<h:form>
+	
+		<h:inputHidden value="#{canvasBean.oozieTimeZone}" id="reRunOozieTimeZone" />
+	
+		<rich:panel id="modalReRunSchedule" style="border:none;overflow:auto;height:340px;width:100%;padding-left: 3px;padding-right: 3px;" >
+			<p> <h:outputText value="#{messages.label_rerun_schedule_desc_1}" /></p>
+			
+			<div style="text-align: center;display: inline-flex;">
+				<div id="reRunClockSchedule1"></div>
+				<div id="reRunClockSchedule2"></div>
+			</div>
+			
+			<table>
+				<tr>
+					<td>
+						<h:outputText value="#{messages.label_voronoi_data_start}" title="#{messages.title_voronoi_data_start}" />
+					</td>
+					<td>
+			    		<rich:calendar id="runningStartDate" value="#{canvasBean.reRunSchedulingStartDate}" datePattern="d/M/yy HH:mm" 
+			    			cellWidth="24px" cellHeight="22px" style="width:200px" title="#{messages.title_voronoi_data_start}" 
+			    			showApplyButton="true"  >
+			    			<f:convertDateTime type="date" pattern="d/M/yy HH:mm" timeZone="#{timeZone.timeZone}"/>
+			    		</rich:calendar>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:outputText value="#{messages.label_voronoi_data_end}" title="#{messages.title_voronoi_data_end}" />
+					</td>
+					<td>
+			    		<rich:calendar id="runningEndDate" value="#{canvasBean.reRunSchedulingEndDate}" datePattern="d/M/yy HH:mm" 
+			    			cellWidth="24px" cellHeight="22px" style="width:200px" title="#{messages.title_voronoi_data_end}" 
+			    			showApplyButton="true" >
+			    			<f:convertDateTime type="date" pattern="d/M/yy HH:mm" timeZone="#{timeZone.timeZone}"/>
+			    		</rich:calendar>
+					</td>
+				</tr>
+			</table>
+		
+		</rich:panel>
+		
+		<br/>
+		
+		<rich:panel columns="2" style="border:none; float:right;">
+		    <a4j:commandButton styleClass="greenButton" value="#{messages.button_cancel}" onclick="#{rich:component('reRunScheduleModal')}.hide();" />
+		    <a4j:commandButton value="#{messages.button_ok}" styleClass="greenButton" action="#{canvasBean.reRunAllScheduling}"
+		    	oncomplete="#{rich:component('reRunScheduleModal')}.hide();" reRender="msnError, errorTable" />
+		</rich:panel>
+	
+	</h:form>
+
+</ui:composition>

@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Synchronous Sink</title>
+</head>
+<body id="help">
+<h1>Synchronous Sink</h1>
+
+<h2>Overview</h2>
+<p>
+Synchronous Sink is an action that registers a synchronous data set at the end of a scheduled job. 
+A synchronous dataset contains a timestamp within its path to identify its creation date. 
+Typically a synchronous dataset does not change for a given period of time after its creation. 
+Red Sqirl supports two data storage for synchronous data-set: HCatalog and HDFS.
+In order to reuse the Sink dataset into another coordinator, you need to link it with a 
+<a class="stopLink" id="vishelp_synchronous_sink_filter" onclick="return false;" 
+href="../help/synchronous_sink_filter.html">Synchronous Sink Filter</a>.
+</p>
+
+<p>
+<ul>
+    <li>Inputs - Input to register</li>
+    <li>Template path - The path in which the data is stored</li>
+    <li>Outputs - The registered output</li>
+</ul>
+</p>
+
+<h2><a id="page1">Sink</a></h2>
+
+<h3>Template Path</h3>
+
+<p>The path with at least one of the following time variables. 
+The variable chosen by the user should correspond to the timestamp required by the user.
+<ul>
+    <li>${YEAR}</li>
+    <li>${MONTH}</li>
+    <li>${DAY}</li>
+    <li>${HOUR}</li>
+    <li>${MINUTE}</li>
+</ul>
+</p>
+<p>
+Example: <br/> 
+The original path may read: /twitter/tweets/dt=2017-10-14;hr=23 <br/>
+The revised template path should be changed to: <br/>
+/twitter/tweets/dt=${YEAR}-${MONTH}-${DAY};hr=${HOUR}
+
+</p>
+
+</body>
+</html>

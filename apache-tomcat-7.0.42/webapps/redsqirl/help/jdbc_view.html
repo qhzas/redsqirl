@@ -1,0 +1,119 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../css/redsqirl.css">
+<title>Remote Databases</title>
+</head>
+<body>
+	<h1>Remote Databases</h1>
+
+    <p>
+    The “Remote Databases” view, accessed by clicking the red drop down arrow next the Help, Canvases, or by creating a new section by dragging a splitter down,provides a browsing mechanism for external DBMS (DataBase Management System) through JDBC (Java Database Connectivity). For example the user can interact with Oracle, MySQL, Microsoft SQL Server and other Databases through this view.
+    </p>
+
+    <img style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:300px;" src="../helpimages/remotedb-lconn.png" title="List of Connections" />
+
+    <p>On a high level, the JDBC driver then the connection details have to be set up before interacting with this view.  Oracle and MySQL are setup up differently. For other databases please read the other technology section.
+    </p>
+
+    <h2> Oracle,MySQL </h2>
+
+    <p>
+    For Oracle and MySql, click on Software on the menu along the top, then on settings and JDBC.  The user will then need to download the JDBC jar, copy it on the Red Sqirl web server, and give the path.
+    </p>
+
+    <img style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:600px;" src="../helpimages/remotedb-drivers.png" title="Default Driver Paths" />
+
+    <p>
+    For every server a user wants to connect to, a Host needs to be created. A host is composed of three parameters:
+    <ul>
+        <li>URL</li>
+        <li>User name</li>
+        <li>Password</li>
+    </ul>
+    </p>
+
+    <img style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:600px;" src="../helpimages/remotedb-connection.png" title="Set Connection details for a connection called “swift”" />
+    <p>
+    Notes: Once the connection details are filled out please use the Check button to make the details are correct.
+    </p>
+
+    <h2>Other Technologies</h2>
+    <h3>Create a Driver</h3>
+
+    <p> In other driver, a user can create a new driver, the driver name should be the character between "jdbc:" and the next ":" in the jdbc URL.  </p>
+    <p> For example if the url is jdbc:presto://host:port/catalog/schema, the driver should be named "presto".  </p>
+
+    <ul>
+        <li><b>Jar:</b> As Oracle and MySql, the Red Sqirl administrator will need to download the JDBC jar, copy it on the Red Sqirl web server, and give the path.</li>
+        <li><b>Class:</b> The Red Sqirl administrator will also need to specify the JDBC driver class.</li>
+    </ul>
+
+
+    <img style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:600px;" src="../helpimages/remotedb-create_driver.png" title="Driver Settings for Microsoft SQL Server" />
+
+    <h3>Create a Host</h3>
+
+    <p>
+    The user can create a host the same way as for Oracle and MySql:
+    </p>
+
+    <ul>
+        <li>URL</li>
+        <li>User name</li>
+        <li>Password</li>
+    </ul>
+
+    <h3>SQL and code generation</h3>
+
+    <p> For further changes, the administrator need to use the command line, and modify the right directory and file.
+    </p>
+
+    <p>In the user folder, a directory is created for each technology used. For example by default two directories are created oracle and mysql.
+    </p>
+
+
+    <img style="width: 100%;  margin-left: 0.00px; margin-top: 0.00px;max-width:400px;" src="../helpimages/remotedb-behaviour_folder.png" title="Files Related to Red Sqirl MySQL handling" />
+
+    <h4>Modify Function Choice</h4>
+    <p>The <b>functions.xml</b> lists the functions supported.  </p>
+
+    <h4>Modify Type Map</h4>
+
+    <p>In the <b>rs_type.txt</b> file, how the JDBC types are converted to Red Sqirl types.  </p>
+    <p>In the <b>db_type.txt</b> file, how the Red Sqirl types are converted to JDBC types.  </p>
+
+    <h4>Modify Red Sqirl Metadata access</h4>
+
+    <p><b>query.txt</b> file lists the basic SQL operation that Red Sqirl use.  </p>
+
+    <h4>Share the changes</h4>
+
+    <p>In order to share changes, the technology folder can be copied to the system conf folder and every user copy of that directory should be removed.</p>
+
+
+    <h3>An example with Microsoft SQL Server</h3>
+
+    <p>
+     The Red Sqirl Administrator can find Microsoft SQL Server advanced settings here.
+     <ul>
+         <li>Unzip the file inside a system or user conf folder.</li>
+         <li>Sign in to Red Sqirl, open the settings and go to JDBC sub-menu.</li>
+         <li>Create sqlseverver in other_driver</li>
+         <li>Specify the Jar path</li>
+         <li>Specify the class: com.microsoft.sqlserver.jdbc.SQLServerDriver</li>
+         <li>Create a host in JDBC &gt; Host sub-menu
+         <ul>
+             <li> url: jdbc:sqlserver://myserver.local.net:1433;database=mydb </li>
+             <li>user: myuser</li>
+             <li>password: mypassword</li>
+         </ul>
+         </li>
+     </ul>
+    </p>
+
+
+
+    </br>
+    </br>
+</body>
+</html>

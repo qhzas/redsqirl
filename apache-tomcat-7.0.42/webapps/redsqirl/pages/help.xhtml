@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<body>
+
+	<div id="helpButtons" class="pathHeader">
+		
+			<table>
+				<tr>
+					<td>
+						<h:graphicImage id="prevHelp" value="../image/icons/button-previous.gif" title='#{messages.HdfsInterface_previous_help}' styleClass="fileSystemIcon" />
+					    <h:graphicImage id="nextHelp" value="../image/icons/button-next.gif" title='#{messages.HdfsInterface_next_help}' styleClass="fileSystemIcon" />
+					    <h:graphicImage id="btIndex" value="../image/icons/button-home.png" title='#{messages.label_index}' styleClass="fileSystemIcon" />
+					    <span id="help_pin_div" class="shadow" onclick="jQuery('#help_pin_div img').toggleClass('helpHideRSClass');pinHelp = !pinHelp;" >
+  							<h:graphicImage class="bottom_pin fileSystemIcon helpHideRSClass" value="../image/icons/pin_green_small.png"  title="#{messages.label_help_unpin}"/>
+  							<h:graphicImage class="top_pin fileSystemIcon" value="../image/icons/unpin_green_small.png"  title="#{messages.label_help_pin}"/>
+						</span>
+					</td>
+					<td>
+						<h:form>
+					        <h:inputText styleClass="mainPageTextField" value="#{helpBean.fieldSearch}" maxlength="255" size="15" onkeypress="return enableEnterKey(event, 'searchBt');" />
+							<a4j:commandLink id="searchBt" action="#{helpBean.helpSearch}" style="color:#FFFFFF" reRender="resultTable" oncomplete="showDivHelp();" >
+								<h:graphicImage value="../image/icons/button-search.gif" title='#{messages.filesystem_change_path}' styleClass="refreshButton" />
+							</a4j:commandLink>
+						</h:form>
+					</td>
+				</tr>
+			</table>
+			
+			<h:panelGroup rendered="#{canvasBean.slackUrl != null}">
+			<span style="cursor:pointer;float:right;margin-top:-43px;padding-right:10px;" >
+				<a href="#{canvasBean.slackUrl}" target="_blank" >
+					<img src="../image/slack.svg" alt="#{messages.label_slack}" class="shortMenuIcon" title="#{messages.label_slack}" />
+				</a>
+			</span>
+			</h:panelGroup>
+	   	
+	</div>
+
+	<div id="divTabHelp" style="overflow:auto;padding-left:25px;padding-right:10px;" >
+	
+		<div id="resultTableDiv">
+			<rich:panel id="resultTable" rendered="#{helpBean.result != null}" style="border:none">
+				<ul>
+					<ui:repeat value="#{helpBean.result}" var="item" class="test">
+				    	<li>
+				    		<a class="stopLink" href="#{item[0]}" id="#{item[2]}" onclick="showTabResult();return false;">
+				    			<h:outputText value="#{item[1]}" title="#{item[1]}" style="font-size:16px;" />
+				    		</a>
+				    	</li>
+				    </ui:repeat>
+			    </ul>
+		    </rich:panel>
+		</div>
+	    
+	    <div id="helpIndex">
+	    
+			<a class="stopLinkInternal" id="helpmain_tech" style="display: none;" onclick="return false;" href="../help/technologies.html">Technologies</a>
+			<a class="stopLinkInternal" id="helpmain_menu" style="display: none;" onclick="return false;" href="../help/menu.html">Menu</a>
+			<a class="stopLinkInternal" id="helpmain_canvas" style="display: none;" onclick="return false;" href="../help/canvas.html">Canvas</a>
+			<a class="stopLinkInternal" id="helpmain_actfooter" style="display: none;" onclick="return false;" href="../help/actionsfooter.html">Actions Footer</a>
+			<a class="stopLinkInternal" id="helpmain_buildwork" style="display: none;" onclick="return false;" href="../help/buildingworkflow.html">How to build a workflow</a>
+			<a class="stopLinkInternal" id="helpmain_remotefs" style="display: none;" onclick="return false;" href="../help/ssh_view.html">Remote File System</a>
+			<a class="stopLinkInternal" id="helpmain_help" style="display: none;" onclick="return false;" href="../help/help_view.html">Help</a>
+			<a class="stopLinkInternal" id="helpmain_procman" style="display: none;" onclick="return false;" href="../help/process_manager.html">Process manager</a>
+			<a class="stopLinkInternal" id="helpmain_error" style="display: none;" onclick="return false;" href="../help/error_view.html">Error</a>
+			<a class="stopLinkInternal" id="helpmain_jdbc" style="display: none;" onclick="return false;" href="../help/jdbc_view.html">Jdbc</a>
+			<a class="stopLinkInternal" id="helpmain_hcat" style="display: none;" onclick="return false;" href="../help/hcatalog_view.html">Hcatalog</a>
+			<a class="stopLinkInternal" id="helpmain_hdfs" style="display: none;" onclick="return false;" href="../help/hdfs_view.html">Hadoop File System</a>
+			<a class="stopLinkInternal" id="helpmain_splitter" style="display: none;" onclick="return false;" href="../help/splitter.html">Splitter</a>
+		    <a class="stopLinkInternal" id="helpmain_pigtuto" style="display: none;" onclick="return false;" href="../help/pigtutorial.html">Pig Tutorial</a>
+		    <a class="stopLinkInternal" id="helpmain_mltuto" style="display: none;" onclick="return false;" href="../help/mltutorial.html">Machine Learning Tutorial</a>
+		    <a class="stopLinkInternal" id="helpmain_setting" style="display: none;" onclick="return false;" href="../help/setting.html">Settings</a>
+		    <a class="stopLinkInternal" id="helpmain_packageview" style="display: none;" onclick="return false;" href="../help/packageview.html">Package View</a>
+		    <a class="stopLinkInternal" id="helpmain_modelview" style="display: none;" onclick="return false;" href="../help/modelview.html">Model View</a>
+		    <a class="stopLinkInternal" id="helpmain_aggregate" style="display: none;" onclick="return false;" href="../help/aggregate.html">Aggregate</a>
+		    <a class="stopLinkInternal" id="helpmain_commenteditor" style="display: none;" onclick="return false;" href="../help/commentEditor.html">Comment Editor</a>
+		    
+	    
+			<h1>Red Sqirl Help</h1>
+			
+			<h2>User Documentation</h2>
+			
+			<ul>
+				<li><a class="stopLink" id="help_main"
+			    onclick="return false;" href="../help/main.html">Main Page</a></li>
+				<li><a class="stopLink" id="helpmain_buildwork"
+			    onclick="return false;" href="../help/buildingworkflow.html">Tutorials</a></li>
+			</ul>
+			
+			
+			<h:panelGroup rendered="#{helpBean.helpUsefulLinks != null}">
+				<h2>Useful links</h2>
+				<ul>
+				<ui:repeat value="#{helpBean.helpUsefulLinks}" var="item" class="test">
+					<li>
+						<a href="#{item[0]}" target="_blank">
+					    	<h:outputText value="#{item[2]}" title="#{item[2]}" onclick="return false;" />
+					    </a>
+					    <h:outputText value=" - " />
+					    <h:outputText value="#{item[1]}" title="#{item[1]}" />
+					</li>
+				</ui:repeat>
+				</ul>
+			</h:panelGroup>
+			
+			<h2>Dictionaries</h2>
+			
+			<ul>
+				<ui:repeat value="#{helpBean.dictNames}" var="dict">
+					<li>
+						<a class="stopLink" 
+								id="dictionary_#{dict}" 
+								onclick="return false;"
+								href="./help_dictionary.xhtml?dictName=#{dict}">#{dict}
+						</a>	
+					</li>
+				</ui:repeat>
+		    </ul>
+		    
+			<h2>Available Actions (#{helpBean.helpSize})</h2>
+			
+			<ui:repeat value="#{helpBean.helpHtmlList}" var="pck">
+				<a class="stopLink" id="package_#{pck[0]}" href="#{pck[2]}" onclick="return false;">
+					<h:outputText value="#{pck[1]}" style="padding-left:10px;font-size:20px;" />
+				</a>
+				<ul>
+				    <ui:repeat value="#{helpBean.helpAns[pck[0]]}" var="action">
+					    <li>
+					    	<img id="image_help_#{action[0]}" width="25px" src="#{action[3]}"/>
+					    	<a class="stopLink" id="vishelp_#{action[0]}" name="#{pck[0]}_#{pck[2]}" href="#{action[2]}" onclick="return false;">#{action[1]}</a>
+					    	<a class="stopLinkInternal" style="display: none;" name="#{pck[0]}_#{pck[2]}" id="help_#{action[0]}" href="#{action[2]}" onclick="return false;">#{action[1]}</a>
+					    </li>
+				    </ui:repeat>
+				</ul>
+			</ui:repeat>
+	
+			<table>
+				<tr>
+					<td>
+						<h:form>
+							<a4j:commandButton id="refreshRelativeHelp" action="#{helpBean.refreshRelativeHelp}" reRender="helpHtmlSuperAction, helpSuperActionSize" 
+								image="../image/icons/button-refresh.gif" title='#{messages.button_refresh}' styleClass="fileSystemIcon"/>
+						</h:form>
+					</td>
+					<td>
+						<h2>
+							<h:outputText value="#{messages.available_super_actions}" />
+							(<h:outputText value="#{helpBean.helpSuperActionSize}" id="helpSuperActionSize" />)
+						</h2>
+					</td>
+				</tr>
+			</table>
+			
+			<h:panelGroup id="helpHtmlSuperAction" >
+				<ui:repeat value="#{helpBean.helpHtmlSuperActionList}" var="model">
+					<h:outputText value="#{model[1]}" style="padding-left:10px;font-size:20px;" />
+					<ul>
+					    <ui:repeat value="#{helpBean.helpHtmlSA[model[0]]}" var="action">
+						    <li>
+						    	<img id="image_help_#{model[0]}_#{action[0]}" width="25px" src="#{action[3]}"/>
+						    	<a class="stopLink" id="vishelp_#{model[0]}_#{action[0]}" href="#{action[2]}" onclick="return false;">#{action[1]}</a>
+						    	<a class="stopLinkInternal" style="display: none;" id="help_#{model[0]}_#{action[0]}" href="#{action[2]}" onclick="return false;">#{action[1]}</a>
+						    </li>
+					    </ui:repeat>
+					</ul>
+				</ui:repeat>
+			</h:panelGroup>
+			
+	    </div>
+	    
+	    <div id="helpPanel" style="margin-top:5px;">
+	        <div id="imageHelp" />
+	        <div id="contentHelp"/>
+	        <div id="actionListtHelp"/>
+	    </div>
+	    
+	</div>
+	
+</body>
+</html>

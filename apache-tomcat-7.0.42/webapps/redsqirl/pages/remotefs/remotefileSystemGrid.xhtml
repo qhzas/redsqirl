@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<body>
+
+	<a4j:keepAlive beanName = "remotefsBean"/>
+	<div id="remotefsFileSystem" style="min-width: 400px; overflow: hidden; min-height: 200px;">
+		
+		<h:form id="fileSysGridFormremotefs">
+		
+			<a4j:jsFunction name="openFileremotefs" action="#{remotefsBean.openFile}" oncomplete="#{rich:component('remotefsOpenFileModalPanel')}.show();" >
+				<a4j:actionparam name="nameFile"/>
+			</a4j:jsFunction>
+			
+			<a4j:jsFunction name="updateTableremotefs" action="#{remotefsBean.selectFile}" reRender="remotefsfs,remotefspath" oncomplete="createFilterOnChangeTriggerRemoteFS();">
+				<a4j:actionparam name="nameFile"/>
+			</a4j:jsFunction>
+
+			<div class="pathHeader">
+				<h:outputText value="#{messages.label_path}" />
+				<h:inputText id="remotefspath" label="Path" styleClass="mainPageTextField" value="#{remotefsBean.path}" maxlength="255" style="width:395px; margin-left:5px; background:white" 
+					onkeypress="return enableEnterKey(event, 'remotefsfsPathBtn');"/>
+				
+				<a4j:commandLink id="remotefsfsPathBtn" action="#{remotefsBean.changePath}" reRender="remotefsfs" style="color:#FFFFFF" 
+					oncomplete="createFilterOnChangeTriggerRemoteFS();" >
+					<h:graphicImage value="../image/icons/button-search.gif" title="#{messages.filesystem_change_path}" styleClass="refreshButton"/>
+				</a4j:commandLink>
+			</div>
+			
+			<div class="divMenu">
+	
+				<a4j:commandLink action="#{remotefsBean.deleteFile}" reRender="remotefsfs" 
+					onclick="if(!confirm('Are you sure you want to delete the selected files?')){return false;}"
+					rendered="#{remotefsBean.canDelete != null &amp;&amp; remotefsBean.canDelete != 'NULL' &amp;&amp; not empty remotefsBean.tableGrid.rows }" oncomplete="jQuery('#tabs-5').unblock();">
+					<h:graphicImage id="remotefsbtDelete" value="../image/icons/button-delete2.gif" title="#{messages.remotefsInterface_delete_help}" styleClass="fileSystemIcon" />
+				</a4j:commandLink>
+	
+				<a4j:commandLink action="#{remotefsBean.goPrevious}" reRender="remotefspath,remotefsfs" oncomplete="createFilterOnChangeTriggerRemoteFS();" >
+					<h:graphicImage id="remotefsbtUndo" value="../image/icons/button-previous.gif" title="#{messages.remotefsInterface_previous_help}" styleClass="fileSystemIcon" />
+				</a4j:commandLink>
+	
+				<a4j:commandLink action="#{remotefsBean.goNext}" reRender="remotefspath,remotefsfs" oncomplete="createFilterOnChangeTriggerRemoteFS();" >
+					<h:graphicImage id="remotefsbtRedo" value="../image/icons/button-next.gif" title="#{messages.remotefsInterface_next_help}" styleClass="fileSystemIcon" />
+				</a4j:commandLink>
+				
+				<a4j:commandLink action="#{remotefsBean.goUp}" reRender="remotefspath,remotefsfs" oncomplete="createFilterOnChangeTriggerRemoteFS();" >
+					<h:graphicImage id="remotefsgoup" value="../image/icons/button-up.gif" title='#{messages.hdfs_goup}' styleClass="fileSystemIcon" />
+				</a4j:commandLink>
+				
+				<a4j:commandLink id="remotefsfsRefreshBtn" action="#{remotefsBean.refreshPath}" reRender="remotefsfs"
+					oncomplete="createFilterOnChangeTriggerRemoteFS();" >
+					<h:graphicImage value="../image/icons/button-refresh.gif" title="#{messages.filesystem_refresh_path}" styleClass="fileSystemIcon"/>
+				</a4j:commandLink>
+				
+				<a4j:commandLink id="remotefsfsExecuteBtn" oncomplete="#{rich:component('remotefsOpenExecuteCommandModal')}.show();" title="#{remotefsBean.canExecuteCommand}" 
+					rendered="#{remotefsBean.canExecuteCommand != null}" >
+					<h:graphicImage value="../image/icons/button-execute.gif" title="#{messages.remotefsOpenExecuteCommandModal}" styleClass="fileSystemIcon"/>
+				</a4j:commandLink>
+			</div>
+
+			<rich:dropSupport id="panelDropSupportRemotefs" acceptedTypes="hdfs" dropListener="#{remotefsBean.processDrop}" reRender="remotefsfs"/>
+
+			<rich:extendedDataTable id="remotefsfs" value="#{remotefsBean.tableGrid.rows}"
+				var="item" rowKeyVar="indexTable" width="100%" style="border:none;"
+				onRowMouseOver="this.style.backgroundColor='#f2b97a'"
+				enableContextMenu="false"
+				onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'"
+				rowClasses="even-row, odd-row"
+				tableState="#{remotefsBean.tableState}" >
+
+				<rich:column style="border-bottom:0px;border-right:0px;"
+					width="50px;">
+					<f:facet name="header">
+						<h:selectBooleanCheckbox onclick="selectAllCheckbox(this, /remotefsselect$/);"/>
+					</f:facet>
+					<h:selectBooleanCheckbox id="remotefsselect" value="#{item.selected}" />
+				</rich:column>
+				
+				<rich:column style="border-bottom:0px;border-right:0px;"
+					width="50px;">
+					<f:facet name="header">
+						<h:outputText value="" />
+					</f:facet>
+					<a4j:commandLink action="#{remotefsBean.editFileBefore}" oncomplete="#{rich:component('remotefseditModalPanel')}.show();">
+						<h:graphicImage value="../image/icons/icon-connection.gif" title="#{messages.remotefsInterface_properties_help}"
+							rendered="#{item.row[0] == 'connection'}" styleClass="btfileSystem" />
+						<h:graphicImage value="../image/icons/button-directory-property.gif"
+							title='#{messages.HdfsInterface_properties_help}' 
+							rendered="#{item.row[0] == 'directory'}" styleClass="btfileSystem" />
+						<h:graphicImage value="../image/icons/button-file-property.gif"
+							title='#{messages.HdfsInterface_properties_help}'
+							rendered="#{item.row[0] == 'file'}" styleClass="btfileSystem" />
+						<f:param name="indexFileEdit" value="#{indexTable}" />
+					</a4j:commandLink>
+				</rich:column>
+				
+				
+				
+				<rich:column filterBy="#{item.row[1]}" 
+					style="border-bottom:0px;border-right:0px;">
+					<f:facet name="header">
+						<h:outputText value="#{messages.label_name}" />
+					</f:facet>
+					<a4j:commandLink value="#{item.row[1]}"
+						title="#{item.row[1]}"
+						rendered="#{item.row[2] == 'true'}"
+						action="#{remotefsBean.selectFile}" reRender="remotefsfs,remotefspath"
+						oncomplete="createFilterOnChangeTriggerRemoteFS();">
+							<a4j:actionparam name="nameFile" value="#{item.row[1]}" />
+	     					<rich:dragSupport dragIndicator=":indicator" dragValue="#{item.row[1]}" dragType="ssh">
+	                             <rich:dndParam name="label" value="#{item.row[1]}" />
+	                             <a4j:actionparam name="file" value="#{item.row[1]}" />
+	                             <a4j:actionparam name="path" value="#{remotefsBean.path}" />
+                            </rich:dragSupport>
+					</a4j:commandLink>
+					<a4j:commandLink 
+					    value="#{item.row[1]}"
+					    title="#{item.row[1]}"
+					    rendered="#{item.row[2] != 'true'}"
+					    action="#{remotefsBean.openFile}"
+					    oncomplete="#{rich:component('remotefsOpenFileModalPanel')}.show();" >
+							<a4j:actionparam name="nameFile" value="#{item.row[1]}"/>
+	     					<rich:dragSupport dragIndicator=":indicator" dragValue="#{item.row[1]}" dragType="ssh">
+	                             <rich:dndParam name="label" value="#{item.row[1]}" />
+	                             <a4j:actionparam name="file" value="#{item.row[1]}" />
+	                             <a4j:actionparam name="path" value="#{remotefsBean.path}" />
+                            </rich:dragSupport>
+     				</a4j:commandLink>
+				</rich:column>
+
+				<rich:columns value="#{remotefsBean.tableGrid.titles == null? canvasBean.emptyList : remotefsBean.tableGrid.titles}" var="column" index="ind" begin="4"
+					style="border-bottom:0px;border-right:0px;">
+					<f:facet name="header">
+						<h:outputText value="#{column}" />
+					</f:facet>
+					<h:outputText value="#{item.row[ind]}" title="#{item.row[ind]}" />
+				</rich:columns>
+
+			</rich:extendedDataTable>
+		</h:form>
+	</div>
+	
+	<a4j:region>
+		<rich:modalPanel id="remotefseditModalPanel" width="600" height="400"
+			style="overflow:auto;" resizeable="false">
+	
+			<f:facet name="header">Edit File</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('remotefseditModalPanel')}.hide()" />
+			</f:facet>
+	
+			<h:form id="remotefsform5">
+				<h:panelGrid>
+					<a4j:include viewId="/pages/remotefs/editRemoteFS.xhtml" ajaxRendered="true" />
+				</h:panelGrid>
+			</h:form>
+	
+		</rich:modalPanel>
+	</a4j:region>
+	
+	<a4j:region>	
+		<rich:modalPanel id="remotefsOpenFileModalPanel" width="600" height="400"
+			style="overflow:auto;" >
+	
+			<f:facet name="header">Preview Table</f:facet>
+			<f:facet name="controls">
+				<h:graphicImage value="../image/icons/buttonCloseWindow.gif"
+					style="cursor:pointer;width:22px;"
+					onclick="#{rich:component('remotefsOpenFileModalPanel')}.hide()" />
+			</f:facet>
+	
+			<h:form id="remotefsform6">
+				<h:panelGrid>
+					<a4j:include viewId="/pages/remotefs/openRemoteFile.xhtml" ajaxRendered="true" />
+				</h:panelGrid>
+			</h:form>
+	
+		</rich:modalPanel>
+	</a4j:region>
+	
+
+</body>
+</html>

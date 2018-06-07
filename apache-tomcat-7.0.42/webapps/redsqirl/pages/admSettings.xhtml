@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" >
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+<head>
+
+	<link rel="icon" type="image/gif" href="../image/logo_redsqirl_favicon.gif" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/css/table-style.css" />
+	<link rel="stylesheet" href='#{facesContext.externalContext.requestContextPath}/css/redsqirl.css' />
+	<script src='#{facesContext.externalContext.requestContextPath}/js/jquery-1.9.1.js' type="text/javascript"></script>
+	<script src='#{facesContext.externalContext.requestContextPath}/js/redsqirl-pck-manager.js' type="text/javascript"></script>
+	<script	src="#{facesContext.externalContext.requestContextPath}/js/redsqirl.js"	type="text/javascript" ></script>
+	
+	<title><h:outputText value="#{messages.label_sistem}" /></title>
+		
+<script>
+
+jQuery.noConflict();
+
+jQuery(function() {
+
+	
+});
+
+	function getNewASTemplateNameValue(){
+		return jQuery("[id$='newastemplatename']").val();
+	}
+	
+	var scrollPosition;
+
+	function saveScrollPosition() {
+	    scrollPosition = jQuery('[id$="listSettingSettings"]').scrollTop();
+	}
+
+	function setScrollPosition() {
+		jQuery('[id$="listSettingSettings"]').scrollTop(scrollPosition);
+	}
+
+	jQuery('[id$="newastemplatename"]').keyup(function() {
+	    var textarea = jQuery(this);
+	    textarea.val(textarea.val().replace(/\W/g, ''));
+	});
+
+</script>
+
+</head>
+
+<body>
+
+	<h:form>
+	
+		<img src="./image/login_squirl_background.png" style="width:90%;position:absolute;z-index:-1;height:90%;left:6%;min-width:600px;" onError="this.onerror=null;this.src='../image/login_squirl_background.png';" />
+		<img src="./image/analytics_store_logo.gif" style="width:180px;" onError="this.onerror=null;this.src='../image/analytics_store_logo.gif';" />
+		
+		<a4j:jsFunction name="installModule" action="#{analyticsStoreLoginBean.installModule}"/>
+		<a4j:jsFunction name="uninstallModule" action="#{analyticsStoreLoginBean.uninstallModule}"/>
+	
+		<table style="position:relative;height:87%;" >
+			<tr>
+				
+				<td style="float:right;position:relative;top:-40px;padding-left: 400px;" >
+				
+					
+					<rich:toolBar>
+					
+						<rich:dropDownMenu>
+		
+							<f:facet name="label">
+								<h:panelGroup>
+									<span onclick="license();"><h:outputText value="#{messages.label_license}" /></span>
+									<a4j:jsFunction name="license" action="#{analyticsStoreLoginBean.license}"/>
+								</h:panelGroup>
+							</f:facet>
+			
+						</rich:dropDownMenu>
+						
+						<rich:dropDownMenu itemClass="admMenu">
+		
+							<f:facet name="label">
+								<h:panelGroup>
+									<h:outputText value="#{messages.label_packages}" />
+								</h:panelGroup>
+							</f:facet>
+							
+							<rich:menuItem submitMode="none">
+								<rich:menuItem submitMode="none" value="#{messages.label_package_install}" onclick="installModule();" />
+							</rich:menuItem>
+							<rich:menuItem submitMode="none" rendered="#{analyticsStoreLoginBean.showUninstall == 'Y'}" >
+								<rich:menuItem submitMode="none" value="#{messages.label_package_uninstall}" onclick="uninstallModule();" />
+							</rich:menuItem>
+			
+						</rich:dropDownMenu>
+						
+						<rich:dropDownMenu>
+		
+							<f:facet name="label">
+								<h:panelGroup>
+									<span onclick="setting();"><h:outputText value="#{messages.label_setting_modal}" /></span>
+									<a4j:jsFunction name="setting" action="#{analyticsStoreLoginBean.setting}"/>
+								</h:panelGroup>
+							</f:facet>
+			
+						</rich:dropDownMenu>
+						
+						<rich:toolBarGroup style="padding-left:100px;">
+							<a4j:commandButton value="#{messages.label_menu_signout}" styleClass="signoutButton" ajax="true" action="#{analyticsStoreLoginBean.home}"/>
+						</rich:toolBarGroup>
+					
+					</rich:toolBar>
+					
+				
+				</td>
+				
+			</tr>
+		</table>
+	
+	 	<table style="width: 100%;" >
+			<tr>
+				<td>
+				
+					<h:outputText value="#{messages.label_setting_modal}" style="font-size:50px;position:relative;left:-80px;color:#818286;margin-left:680px;" />
+				
+					<div id="sysSettingsTabPanel" style="border:none;padding-left:290px;height:calc(92% - 300px);position:absolute;background:none;overflow:hidden; width:50%;">
+		    
+				    	<h:panelGroup layout="block" id="pathSetting" style="margin-left:10px;" >
+					    	<ui:repeat value="#{analyticsStoreLoginBean.path}" var="item">
+					    		<a4j:commandLink value="#{item}" action="#{analyticsStoreLoginBean.navigationPackageSettings}" reRender="pathSetting, listSubMenuSettings, listSettingSettings, validadeSettingsBT" 
+					    			styleClass="packageSettingsTab" rendered="#{item ne analyticsStoreLoginBean.pathPosition}" >
+						    		<f:param name="name" value="#{item}" />
+						    	</a4j:commandLink>
+						    	&#32;&#32;
+					    	</ui:repeat>
+				    	</h:panelGroup>
+					    
+					    <br/>
+					    <br/>
+					    <br/>
+					    
+					    <h:panelGrid columns="2" width="100%" >
+					    
+						    <h:panelGroup layout="block" id="listSubMenuSettings" style="margin-left:2px;position:absolute;top:100px;height:70%;overflow:auto;width:165px;" >
+
+								<a4j:commandLink title="#{messages.label_add_template}"
+									oncomplete="#{rich:component('addNewASTemplate')}.show();"
+									rendered="#{analyticsStoreLoginBean.template == 'Y'}">
+									<img src="../image/icons/button-plus-small.gif" />
+								</a4j:commandLink>
+
+								<br />
+								<br />
+
+								<ui:repeat value="#{analyticsStoreLoginBean.listSubMenu}" var="sc">
+							     	
+							     	<a4j:commandButton value="#{sc.name}" action="#{analyticsStoreLoginBean.navigationPackageSettings}" 
+							     		reRender="pathSetting, listSubMenuSettings, listSettingSettings, validadeSettingsBT" styleClass="greenButton" >
+							     		<f:param name="name" value="#{sc.name}" />
+							     	</a4j:commandButton>
+
+									<a4j:commandLink title="#{messages.label_remove_template}"
+										action="#{analyticsStoreLoginBean.removeTemplate}"
+										rendered="#{sc.template == 'Y'}"
+										reRender="listSubMenuSettings">
+										<h:graphicImage url="../image/icons/button-delete-small.gif"
+											style="width:20px;" title="#{messages.button_remove}" />
+										<f:param name="name" value="#{sc.name}" />
+									</a4j:commandLink>
+
+									<br/>
+						    		<br/>
+						    		<br/>
+						    		
+							    </ui:repeat>
+						    </h:panelGroup>
+					     
+					     	<h:panelGroup layout="block" id="listSettingSettings" style="margin-left:170px;height:440px;overflow:auto;" rendered="#{not empty analyticsStoreLoginBean.listSetting}" >
+						     	<table>
+						     		
+						     		<tr>
+					     				<td colspan="2">
+		     								<h:outputText rendered="#{analyticsStoreLoginBean.template != 'Y'}" value="#{analyticsStoreLoginBean.pathPosition}" style="font-size:20px;padding-left:200px;" />
+		     								<h:outputText rendered="#{analyticsStoreLoginBean.template == 'Y'}" value="#{messages.label_template} #{analyticsStoreLoginBean.pathPosition}" style="font-size:20px;padding-left:200px;" />
+					     				</td>
+					     			</tr>
+						     		<tr>
+						     			<td colspan="2">
+						     				<br/>
+						     			</td>
+						     		</tr>
+						     		
+							     	<ui:repeat value="#{analyticsStoreLoginBean.listSetting}" var="obj">
+							     	
+							     		<tr>
+							     			<td colspan="2">
+							     				<h:outputText value="#{analyticsStoreLoginBean.s.properties[obj].label}" style="font-size:15px;padding-left:200px;" /><br/><br/>
+							     			</td>
+							     		</tr>
+						     			<tr>
+						     				<td colspan="2">
+						     					
+						     					<h:graphicImage url="../image/icons/sys_icon.png" style="width:20px;vertical-align:-6px;" title="#{messages.label_system}" />
+						     					<h:inputText title="#{analyticsStoreLoginBean.s.properties[obj].description}" 
+						     					    value="#{analyticsStoreLoginBean.s.properties[obj].sysValue}" 
+						     						style="background-color:#FF3333;border: 1px solid;" 
+						     						rendered="#{!analyticsStoreLoginBean.s.properties[obj].password &amp;&amp; analyticsStoreLoginBean.s.properties[obj].existSysProperty &amp;&amp; analyticsStoreLoginBean.template != 'Y'}" />
+						     					<h:inputSecret value="#{analyticsStoreLoginBean.s.properties[obj].sysValue}" style="background-color:#FF3333;border:1px solid;" 
+			     									rendered="#{analyticsStoreLoginBean.s.properties[obj].password &amp;&amp; analyticsStoreLoginBean.s.properties[obj].existSysProperty &amp;&amp; analyticsStoreLoginBean.template != 'Y'}" 
+						     						title="#{analyticsStoreLoginBean.s.properties[obj].description}" redisplay="true" />	
+						     					<h:outputText value="#{analyticsStoreLoginBean.s.properties[obj].description}" 
+			     									rendered="#{!analyticsStoreLoginBean.s.properties[obj].existSysProperty or analyticsStoreLoginBean.template == 'Y'}" />
+						     					<br/>
+						     					<br/>
+						     				
+						     					<h:panelGrid columns="3" rendered="#{analyticsStoreLoginBean.template != 'Y'}" >
+						     					
+						     						<a4j:commandLink action="#{analyticsStoreLoginBean.setDefaultValue}"
+						     							rendered="#{analyticsStoreLoginBean.s.properties[obj].existSysProperty}"
+						     							reRender="listSettingSettings" 
+						     							onmousedown="saveScrollPosition();" oncomplete="setScrollPosition();" >
+												    	<h:graphicImage url="../image/icons/button-undo.gif" style="width:20px;" 
+												    		title="#{messages.label_default_value} #{analyticsStoreLoginBean.s.properties[obj].defaultValue}"/>
+												    	<f:param name="key" value="#{obj}" />
+												    	<f:param name="type" value="SYSTEM" />
+												    </a4j:commandLink>
+				 			     					
+				 			     					<a4j:commandLink action="#{analyticsStoreLoginBean.deletePropertyValue}" reRender="listSettingSettings" 
+				 			     						rendered="#{analyticsStoreLoginBean.s.properties[obj].existSysProperty}" 
+				 			     						onmousedown="saveScrollPosition();" oncomplete="setScrollPosition();" >
+												    	<h:graphicImage url="../image/icons/button-delete-small.gif" style="width:20px;" title="#{messages.label_delete_value}"/>
+												    	<f:param name="key" value="#{obj}" />
+												    	<f:param name="scope" value="SYSTEM" />
+												    </a4j:commandLink>
+												    
+												    <a4j:commandLink action="#{analyticsStoreLoginBean.addPropertyValue}" reRender="listSettingSettings" 
+												    	rendered="#{!analyticsStoreLoginBean.s.properties[obj].existSysProperty}" 
+												    	onmousedown="saveScrollPosition();" oncomplete="setScrollPosition();" >
+												    	<h:graphicImage url="../image/icons/button-plus-small.gif" style="width:20px;" title="#{messages.label_add_value}"/>
+												    	<f:param name="key" value="#{obj}" />
+												    	<f:param name="scope" value="SYSTEM" />
+												    </a4j:commandLink>
+											   
+											    </h:panelGrid>
+						     				
+						     				</td>
+						     			</tr>
+						     			<tr>
+							     			<td colspan="2">
+							     				<br/>
+							     				<br/>
+							     			</td>
+							     		</tr>
+						     			
+							     	</ui:repeat>
+						     	</table>
+					     	</h:panelGroup>
+				    
+				    	</h:panelGrid>
+				    
+				    </div>
+					
+				</td>
+			</tr>
+			<tr style="position: fixed; bottom: 110px;" >
+				<td>
+				
+					<h:panelGroup layout="block" id="validadeSettingsBT">
+					
+						<a4j:commandButton value="#{messages.button_ok}" action="#{analyticsStoreLoginBean.saveSettings}" 
+							styleClass="greenButton" style="margin-left:690px;" />
+							
+						<a4j:commandButton value="#{messages.button_check}" action="#{analyticsStoreLoginBean.validate}" 
+							styleClass="greenButton" rendered="#{analyticsStoreLoginBean.validationEnabled}" 
+							reRender="msnError, msnSuccess" />
+						
+					</h:panelGroup>
+						
+				</td>
+			</tr>
+		</table>
+		
+		<div style="height:100px;width:100%;background:#C0D72F;position:fixed;bottom:0px;" />
+		
+	</h:form>
+	
+	
+    <rich:modalPanel id="addNewASTemplate" width="250" height="150" style="overflow:auto;" resizeable="false" >
+
+		<f:facet name="header">
+			<h:outputText value='#{messages.label_addNewTemplate}' />
+		</f:facet>
+
+		<h:form>
+
+			<a4j:region>
+				<a4j:jsFunction name="addNewASTemplateNameAndClose"
+					action="#{analyticsStoreLoginBean.addNewTemplate}"
+					reRender="listSubMenuSettings"
+					oncomplete="#{rich:component('addNewASTemplate')}.hide();">
+					<f:param name="name" />
+				</a4j:jsFunction>
+			</a4j:region>
+
+			<h:panelGrid>
+				<h:outputText value="#{messages.label_addNewTemplate_name}" />
+				<h:inputText id="newastemplatename" value=""
+					onkeypress="return enableEnterKey(event, 'newASTemplateNameBtn');" />
+			</h:panelGrid>
+
+			<br />
+			<br />
+
+			<center>
+				<a4j:commandButton value="#{messages.button_cancel}"
+					oncomplete="#{rich:component('addNewASTemplate')}.hide();"
+					styleClass="greenButton" />
+				<a4j:commandButton value="#{messages.button_ok}"
+					id="newASTemplateNameBtn"
+					oncomplete="addNewASTemplateNameAndClose(getNewASTemplateNameValue());"
+					styleClass="greenButton" />
+			</center>
+
+		</h:form>
+
+	</rich:modalPanel>
+	
+	
+	<rich:modalPanel id="msnSuccess"
+		showWhenRendered="#{requestScope['msnSuccess'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto;">
+			<rich:messages id="msgS" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnSuccess')}.hide(); return false;"
+				style="bottom:14%;position:relative;" reRender="msnSuccess, msgS" />
+		</div>
+	</rich:modalPanel>
+	
+	<rich:modalPanel id="msnError"
+		showWhenRendered="#{requestScope['msnError'] != null}">
+		<div style="width: 100%; height: 100%; overflow: auto; z-index: 1000; position: relative;">
+			<rich:messages id="msg" globalOnly="false" layout="list"
+				styleClass="message" infoClass="messageok" errorClass="messageerro"
+				warnClass="messagealert" showDetail="true" showSummary="false"
+				ajaxRendered="false" />
+
+			<a4j:commandButton styleClass="greenButton"
+				value="#{messages.button_ok}"
+				onclick="#{rich:component('msnError')}.hide(); return false;"
+				style="bottom:14%;position:relative;"
+				reRender="msnError, msg, errorTable" />
+
+		</div>
+	</rich:modalPanel>
+	
+
+</body>
+</html>

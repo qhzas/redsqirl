@@ -1,0 +1,22 @@
+<h:panelGrid xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<a4j:loadBundle basename="MessagesResources" var="messages" />
+
+	<h:outputText value="Content:" />
+	
+	<h:inputTextarea cols="75" value="#{hdfsBean.fileContent}" rows="18"
+		style="resize:none;border:1px solid;width:550px;height:278px;white-space: pre;overflow-wrap: normal;" disabled="true" />
+	
+	<br />
+	<h:panelGrid columns="1" id="prevJdbclBt"
+		style="border:none; float:right;">
+		<a4j:commandButton styleClass="greenButton"
+			value="#{messages.button_ok}"
+			onclick="#{rich:component('hdfsOpenFileModalPanel')}.hide();" />
+	</h:panelGrid>
+</h:panelGrid>
